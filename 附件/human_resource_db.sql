@@ -50,7 +50,7 @@ CREATE TABLE `human_resource` (
   `sex` char(4) NOT NULL default '男',
   `name_pinyin` varchar(30) default NULL,
   `other_name` varchar(50) default NULL,
-  `birthday` char(10) NOT NULL default '1999-01-01',
+  `birthday` date NOT NULL default '1990-01-01',
   `position` varchar(255) default NULL,
   `company` varchar(255) default NULL,
   `passport` varchar(40) default NULL,

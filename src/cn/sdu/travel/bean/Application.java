@@ -5,9 +5,9 @@ public class Application {
 	private String applicationNumber;
 	private String invitationRaw;
 	private String invitationZh;
-	private VisitPlan plan;
-	private VisitPurpose purpose;
-	private Passport passport_info;
+	private String plan;
+	private String purpose;
+	private String passport_info;
 	private String type;
 	private String conferenceName;
 	private String conferenceDesc;
@@ -17,11 +17,11 @@ public class Application {
 	private String examineUnit;
 	private String groupWork;
 	private String groupMembers;
-	private Inviter inviterInfo;
+	private String inviterInfo;
 	private String identifyType;
 	private String licenceType;
 	private String inviterPay;
-	private Funds fundsId;
+	private String fundsId;
 	private String loan;
 
 	public String getApplicationNumber() {
@@ -46,30 +46,6 @@ public class Application {
 
 	public void setInvitationZh(String invitationZh) {
 		this.invitationZh = invitationZh;
-	}
-
-	public VisitPlan getPlan() {
-		return plan;
-	}
-
-	public void setPlan(VisitPlan plan) {
-		this.plan = plan;
-	}
-
-	public VisitPurpose getPurpose() {
-		return purpose;
-	}
-
-	public void setPurpose(VisitPurpose purpose) {
-		this.purpose = purpose;
-	}
-
-	public Passport getPassport_info() {
-		return passport_info;
-	}
-
-	public void setPassport_info(Passport passport_info) {
-		this.passport_info = passport_info;
 	}
 
 	public String getType() {
@@ -144,14 +120,6 @@ public class Application {
 		this.groupMembers = groupMembers;
 	}
 
-	public Inviter getInviterInfo() {
-		return inviterInfo;
-	}
-
-	public void setInviterInfo(Inviter inviterInfo) {
-		this.inviterInfo = inviterInfo;
-	}
-
 	public String getIdentifyType() {
 		return identifyType;
 	}
@@ -176,14 +144,6 @@ public class Application {
 		this.inviterPay = inviterPay;
 	}
 
-	public Funds getFundsId() {
-		return fundsId;
-	}
-
-	public void setFundsId(Funds fundsId) {
-		this.fundsId = fundsId;
-	}
-
 	public String getLoan() {
 		return loan;
 	}
@@ -191,4 +151,45 @@ public class Application {
 	public void setLoan(String loan) {
 		this.loan = loan;
 	}
+
+	public String getPlan() {
+		return plan;
+	}
+
+	public void setPlan(String plan) {
+		this.plan = plan;
+	}
+
+	public String getPurpose() {
+		return purpose;
+	}
+
+	public void setPurpose(String purpose) {
+		this.purpose = purpose;
+	}
+
+	public String getPassport_info() {
+		return passport_info;
+	}
+
+	public void setPassport_info(String passport_info) {
+		this.passport_info = passport_info;
+	}
+
+	public String getInviterInfo() {
+		return inviterInfo;
+	}
+
+	public void setInviterInfo(String inviterInfo) {
+		this.inviterInfo = inviterInfo;
+	}
+
+	public String getFundsId() {
+		return fundsId;
+	}
+
+	public void setFundsId(String fundsId) {
+		this.fundsId = fundsId;
+	}
+
 }

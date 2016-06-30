@@ -18,7 +18,7 @@ public class HumanResource {
 	private String email;
 	private String mobilePhone;
 	private String fixedPhone;
-	private EmergencyContactPerson emergencyContactPerson;
+	private String emergencyContactPerson;
 
 	public String getId() {
 		return id;
@@ -132,12 +132,11 @@ public class HumanResource {
 		this.fixedPhone = fixedPhone;
 	}
 
-	public EmergencyContactPerson getEmergencyContactPerson() {
+	public String getEmergencyContactPerson() {
 		return emergencyContactPerson;
 	}
 
-	public void setEmergencyContactPerson(
-			EmergencyContactPerson emergencyContactPerson) {
+	public void setEmergencyContactPerson(String emergencyContactPerson) {
 		this.emergencyContactPerson = emergencyContactPerson;
 	}
 

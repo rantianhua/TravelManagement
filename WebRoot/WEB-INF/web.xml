@@ -9,4 +9,20 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+    <context-param>
+        <param-name>file_temp_dir</param-name>
+        <param-value>D:\travelmanagement_files\temp</param-value>
+    </context-param>
+    <context-param>
+        <param-name>file_save_dir</param-name>
+        <param-value>D:\travelmanagement_files\save</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>UploadFile</servlet-name>
+        <servlet-class>cn.sdu.travel.servlet.UploadFile</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UploadFile</servlet-name>
+        <url-pattern>/UploadFile.html</url-pattern>
+    </servlet-mapping>
 </web-app>

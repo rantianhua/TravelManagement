@@ -1,4 +1,3 @@
-﻿# MySQL-Front 5.1  (Build 4.2)
 
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE */;
 /*!40101 SET SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */;
@@ -17,7 +16,7 @@
 #
 # Source for table emergency_contact_person
 #
-
+use human_resource_db;
 DROP TABLE IF EXISTS `emergency_contact_person`;
 CREATE TABLE `emergency_contact_person` (
   `id` char(32) NOT NULL default '0',

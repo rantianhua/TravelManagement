@@ -1,6 +1,7 @@
 package cn.sdu.travel.bean;
 
 import java.util.Date;
+import java.util.List;
 
 //出行计划
 public class VisitPlan {
@@ -9,6 +10,7 @@ public class VisitPlan {
 	private Date exitBorderDate;
 	private String backCity;
 	private Date enterBorderDate;
+	private List<VisitDestination> destinations;
 
 	public String getPlanId() {
 		return planId;
@@ -49,4 +51,13 @@ public class VisitPlan {
 	public void setEnterBorderDate(Date enterBorderDate) {
 		this.enterBorderDate = enterBorderDate;
 	}
+
+	public List<VisitDestination> getDestinations() {
+		return destinations;
+	}
+
+	public void setDestinations(List<VisitDestination> destinations) {
+		this.destinations = destinations;
+	}
+
 }

@@ -20,6 +20,8 @@ public class HumanResource {
 	private String fixedPhone;
 	private String emergencyContactPerson;
 
+	private EmergencyContactPerson ecp;
+
 	public String getId() {
 		return id;
 	}
@@ -138,6 +140,26 @@ public class HumanResource {
 
 	public void setEmergencyContactPerson(String emergencyContactPerson) {
 		this.emergencyContactPerson = emergencyContactPerson;
+	}
+
+	public EmergencyContactPerson getEcp() {
+		return ecp;
+	}
+
+	public void setEcp(EmergencyContactPerson ecp) {
+		this.ecp = ecp;
+	}
+
+	@Override
+	public String toString() {
+		return "HumanResource [id=" + id + ", role=" + role + ", nameCh="
+				+ nameCh + ", nameEn=" + nameEn + ", sex=" + sex
+				+ ", namePinyin=" + namePinyin + ", otherName=" + otherName
+				+ ", birthday=" + birthday + ", position=" + position
+				+ ", company=" + company + ", passport=" + passport
+				+ ", email=" + email + ", mobilePhone=" + mobilePhone
+				+ ", fixedPhone=" + fixedPhone + ", emergencyContactPerson="
+				+ emergencyContactPerson + ", ecp=" + ecp + "]";
 	}
 
 }

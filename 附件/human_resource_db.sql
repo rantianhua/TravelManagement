@@ -1,3 +1,4 @@
+﻿# MySQL-Front 5.1  (Build 4.2)
 
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE */;
 /*!40101 SET SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */;
@@ -16,16 +17,16 @@
 #
 # Source for table emergency_contact_person
 #
-use human_resource_db;
+
 DROP TABLE IF EXISTS `emergency_contact_person`;
 CREATE TABLE `emergency_contact_person` (
-  `id` char(32) NOT NULL default '0',
+  `id` char(36) NOT NULL default '0',
   `name` varchar(20) NOT NULL default '',
   `email` varchar(40) default NULL,
   `mobile_phone` varchar(20) default NULL,
   `fixed_phone` varchar(20) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='紧急联系人表';
 
 #
 # Dumping data for table emergency_contact_person
@@ -43,7 +44,7 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `human_resource`;
 CREATE TABLE `human_resource` (
   `id` char(18) NOT NULL default '',
-  `role` varchar(10) default '1',
+  `role` varchar(10) default 'r10',
   `name_ch` varchar(20) default NULL,
   `name_en` varchar(50) default NULL,
   `sex` char(4) NOT NULL default '男',
@@ -56,10 +57,8 @@ CREATE TABLE `human_resource` (
   `email` varchar(40) default NULL,
   `mobile_phone` varchar(20) default NULL,
   `fixed_phone` varchar(20) default NULL,
-  `emergency_contact_person` char(32) default NULL,
-  PRIMARY KEY  (`id`),
-  KEY `emergency_FK` (`emergency_contact_person`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `emergency_contact_person` char(36) default NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='人事表';
 
 #
 # Dumping data for table human_resource
@@ -67,16 +66,10 @@ CREATE TABLE `human_resource` (
 
 LOCK TABLES `human_resource` WRITE;
 /*!40000 ALTER TABLE `human_resource` DISABLE KEYS */;
+INSERT INTO `human_resource` VALUES ('140000199503230001','r10','张三','Jung','男','Zhang San',NULL,'1995-03-23',NULL,NULL,NULL,NULL,NULL,NULL,'8dcef8b1-4262-43a3-8c85-b5aa470a760f');
+INSERT INTO `human_resource` VALUES ('140000199503230002','r10','李四','Lee','男','Li Si',NULL,'1995-08-10',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `human_resource` ENABLE KEYS */;
 UNLOCK TABLES;
-
-#
-#  Foreign keys for table human_resource
-#
-
-ALTER TABLE `human_resource`
-ADD CONSTRAINT `emergency_FK` FOREIGN KEY (`emergency_contact_person`) REFERENCES `emergency_contact_person` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
-
 
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;

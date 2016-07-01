@@ -7,7 +7,7 @@ public class Application {
 	private String invitationZh;
 	private String plan;
 	private String purpose;
-	private String passport_info;
+	private String passportInfo;
 	private String type;
 	private String conferenceName;
 	private String conferenceDesc;
@@ -23,6 +23,12 @@ public class Application {
 	private String inviterPay;
 	private String fundsId;
 	private String loan;
+
+	private VisitPlan vplan;
+	private VisitPurpose vpurpose;
+	private Passport passport;
+	private Inviter inviter;
+	private Funds funds;
 
 	public String getApplicationNumber() {
 		return applicationNumber;
@@ -168,12 +174,12 @@ public class Application {
 		this.purpose = purpose;
 	}
 
-	public String getPassport_info() {
-		return passport_info;
+	public String getPassportInfo() {
+		return passportInfo;
 	}
 
-	public void setPassport_info(String passport_info) {
-		this.passport_info = passport_info;
+	public void setPassportInfo(String passportInfo) {
+		this.passportInfo = passportInfo;
 	}
 
 	public String getInviterInfo() {
@@ -192,4 +198,43 @@ public class Application {
 		this.fundsId = fundsId;
 	}
 
+	public VisitPlan getVplan() {
+		return vplan;
+	}
+
+	public void setVplan(VisitPlan vplan) {
+		this.vplan = vplan;
+	}
+
+	public VisitPurpose getVpurpose() {
+		return vpurpose;
+	}
+
+	public void setVpurpose(VisitPurpose vpurpose) {
+		this.vpurpose = vpurpose;
+	}
+
+	public Passport getPassport() {
+		return passport;
+	}
+
+	public void setPassport(Passport passport) {
+		this.passport = passport;
+	}
+
+	public Inviter getInviter() {
+		return inviter;
+	}
+
+	public void setInviter(Inviter inviter) {
+		this.inviter = inviter;
+	}
+
+	public Funds getFunds() {
+		return funds;
+	}
+
+	public void setFunds(Funds funds) {
+		this.funds = funds;
+	}
 }

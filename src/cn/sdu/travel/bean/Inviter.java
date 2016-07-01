@@ -66,4 +66,11 @@ public class Inviter {
 		this.url = url;
 	}
 
+	@Override
+	public String toString() {
+		return "Inviter [id=" + id + ", title=" + title + ", unitName="
+				+ unitName + ", address=" + address + ", telephone="
+				+ telephone + ", email=" + email + ", url=" + url + "]";
+	}
+
 }

@@ -12,6 +12,6 @@ public interface EmergencyContactPersonDao {
 
 	void update(EmergencyContactPerson ecp) throws SQLException;
 
-	void find(String id) throws SQLException;
+	EmergencyContactPerson find(String id) throws SQLException;
 
 }

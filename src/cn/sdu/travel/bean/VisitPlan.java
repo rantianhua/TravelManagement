@@ -10,6 +10,7 @@ public class VisitPlan {
 	private Date exitBorderDate;
 	private String backCity;
 	private Date enterBorderDate;
+	
 	private List<VisitDestination> destinations;
 
 	public String getPlanId() {

@@ -36,10 +36,10 @@ public class EmergencyContactPersonDaoImpl implements EmergencyContactPersonDao 
 	}
 
 	@Override
-	public void find(String id) throws SQLException {
+	public EmergencyContactPerson find(String id) throws SQLException {
 		QueryRunner runner = new QueryRunner();
 		String sql = "select * from emergency_contact_person where id=?";
-		runner.query(HrDbUtils.getConnection(), sql, id, new BeanHandler(
-				EmergencyContactPerson.class));
+		return (EmergencyContactPerson) runner.query(HrDbUtils.getConnection(),
+				sql, id, new BeanHandler(EmergencyContactPerson.class));
 	}
 }

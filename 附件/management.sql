@@ -114,6 +114,7 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `passport`;
 CREATE TABLE `passport` (
   `identity` char(18) NOT NULL,
+  `id_card` varchar(255) default NULL,
   `img` varchar(255) default NULL,
   `account_book` varchar(255) default NULL,
   PRIMARY KEY  (`identity`)

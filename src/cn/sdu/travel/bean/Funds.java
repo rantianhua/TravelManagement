@@ -56,4 +56,12 @@ public class Funds {
 	public void setProveFile(String proveFile) {
 		this.proveFile = proveFile;
 	}
+
+	@Override
+	public String toString() {
+		return "Funds [id=" + id + ", payType=" + payType + ", payItem="
+				+ payItem + ", accountName=" + accountName + ", fundsAccount="
+				+ fundsAccount + ", proveFile=" + proveFile + "]";
+	}
+	
 }

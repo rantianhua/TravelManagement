@@ -44,13 +44,14 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `human_resource`;
 CREATE TABLE `human_resource` (
   `id` char(18) NOT NULL default '',
+  `password` varchar(100) NOT NULL default '',
   `role` varchar(10) default 'r10',
   `name_ch` varchar(20) default NULL,
   `name_en` varchar(50) default NULL,
-  `sex` char(4) NOT NULL default '男',
+  `sex` char(4) default '男',
   `name_pinyin` varchar(30) default NULL,
   `other_name` varchar(50) default NULL,
-  `birthday` date NOT NULL default '1990-01-01',
+  `birthday` date default '1990-01-01',
   `position` varchar(255) default NULL,
   `company` varchar(255) default NULL,
   `passport` varchar(40) default NULL,
@@ -66,8 +67,9 @@ CREATE TABLE `human_resource` (
 
 LOCK TABLES `human_resource` WRITE;
 /*!40000 ALTER TABLE `human_resource` DISABLE KEYS */;
-INSERT INTO `human_resource` VALUES ('140000199503230001','r10','张三','Jung','男','Zhang San',NULL,'1995-03-23',NULL,NULL,NULL,NULL,NULL,NULL,'8dcef8b1-4262-43a3-8c85-b5aa470a760f');
-INSERT INTO `human_resource` VALUES ('140000199503230002','r10','李四','Lee','男','Li Si',NULL,'1995-08-10',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `human_resource` VALUES ('140000199503230002','1234','r10','李四','Lee','男','Li Si',NULL,'1995-08-10',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `human_resource` VALUES ('140000199503230001','','r10','张三','Jung','男',NULL,NULL,'1995-12-23',NULL,NULL,NULL,NULL,NULL,NULL,'d47ed4e2-8b9d-4368-8931-ab86f23e46ae');
+INSERT INTO `human_resource` VALUES ('140000199503230003','1234',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `human_resource` ENABLE KEYS */;
 UNLOCK TABLES;
 

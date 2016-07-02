@@ -5,6 +5,7 @@ import java.util.Date;
 //个人信息
 public class HumanResource {
 	private String id;
+	private String password;
 	private String role;
 	private String nameCh;
 	private String nameEn;
@@ -148,6 +149,14 @@ public class HumanResource {
 
 	public void setEcp(EmergencyContactPerson ecp) {
 		this.ecp = ecp;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	@Override

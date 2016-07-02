@@ -19,11 +19,17 @@
 | ------------ | --------------------------------: |  
 | 1000         | 上传文件成功                      |  
 | 1001         | 上传文件失败                      |  
+| 1999         | 数据库异常                        |  
+| 1100         | 登录成功                          |  
+| 1101         | 密码错误                          |  
+| 1102         | 该用户不存在                      |  
+| 1200         | 注册成功                          |  
+| 1201         | 身份证已被使用                     |
+| 1202         | 身份证未被使用                     |  
 
 ## 文件上传说明
 ***
 文件上传用统一的接口：__/UploadFile.html__  
-文件上传返回数据示例：
 ```json
 {"returnCode":1000,"returnInfo":"文件上传成功","data":"http://localhost:8080/pictures/Jellyfish.jpg"}
 {"returnCode":1000,"returnInfo":"文件上传失败","data":"http://localhost:8080/files/pre_fileassoc.tmp"}  

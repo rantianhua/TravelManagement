@@ -15,8 +15,8 @@ public class HumanResourceDaoImpl implements HumanResourceDao {
 	@Override
 	public void add(HumanResource hr) throws SQLException {
 		QueryRunner runner = new QueryRunner();
-		String sql = "insert into human_resource(id,role,name_ch,name_en,sex,name_pinyin,other_name,birthday,position,company,passport,email,mobile_phone,fixed_phone,emergency_contact_person) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-		Object[] param = { hr.getId(), hr.getRole(), hr.getNameCh(),
+		String sql = "insert into human_resource(id,password,role,name_ch,name_en,sex,name_pinyin,other_name,birthday,position,company,passport,email,mobile_phone,fixed_phone,emergency_contact_person) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		Object[] param = { hr.getId(), hr.getPassword(),hr.getRole(), hr.getNameCh(),
 				hr.getNameEn(), hr.getSex(), hr.getNamePinyin(),
 				hr.getOtherName(), hr.getBirthday(), hr.getPosition(),
 				hr.getCompany(), hr.getPassport(), hr.getEmail(),

@@ -11,20 +11,18 @@ public class Constants {
 	public static final String MAP_SAVE_FILE = "/files";
 	//映射保存图片的url
 	public static final String MAP_SAVE_IMG = "/pictures";
-	//连接人事库的url
-	public static final String DB_HUMAN_RESOURCE = "jdbc:mysql://localhost:3306/human_resource_db";
-	//连接人事库的url
-	public static final String DB_MANAGEMENT = "jdbc:mysql://localhost:3306/management";
-	//数据库用户名
-	public static final String DB_USERNAME = "root";
-	//数据库密码
-	public static final String DB_PASSWORD = "travelmanagement6";
-	//数据库驱动器
-	public static final String DB_DRIVER = "com.mysql.jdbc.Driver";
+
 	/**
 	 * 返回码
 	 */
 	public static final int UPLOAD_FILE_SUCCESS = 1000;
 	public static final int UPLOAD_FILE_FAILED = 1001;
+	public static final int LOGIN_SUCCESS = 1100;
+	public static final int WRONG_PASSWORD = 1101;
+	public static final int NON_EXISTENT_ID = 1102;
+	public static final int REGISTER_SUCCESS = 1200;
+	public static final int USED_ID = 1201;
+	public static final int UNUSED_ID = 1202;
+	public static final int DB_ERROR = 1999;
 
 }

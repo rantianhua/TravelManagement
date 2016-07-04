@@ -20,15 +20,15 @@ public class RegisterServiceImpl implements RegisterService {
 		try {
 			HumanResource hr = hdao.find(id);
 			if (hr != null) {
-				map.put("returnCode", "1201");
-				map.put("returnInfo", "该身份证已被使用");
+				map.put("returnCode", 1201);
+				map.put("returnInfo", "该身份证已被使用！");
 			} else {
-				map.put("returnCode", "1202");
-				map.put("returnInfo", "该身份证未被使用");
+				map.put("returnCode", 1202);
+				map.put("returnInfo", "该身份证未被使用！");
 			}
 		} catch (SQLException e) {
-			map.put("returnCode", "1999");
-			map.put("returnInfo", "数据库异常");
+			map.put("returnCode", 1999);
+			map.put("returnInfo", "数据库异常！");
 			e.printStackTrace();
 			return map;
 		} finally {
@@ -44,10 +44,10 @@ public class RegisterServiceImpl implements RegisterService {
 		HumanResourceDao hdao = new HumanResourceDaoImpl();
 		try {
 			hdao.add(hr);
-			map.put("returnCode", "1200");
+			map.put("returnCode", 1200);
 			map.put("returnInfo", "注册成功");
 		} catch (SQLException e) {
-			map.put("returnCode", "1999");
+			map.put("returnCode", 1999);
 			map.put("returnInfo", "数据库异常");
 			e.printStackTrace();
 			return map;

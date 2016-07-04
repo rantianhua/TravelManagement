@@ -1,24 +1,36 @@
 package cn.sdu.travel.utils;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import java.util.Enumeration;
 import java.util.UUID;
 
-import org.apache.commons.codec.binary.Base64;
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.beanutils.BeanUtils;
 
 public class WebUtils {
+	// 生成唯一ID
 	public static String generateID() {
 		return UUID.randomUUID().toString();
 	}
 
-	public static String md5(String message) {
-		try {
-			MessageDigest md = MessageDigest.getInstance("md5");
-			byte md5[] = md.digest(message.getBytes());
+	// 将request中的参数复制到bean
+	public static <T> T request2Bean(HttpServletRequest request,
+			Class<T> beanClass) {
 
-			Base64 encoder = new Base64();
-			return encoder.encode(md5).toString();
-		} catch (NoSuchAlgorithmException e) {
+		try {
+			T bean = beanClass.newInstance();
+			Enumeration e = request.getParameterNames();
+			while (e.hasMoreElements()) {
+				String name = (String) e.nextElement();
+				String value = request.getParameter(name);
+				BeanUtils.setProperty(bean, name, value);
+			}
+			request.setCharacterEncoding("UTF-8");
+			String s_checkcode = (String) request.getSession().getAttribute(
+					"checkcode");
+			BeanUtils.setProperty(bean, "s_checkcode", s_checkcode);
+			return bean;
+		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}

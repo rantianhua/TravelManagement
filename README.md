@@ -2,7 +2,13 @@
 ## 源码包结构
 ***
 * __cn.sdu.travel.bean__：model层，各种POJO对象
-* __cn.sdu.travel.servlet__：servlet层
+* __cn.sdu.travel.dao__：dao层接口
+* __cn.sdu.travel.dao.impl__：dao层接口实现，数据库基本CRUD
+* __cn.sdu.travel.service__：service层接口
+* __cn.sdu.travel.service.impl__：service层接口实现，事务管理，处理业务逻辑
+* __cn.sdu.travel.web.servlet__：web层，各种servlet
+* __cn.sdu.travel.web.filter__：web层，各种过滤器
+* __cn.sdu.travel.web.servlet__：web层，封装表单的bean对象，提供表单校验和回显数据
 * __cn.sdu.travel.utils__：工具包，其中Constants.java存放各种常量数据
 
 ## 接口返回数据说明
@@ -19,13 +25,13 @@
 | ------------ | --------------------------------: |  
 | 1000         | 上传文件成功                      |  
 | 1001         | 上传文件失败                      |  
-| 1999         | 数据库异常                        |  
 | 1100         | 登录成功                          |  
 | 1101         | 密码错误                          |  
 | 1102         | 该用户不存在                      |  
 | 1200         | 注册成功                          |  
-| 1201         | 身份证已被使用                     |
+| 1201         | 身份证已被使用                     |  
 | 1202         | 身份证未被使用                     |  
+| 1999         | 数据库异常                        | 
 
 ## 文件上传说明
 ***

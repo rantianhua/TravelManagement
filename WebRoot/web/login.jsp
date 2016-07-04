@@ -26,22 +26,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   
   	<div class="div_wrapper" id="div_login">
-  	
-  		<form action="../UserDetail.html">
+  		<form action="${pageContext.request.contextPath }/servlet/LoginServlet" method="post">
   			<div class="div_inputs">
   				<span><img alt="" src="../img/login/user.png"></span>
-  				<input type="text" name="username" placeholder="身份证号">
+  				<input type="text" value="${requestScope.form.id }" name="id" placeholder="身份证号">
   			</div>
   			<div class="div_inputs" style="margin-top: 40px;">
   				<span><img alt="" src="../img/login/password.png"></span>
-  				<input type="password" name="password" placeholder="密&#12288;&#12288码">
+  				<input type="password" value="${requestScope.form.password}" name="password" placeholder="密&#12288;&#12288码">
   			</div>
+  			<br>
+  			<span>${requestScope.form.errors.id }${requestScope.returnInfo }${requestScope.form.errors.password }</span>
   			<div style="margin-top: 40px;">
   				<input type="submit" class="sure" value="登录">
   			</div>
   		</form>
   		<div style="margin-top: 40px;text-align: center;">
-  				<a href="register.jsp">没有账号，现在注册？</a>
+  				<a href="${pageContext.request.contextPath }/web/register.jsp">没有账号，现在注册？</a>
   		</div>
   	</div>
   

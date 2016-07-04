@@ -1,4 +1,4 @@
-package cn.sdu.travel.servlet;
+package cn.sdu.travel.web.servlet;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,7 +22,7 @@ import com.google.gson.Gson;
 import cn.sdu.travel.bean.ReturnRestfulJson;
 import cn.sdu.travel.utils.Constants;
 
-public class UploadFile extends HttpServlet {
+public class UploadFileServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private Gson gson;

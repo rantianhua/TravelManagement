@@ -1,4 +1,4 @@
-package cn.sdu.travel.filter;
+package cn.sdu.travel.web.filter;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;

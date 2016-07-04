@@ -27,7 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   	<div class="div_wrapper" id="div_login">
   	
-  		<form action="">
+  		<form action="../UserDetail.html">
   			<div class="div_inputs">
   				<span><img alt="" src="../img/login/user.png"></span>
   				<input type="text" name="username" placeholder="身份证号">

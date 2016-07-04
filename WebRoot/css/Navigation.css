@@ -1,0 +1,7 @@
+@CHARSET "UTF-8";
+.nav_a{
+	color:white;
+}
+.nav_a:HOVER {
+	color:black;
+}

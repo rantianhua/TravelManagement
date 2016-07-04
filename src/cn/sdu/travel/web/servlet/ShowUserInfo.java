@@ -1,4 +1,4 @@
-package cn.sdu.travel.servlet;
+package cn.sdu.travel.web.servlet;
 
 import java.io.IOException;
 

@@ -32,14 +32,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   				<input type="text" value="${requestScope.form.id }" name="id" placeholder="身份证号">
   			</div>
   			<div>
-  				<p style="color:red;font-size: 0.75em;">${requestScope.form.errors.id }${requestScope.returnInfo }</p>
+  				<p style="color:red;font-size: 0.75em;">${requestScope.form.errors.id }</p>
   			</div>
   			<div class="div_inputs" style="margin-top: 20px;">
   				<span><img alt="" src="../img/login/password.png"></span>
   				<input type="password" value="${requestScope.form.password}" name="password" placeholder="密&#12288;&#12288码">
   			</div>
   			<div>
-  				<p style="color:red;font-size: 0.75em;">${requestScope.returnInfo }${requestScope.form.errors.password }</p>
+  				<p style="color:red;font-size: 0.75em;">${requestScope.form.errors.password }${requestScope.returnInfo }</p>
   			</div>
   			<div style="margin-top: 20px;">
   				<input type="submit" class="sure" value="登录">

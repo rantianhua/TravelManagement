@@ -11,7 +11,7 @@ pageContext.setAttribute("requestName", requestName);
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
-<link href="${pageContext.request.contextPath }/css/Navigation.css" rel="stylesheet"> 
+<link href="${pageContext.request.contextPath }/css/navigation.css" rel="stylesheet"> 
 <link href="${pageContext.request.contextPath }/css/bootstrap.min.css" rel="stylesheet">
 <script src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>

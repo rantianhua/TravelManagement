@@ -4,8 +4,11 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+import cn.sdu.travel.bean.EmergencyContactPerson;
 import cn.sdu.travel.bean.HumanResource;
+import cn.sdu.travel.dao.EmergencyContactPersonDao;
 import cn.sdu.travel.dao.HumanResourceDao;
+import cn.sdu.travel.dao.impl.EmergencyContactPersonDaoImpl;
 import cn.sdu.travel.dao.impl.HumanResourceDaoImpl;
 import cn.sdu.travel.service.LoginService;
 import cn.sdu.travel.utils.HrDbUtils;
@@ -17,6 +20,7 @@ public class LoginServiceImpl implements LoginService {
 	public Map<String, Object> login(String id, String password) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		HumanResourceDao hdao = new HumanResourceDaoImpl();
+		EmergencyContactPersonDao edao = new EmergencyContactPersonDaoImpl();
 		try {
 			HumanResource hr = hdao.find(id);
 			if (hr == null) {
@@ -28,7 +32,11 @@ public class LoginServiceImpl implements LoginService {
 			} else {
 				map.put("returnCode", 1100);
 				map.put("returnInfo", "登录成功！");
-				map.put("data", hr.getId());
+				if(!hr.getEmergencyContactPerson().equals("")){
+					EmergencyContactPerson ecp = edao.find(hr.getEmergencyContactPerson());
+					hr.setEcp(ecp);
+				}
+				map.put("data", hr);
 			}
 		} catch (SQLException e) {
 			map.put("returnCode", 1999);

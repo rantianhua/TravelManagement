@@ -30,14 +30,14 @@
 					type="text" name="id" value="${requestScope.form.id }" placeholder="身份证号">
 			</div>
 			<div class="div_inputs">
-				<p style="color:red;font-size: 0.75em;">${requestScope.form.errors.id }${requestScope.returnInfo }</p>
+				<p style="color:red;font-size: 0.75em;">${requestScope.form.errors.id }</p>
 			</div>
 			<div class="div_inputs" style="margin-top: 20px;">
 				<span><img alt="" src="../img/login/password.png"></span> <input
 					type="password" name="password" value="${requestScope.form.password }" placeholder="密&#12288;&#12288码">
 			</div>
 			<div class="div_inputs">
-				<p style="color:red;font-size: 0.75em;">${requestScope.form.errors.password }${requestScope.returnInfo }</p>
+				<p style="color:red;font-size: 0.75em;">${requestScope.form.errors.password }</p>
 			</div>
 			<div class="div_inputs" style="margin-top: 20px;">
 				<span><img alt="" src="../img/login/password.png"></span> <input

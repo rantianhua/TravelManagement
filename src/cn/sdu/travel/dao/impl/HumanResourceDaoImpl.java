@@ -15,13 +15,13 @@ public class HumanResourceDaoImpl implements HumanResourceDao {
 	@Override
 	public void add(HumanResource hr) throws SQLException {
 		QueryRunner runner = new QueryRunner();
-		String sql = "insert into human_resource(id,password,role,name_ch,name_en,sex,name_pinyin,other_name,birthday,position,company,passport,email,mobile_phone,fixed_phone,emergency_contact_person) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-		Object[] param = { hr.getId(), hr.getPassword(),hr.getRole(), hr.getNameCh(),
-				hr.getNameEn(), hr.getSex(), hr.getNamePinyin(),
-				hr.getOtherName(), hr.getBirthday(), hr.getPosition(),
-				hr.getCompany(), hr.getPassport(), hr.getEmail(),
-				hr.getMobilePhone(), hr.getFixedPhone(),
-				hr.getEmergencyContactPerson() };
+		String sql = "insert into human_resource(id,password,role,name_ch,name_en,sex,name_pinyin,other_name,birthday,category,position,company,passport,email,mobile_phone,fixed_phone,emergency_contact_person) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		Object[] param = { hr.getId(), hr.getPassword(), hr.getRole(),
+				hr.getNameCh(), hr.getNameEn(), hr.getSex(),
+				hr.getNamePinyin(), hr.getOtherName(), hr.getBirthday(),
+				hr.getCategory(), hr.getPosition(), hr.getCompany(),
+				hr.getPassport(), hr.getEmail(), hr.getMobilePhone(),
+				hr.getFixedPhone(), hr.getEmergencyContactPerson() };
 		runner.update(HrDbUtils.getConnection(), sql, param);
 	}
 
@@ -35,12 +35,12 @@ public class HumanResourceDaoImpl implements HumanResourceDao {
 	@Override
 	public void update(HumanResource hr) throws SQLException {
 		QueryRunner runner = new QueryRunner();
-		String sql = "update human_resource set name_ch=?,name_en=?,sex=?,name_pinyin=?,other_name=?,birthday=?,position=?,company=?,passport=?,email=?,mobile_phone=?,fixed_phone=?,emergency_contact_person=? where id=?";
+		String sql = "update human_resource set name_ch=?,name_en=?,sex=?,name_pinyin=?,other_name=?,birthday=?,category=?,position=?,company=?,passport=?,email=?,mobile_phone=?,fixed_phone=?,emergency_contact_person=? where id=?";
 		Object[] param = { hr.getNameCh(), hr.getNameEn(), hr.getSex(),
 				hr.getNamePinyin(), hr.getOtherName(), hr.getBirthday(),
-				hr.getPosition(), hr.getCompany(), hr.getPassport(),
-				hr.getEmail(), hr.getMobilePhone(), hr.getFixedPhone(),
-				hr.getEmergencyContactPerson(), hr.getId() };
+				hr.getCategory(), hr.getPosition(), hr.getCompany(),
+				hr.getPassport(), hr.getEmail(), hr.getMobilePhone(),
+				hr.getFixedPhone(), hr.getEmergencyContactPerson(), hr.getId() };
 		runner.update(HrDbUtils.getConnection(), sql, param);
 	}
 

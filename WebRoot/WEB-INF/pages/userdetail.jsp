@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ include file="Navigation.jsp"%>
+<%@ include file="navigation.jsp"%>
 <form>
 	<ul style="width:80%;margin-left:auto;margin-right:auto;">
 		<li class="list-group-item active">
@@ -10,7 +10,8 @@
 				<span>身份证号</span>
 			</div>
 			<div>
-				<input id="id_number" name="id" type="text" size="45">
+				<input id="id_number" name="id" value="${sessionScope.hr.id }"
+					type="text" size="45">
 			</div>
 		</li>
 		<li class="list-group-item">
@@ -18,7 +19,8 @@
 				<span>中文姓名</span>
 			</div>
 			<div>
-				<input name="nameCh" type="text" size="45">
+				<input name="nameCh" type="text" value="${sessionScope.hr.nameCh }"
+					size="45">
 			</div>
 		</li>
 		<li class="list-group-item">
@@ -26,7 +28,8 @@
 				<span>英文姓名</span>
 			</div>
 			<div>
-				<input name="nameEn" value="" type="text" size="45">
+				<input name="nameEn" value="${sessionScope.hr.nameEn }" type="text"
+					size="45">
 			</div>
 		</li>
 		<li class="list-group-item">
@@ -34,7 +37,8 @@
 				<span>名字拼音</span>
 			</div>
 			<div>
-				<input name="namePinyin" value="" type="text" size="45">
+				<input name="namePinyin" value="${sessionScope.hr.namePinyin }"
+					type="text" size="45">
 			</div>
 		</li>
 		<li class="list-group-item">
@@ -42,7 +46,8 @@
 				<span>曾用名</span>
 			</div>
 			<div>
-				<input name="otherName" value="" type="text" size="45">
+				<input name="otherName" value="${sessionScope.hr.otherName }"
+					type="text" size="45">
 			</div>
 		</li>
 		<li class="list-group-item">
@@ -50,17 +55,18 @@
 				<span>性别</span>
 			</div>
 			<div>
-				<label> <input type="radio" checked name="sex" value="男">
-					男
+				<label> <input type="radio" checked name="sex" value="男"
+					${sessionScope.hr.sex=='男'?'checked':'' }> 男
 				</label> &nbsp;&nbsp;&nbsp; <label> <input type="radio" name="sex"
-					value="女"> 女
+					value="女" ${sessionScope.hr.sex=='女'?'checked':'' }> 女
 				</label>
 			</div>
 		</li>
 		<li class="list-group-item">
 			<div class="control-label">出生日期</div>
 			<div class="cont">
-				<input id="birthday" name="birthday" type="text" size="45">
+				<input id="birthday" name="birthday"
+					value="${sessionScope.hr.birthday }" type="text" size="45">
 			</div>
 		</li>
 		<li class="list-group-item">
@@ -68,7 +74,8 @@
 				<span>护照号码</span>
 			</div>
 			<div>
-				<input name="passport" value="" type="text" size="45">
+				<input name="passport" value="${sessionScope.hr.passport }"
+					type="text" size="45">
 			</div>
 		</li>
 		<li class="list-group-item">
@@ -76,7 +83,8 @@
 				<span>邮箱</span>
 			</div>
 			<div>
-				<input name="email" value="" type="email" size="45">
+				<input name="email" value="${sessionScope.hr.email }" type="email"
+					size="45">
 			</div>
 		</li>
 		<li class="list-group-item">
@@ -84,7 +92,8 @@
 				<span>移动电话</span>
 			</div>
 			<div>
-				<input name="mobilePhone" value="" type="tel" size="45">
+				<input name="mobilePhone" value="${sessionScope.hr.mobilePhone }"
+					type="tel" size="45">
 			</div>
 		</li>
 		<li class="list-group-item">
@@ -92,7 +101,8 @@
 				<span>固定电话</span>
 			</div>
 			<div>
-				<input name="fixedPhone" value="" type="tel" size="45">
+				<input name="fixedPhone" value="${sessionScope.hr.fixedPhone }"
+					type="tel" size="45">
 			</div>
 		</li>
 	</ul>
@@ -106,25 +116,25 @@
 			</div>
 			<div>
 				<select id="select_title" onchange="titleChange()">
-					<option value="教学">教学</option>
-					<option value="行政">行政</option>
-					<option value="学生">学生</option>
+					<option value="教学" ${sessionScope.hr.category=='教学'?'selected':'' }>教学</option>
+					<option value="行政" ${sessionScope.hr.category=='行政'?'selected':'' }>行政</option>
+					<option value="学生" ${sessionScope.hr.category=='学生'?'selected':'' }>学生</option>
 				</select> <input name="title" id="title" type="text" style="display:none;"
 					value="教学">
 			</div>
 			<div id="div_sub_teaching" style="display:none;">
-				<span>填写职称</span> <input name="subTitle" type="text">
+				<span>填写职称</span> <input name="position" type="text" value="${sessionScope.hr.position }">
 			</div>
 			<div id="div_sub_administration" style="display:none;">
-				<span>职务职级</span> <input name="subTitle" type="text">
+				<span>职务职级</span> <input name="position" type="text" value="${sessionScope.hr.position }">
 			</div>
 			<div id="div_sub_student" style="display:none;">
 				<span>选择学位</span><br> <select id="select_student"
 					onchange="changeStudentDegree()">
-					<option value="本科">本科</option>
-					<option value="硕士">硕士</option>
-					<option value="博士">博士</option>
-				</select> <input name="subTitle" id="student" type="text"
+					<option value="本科" ${sessionScope.hr.position=='本科'?'selected':'' }>本科</option>
+					<option value="硕士" ${sessionScope.hr.position=='硕士'?'selected':'' }>硕士</option>
+					<option value="博士" ${sessionScope.hr.position=='博士'?'selected':'' }>博士</option>
+				</select> <input name="position" id="student" type="text"
 					style="display:none;" value="本科">
 			</div>
 		</li>
@@ -139,15 +149,17 @@
 				<span>身份证号</span>
 			</div>
 			<div>
-				<input name="ecpId" type="text" size="45">
+				<input name="ecpId" value="${sessionScope.hr.ecp.id }" type="text"
+					size="45">
 			</div>
 		</li>
 		<li class="list-group-item">
 			<div>
-				<span>中文姓名</span>
+				<span>姓名</span>
 			</div>
 			<div>
-				<input name="ecpNameCh" type="text" size="45">
+				<input name="ecpNameCh" value="${sessionScope.hr.ecp.name }"
+					type="text" size="45">
 			</div>
 		</li>
 		<li class="list-group-item">
@@ -155,7 +167,8 @@
 				<span>邮箱</span>
 			</div>
 			<div>
-				<input name="ecpEmail" value="" type="email" size="45">
+				<input name="ecpEmail" value="${sessionScope.hr.ecp.email }"
+					type="email" size="45">
 			</div>
 		</li>
 		<li class="list-group-item">
@@ -163,7 +176,8 @@
 				<span>移动电话</span>
 			</div>
 			<div>
-				<input name="ecpMobilePhone" value="" type="tel" size="45">
+				<input name="ecpMobilePhone"
+					value="${sessionScope.hr.ecp.mobilePhone }" type="tel" size="45">
 			</div>
 		</li>
 		<li class="list-group-item">
@@ -171,11 +185,13 @@
 				<span>固定电话</span>
 			</div>
 			<div>
-				<input name="ecpFixedPhone" value="" type="tel" size="45">
+				<input name="ecpFixedPhone"
+					value="${sessionScope.hr.ecp.fixedPhone }" type="tel" size="45">
 			</div>
 		</li>
 	</ul>
-	<div style="width:40%;margin-left:auto;margin-right:auto;position: relative;text-align: center;margin-bottom: 100px;">
+	<div
+		style="width:40%;margin-left:auto;margin-right:auto;position: relative;text-align: center;margin-bottom: 100px;">
 		<input type="submit" value="提交" style="width:100px;">
 	</div>
 </form>

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
+import cn.sdu.travel.bean.HumanResource;
 import cn.sdu.travel.service.LoginService;
 import cn.sdu.travel.service.impl.LoginServiceImpl;
 import cn.sdu.travel.utils.Constants;
@@ -23,6 +24,7 @@ public class LoginServlet extends HttpServlet {
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
 
+		// 表单校验
 		LoginForm form = WebUtils.request2Bean(request, LoginForm.class);
 		if (!form.validate()) {
 			request.setAttribute("form", form);
@@ -31,6 +33,7 @@ public class LoginServlet extends HttpServlet {
 			return;
 		}
 
+		// 登录
 		LoginService service = new LoginServiceImpl();
 		password = DigestUtils.md5Hex(password);
 		Map<String, Object> result = service.login(id, password);
@@ -39,8 +42,13 @@ public class LoginServlet extends HttpServlet {
 			request.setAttribute("returnInfo", result.get("returnInfo"));
 			request.getRequestDispatcher("/web/login.jsp").forward(request,
 					response);
+			return;
 		}
-		System.out.println(result.get("returnInfo"));
+
+		request.getSession().setAttribute("hr",
+				(HumanResource) result.get("data"));
+		request.getRequestDispatcher("/WEB-INF/pages/userdetail.jsp").forward(
+				request, response);
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)

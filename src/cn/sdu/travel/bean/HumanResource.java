@@ -13,6 +13,7 @@ public class HumanResource {
 	private String namePinyin;
 	private String otherName;
 	private Date birthday;
+	private String category;
 	private String position;
 	private String company;
 	private String passport;
@@ -87,6 +88,14 @@ public class HumanResource {
 		this.birthday = birthday;
 	}
 
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
 	public String getPosition() {
 		return position;
 	}
@@ -157,18 +166,6 @@ public class HumanResource {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	@Override
-	public String toString() {
-		return "HumanResource [id=" + id + ", role=" + role + ", nameCh="
-				+ nameCh + ", nameEn=" + nameEn + ", sex=" + sex
-				+ ", namePinyin=" + namePinyin + ", otherName=" + otherName
-				+ ", birthday=" + birthday + ", position=" + position
-				+ ", company=" + company + ", passport=" + passport
-				+ ", email=" + email + ", mobilePhone=" + mobilePhone
-				+ ", fixedPhone=" + fixedPhone + ", emergencyContactPerson="
-				+ emergencyContactPerson + ", ecp=" + ecp + "]";
 	}
 
 }

@@ -36,10 +36,10 @@
 		<servlet-name>LoginServlet</servlet-name>
 		<servlet-class>cn.sdu.travel.web.servlet.LoginServlet</servlet-class>
 	</servlet>
-  <servlet>
-    <servlet-name>RegisterServlet</servlet-name>
-    <servlet-class>cn.sdu.travel.web.servlet.RegisterServlet</servlet-class>
-  </servlet>
+	<servlet>
+		<servlet-name>RegisterServlet</servlet-name>
+		<servlet-class>cn.sdu.travel.web.servlet.RegisterServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>UploadFileServlet</servlet-name>
 		<url-pattern>/UploadFile.html</url-pattern>
@@ -48,26 +48,17 @@
 		<servlet-name>LoginServlet</servlet-name>
 		<url-pattern>/servlet/LoginServlet</url-pattern>
 	</servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>RegisterServlet</servlet-name>
-    <url-pattern>/servlet/RegisterServlet</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-    <servlet-name>Apply</servlet-name>
-    <jsp-file>/WEB-INF/pages/MyJsp.jsp</jsp-file>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Apply</servlet-name>
-    <url-pattern>/apply.html</url-pattern>
-  </servlet-mapping>
-    <servlet>
-        <servlet-name>UserDetail</servlet-name>
-        <servlet-class>cn.sdu.travel.web.servlet.ShowUserInfo</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>UserDetail</servlet-name>
-        <url-pattern>/UserDetail.html</url-pattern>
-    </servlet-mapping>
-    
+	<servlet-mapping>
+		<servlet-name>RegisterServlet</servlet-name>
+		<url-pattern>/servlet/RegisterServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Apply</servlet-name>
+		<jsp-file>/WEB-INF/pages/MyJsp.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Apply</servlet-name>
+		<url-pattern>/apply.html</url-pattern>
+	</servlet-mapping>
 </web-app>

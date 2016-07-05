@@ -74,11 +74,11 @@ public class RegisterForm {
 		if (this.passwordConfirm == null
 				|| this.passwordConfirm.trim().equals("")) {
 			isOk = false;
-			errors.put("password", "密码确认不能为空！");
+			errors.put("passwordConfirm", "密码确认不能为空！");
 		} else {
 			if (!this.password.equals(this.passwordConfirm)) {
 				isOk = false;
-				errors.put("password", "两次输入的密码不同！");
+				errors.put("passwordConfirm", "两次输入的密码不同！");
 			}
 		}
 		return isOk;

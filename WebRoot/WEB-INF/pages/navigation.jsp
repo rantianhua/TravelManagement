@@ -23,7 +23,7 @@ pageContext.setAttribute("requestName", requestName);
 		</div>
 		<div>
 			<ul class="nav navbar-nav">
-				<li <c:if test="${requestName eq 'UserDetail'}">class="active"</c:if>><a href="#" class="nav_a">个人信息</a></li>
+				<li <c:if test="${requestName eq 'LoginServlet'}">class="active"</c:if>><a href="" class="nav_a">个人信息</a></li>
 				<li <c:if test="${requestName eq 'apply'}">class="active"</c:if>><a href="#" class="nav_a">出国申请</a></li>
 				<li <c:if test="${requestName eq ''}">class="active"</c:if>><a href="#" class="nav_a">状态查询</a></li>
 				<li <c:if test="${requestName eq ''}">class="active"</c:if>><a href="#" class="nav_a">回校核销</a></li>

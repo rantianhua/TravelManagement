@@ -26,6 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   
   	<div class="div_wrapper" id="div_login">
+  		<!-- <form action="${pageContext.request.contextPath }/servlet/LoginServlet" method="post"> -->
   		<form action="${pageContext.request.contextPath }/servlet/LoginServlet" method="post">
   			<div class="div_inputs">
   				<span><img alt="" src="../img/login/user.png"></span>

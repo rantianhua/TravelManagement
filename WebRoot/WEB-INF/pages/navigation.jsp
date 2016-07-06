@@ -1,11 +1,9 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-//String path = request.getContextPath();
-//String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-String requestUri =  request.getRequestURI();
-String requestName = requestUri.substring(requestUri.lastIndexOf("/")+1,requestUri.indexOf("."));
-pageContext.setAttribute("requestName", requestName);
+String action  = request.getParameter("action");
+pageContext.setAttribute("action", action == null ? "1" : action);
+System.out.println("the action  is" + (action == null ? "null" : action));
 %>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -23,10 +21,10 @@ pageContext.setAttribute("requestName", requestName);
 		</div>
 		<div>
 			<ul class="nav navbar-nav">
-				<li <c:if test="${requestName eq 'LoginServlet'}">class="active"</c:if>><a href="" class="nav_a">个人信息</a></li>
-				<li <c:if test="${requestName eq 'apply'}">class="active"</c:if>><a href="#" class="nav_a">出国申请</a></li>
-				<li <c:if test="${requestName eq ''}">class="active"</c:if>><a href="#" class="nav_a">状态查询</a></li>
-				<li <c:if test="${requestName eq ''}">class="active"</c:if>><a href="#" class="nav_a">回校核销</a></li>
+				<li <c:if test="${action eq '1' || action eq '5'}">class="active"</c:if>><a href="${pageContext.request.contextPath }/servlet/NavigationServlet?action=1" class="nav_a">个人信息</a></li>
+				<li <c:if test="${action eq '2'}">class="active"</c:if>><a href="${pageContext.request.contextPath }/servlet/NavigationServlet?action=2" class="nav_a">出国申请</a></li>
+				<li <c:if test="${action eq '3'}">class="active"</c:if>><a href="${pageContext.request.contextPath }/servlet/NavigationServlet?action=3" class="nav_a">状态查询</a></li>
+				<li <c:if test="${action eq '4'}">class="active"</c:if>><a href="${pageContext.request.contextPath }/servlet/NavigationServlet?action=4" class="nav_a">回校核销</a></li>
 			</ul>
 		</div>
 	</nav>

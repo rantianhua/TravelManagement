@@ -68,8 +68,8 @@
 			</div>
 		</li>
 		<li class="border_lefft_right">
-			<div class="control-label">出生日期</div>
-			<div class="cont">
+			<div>出生日期</div>
+			<div>
 				<input id="birthday" name="birthday"
 					value="${sessionScope.hr.birthday }" type="text" data-date-format="yyyy-mm-dd">
 			</div>
@@ -148,7 +148,7 @@
 		<li id="warpper_sub_administration"  class="border_lefft_right" style="display:${sessionScope.hr.category=='行政'?'block':'none' };">
 				<span>职务</span> <input name="position" type="text" value="${sessionScope.hr.position }" style="margin-left:10px;">
 				<span style="margin-left:20px;">职级</span>
-				<select id="select_sub_position" onchange="subPositionChange()" style="margin-left: 10px;">
+				<select id="select_sub_position"  name="subPosition" style="margin-left: 10px;">
 					<option value="正部级">正部级</option>
 					<option value="副部级">副部级</option>
 					<option value="正处级" >正处级</option>
@@ -164,12 +164,11 @@
 				<span>选择学位</span>
 			</div>
 			<div>
-				<select id="select_student"
-					onchange="changeStudentDegree()">
+				<select id="select_student" name="position">
 					<option value="本科" ${sessionScope.hr.position=='本科'?'selected':'' }>本科</option>
 					<option value="硕士" ${sessionScope.hr.position=='硕士'?'selected':'' }>硕士</option>
 					<option value="博士" ${sessionScope.hr.position=='博士'?'selected':'' }>博士</option>
-				</select> <input name="position" id="student" type="text"style="display:none;" value="本科">
+				</select> 
 			</div>
 		</li>
 	</ul>
@@ -263,20 +262,6 @@
 			divAdministration.style.display = "none";
 			divStudent.style.display = "block";
 		}
-	}
-
-	function changeStudentDegree() {
-		var seletorDegree = document.getElementById("select_student");
-		var degree = seletorDegree.options[seletorDegree.selectedIndex].value;
-		var inputSub = document.getElementById("student");
-		inputSub.innerHTML = degree;
-	}
-	
-	function subPositionChange() {
-		var selectorSubPosition = document.getElementById("select_sub_position");
-		var subPosition = selectorSubPosition.options[selectorSubPosition.selectedIndex].value;
-		var inputSubPosition  = document.getElementById("sub_postion");
-		inputSubPosition.innerHTML = subPosition;
 	}
 </script>
 </body>

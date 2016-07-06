@@ -1,0 +1,38 @@
+@CHARSET "UTF-8";
+.header {
+	background-color: #ecf0f1;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	float: left;
+	width: 100%;
+}
+
+.out_wrapper {
+	border: 1px solid;
+	border-color: #95a5a6;
+	margin-top: 40px;
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 40px;
+}
+
+.content {
+	margin:40px;
+}
+
+.content ul li {
+	display: block;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+hr {
+	border-top:1px dotted;
+}
+
+.red {
+	color:#e74c3c;
+}

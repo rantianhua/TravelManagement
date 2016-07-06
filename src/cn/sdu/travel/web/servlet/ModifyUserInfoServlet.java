@@ -22,6 +22,14 @@ public class ModifyUserInfoServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// 表单校验
 		UserInfoForm form = WebUtils.request2Bean(request, UserInfoForm.class);
+		String category = request.getParameter("category");
+		if(category.equals("教学")){
+			form.setPosition(request.getParameter("position1"));
+		}else if(category.equals("行政")){
+			form.setPosition(request.getParameter("position2"));
+		}else if(category.equals("学生")){
+			form.setPosition(request.getParameter("position3"));
+		}
 		if (!form.validate()) {
 			request.setAttribute("form", form);
 			System.out.println(form.getCategory());

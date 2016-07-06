@@ -32,9 +32,10 @@ public class LoginServiceImpl implements LoginService {
 			} else {
 				map.put("returnCode", 1100);
 				map.put("returnInfo", "登录成功！");
-				EmergencyContactPerson ecp = edao.find(hr
-						.getEmergencyContactPerson());
-				hr.setEcp(ecp);
+				if(hr.getEmergencyContactPerson() != null &&  !hr.getEmergencyContactPerson().equals("")){
+					EmergencyContactPerson ecp = edao.find(hr.getEmergencyContactPerson());
+					hr.setEcp(ecp);
+				}
 				map.put("data", hr);
 			}
 		} catch (SQLException e) {

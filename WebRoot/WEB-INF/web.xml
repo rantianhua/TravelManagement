@@ -60,16 +60,12 @@
 		<servlet-name>ModifyUserInfoServlet</servlet-name>
 		<url-pattern>/servlet/ModifyUserInfoServlet</url-pattern>
 	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>Apply</servlet-name>
-		<jsp-file>/WEB-INF/pages/MyJsp.jsp</jsp-file>
-	</servlet>
-
-
-	<servlet-mapping>
-		<servlet-name>Apply</servlet-name>
-		<url-pattern>/apply.html</url-pattern>
-	</servlet-mapping>
-
+    <servlet>
+        <servlet-name>NavigationServlet</servlet-name>
+        <servlet-class>cn.sdu.travel.web.servlet.NavigationServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>NavigationServlet</servlet-name>
+        <url-pattern>/servlet/NavigationServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

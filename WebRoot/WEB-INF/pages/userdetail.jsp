@@ -83,8 +83,8 @@
 			</div>
 		</li>
 		<li class="border_lefft_right">
-			<div class="control-label">出生日期</div>
-			<div class="cont">
+			<div>出生日期</div>
+			<div>
 				<input id="birthday" name="birthday"
 					value="${validate ? sessionScope.hr.birthday:requestScope.form.birthday }"
 					type="text" data-date-format="yyyy-mm-dd">

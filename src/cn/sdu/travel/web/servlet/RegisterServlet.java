@@ -20,9 +20,6 @@ import cn.sdu.travel.web.formbean.RegisterForm;
 public class RegisterServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String id = request.getParameter("id");
-		String password = request.getParameter("password");
-
 		RegisterForm form = WebUtils.request2Bean(request, RegisterForm.class);
 		if (!form.validate()) {
 			request.setAttribute("form", form);
@@ -32,8 +29,10 @@ public class RegisterServlet extends HttpServlet {
 		}
 
 		HumanResource hr = new HumanResource();
-		hr.setId(id);
-		hr.setPassword(DigestUtils.md5Hex(password));
+		hr.setId(form.getId());
+		hr.setPassword(DigestUtils.md5Hex(form.getPassword()));
+		hr.setRole("r10");
+		hr.setEmergencyContactPerson(WebUtils.generateID());
 
 		RegisterService service = new RegisterServiceImpl();
 		Map<String, Object> result = service.register(hr);

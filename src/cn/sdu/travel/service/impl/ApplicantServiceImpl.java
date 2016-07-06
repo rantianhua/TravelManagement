@@ -10,34 +10,27 @@ import cn.sdu.travel.dao.EmergencyContactPersonDao;
 import cn.sdu.travel.dao.HumanResourceDao;
 import cn.sdu.travel.dao.impl.EmergencyContactPersonDaoImpl;
 import cn.sdu.travel.dao.impl.HumanResourceDaoImpl;
-import cn.sdu.travel.service.LoginService;
+import cn.sdu.travel.service.ApplicantService;
 import cn.sdu.travel.utils.HrDbUtils;
+//import cn.sdu.travel.utils.HrDbUtils;
 
-//登录接口实现
-public class LoginServiceImpl implements LoginService {
-
+//申请者服务接口实现
+public class ApplicantServiceImpl implements ApplicantService {
 	@Override
-	public Map<String, Object> login(String id, String password) {
+	public Map<String, Object> saveUserInfo(HumanResource hr) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		HumanResourceDao hdao = new HumanResourceDaoImpl();
 		EmergencyContactPersonDao edao = new EmergencyContactPersonDaoImpl();
+
 		try {
-			HumanResource hr = hdao.find(id);
-			if (hr == null) {
-				map.put("returnCode", 1102);
-				map.put("returnInfo", "该用户不存在！");
-			} else if (!password.equals(hr.getPassword())) {
-				map.put("returnCode", 1101);
-				map.put("returnInfo", "密码错误！");
-			} else {
-				map.put("returnCode", 1100);
-				map.put("returnInfo", "登录成功！");
-				if(hr.getEmergencyContactPerson() != null &&  !hr.getEmergencyContactPerson().equals("")){
-					EmergencyContactPerson ecp = edao.find(hr.getEmergencyContactPerson());
-					hr.setEcp(ecp);
-				}
-				map.put("data", hr);
+			hdao.update(hr);
+			EmergencyContactPerson ecp = hr.getEcp();
+			if (ecp != null) {
+				edao.update(ecp);
 			}
+			map.put("returnCode", 1300);
+			map.put("returnInfo", "修改个人资料成功！");
+			map.put("data", hr);
 		} catch (SQLException e) {
 			map.put("returnCode", 1999);
 			map.put("returnInfo", "数据库异常！");
@@ -46,6 +39,7 @@ public class LoginServiceImpl implements LoginService {
 		} finally {
 			HrDbUtils.closeConnection();
 		}
+
 		return map;
 	}
 }

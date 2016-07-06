@@ -3,7 +3,6 @@
 <%
 String action  = request.getParameter("action");
 pageContext.setAttribute("action", action == null ? "1" : action);
-System.out.println("the action  is" + (action == null ? "null" : action));
 %>
 <!DOCTYPE html>
 <html lang="zh-CN">

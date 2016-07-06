@@ -32,8 +32,7 @@ public class ModifyUserInfoServlet extends HttpServlet {
 		}
 		if (!form.validate()) {
 			request.setAttribute("form", form);
-			System.out.println(form.getCategory());
-			request.getRequestDispatcher("/WEB-INF/pages/userdetail.jsp")
+			request.getRequestDispatcher("/WEB-INF/pages/edituserinfo.jsp")
 					.forward(request, response);
 			return;
 		}
@@ -65,14 +64,13 @@ public class ModifyUserInfoServlet extends HttpServlet {
 		if ((int) result.get("returnCode") != Constants.MODIFY_USER_INFO_SUCCESS) {
 			request.setAttribute("form", form);
 			request.setAttribute("returnInfo", result.get("returnInfo"));
-			request.getRequestDispatcher("/WEB-INF/pages/userdetail.jsp").forward(request,
+			request.getRequestDispatcher("/WEB-INF/pages/edituserinfo.jsp").forward(request,
 					response);
 			return;
 		}
 		
 		request.getSession().setAttribute("hr", hr);
-		System.out.println(result.get("returnInfo"));
-		//request.getRequestDispatcher("/WEB-INF/pages/userdetail.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/pages/showuserinfo.jsp").forward(request, response);
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)

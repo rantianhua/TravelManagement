@@ -9,7 +9,7 @@
 	rel="stylesheet" />
 <c:set var="validate" scope="request" value="${empty requestScope.form}" />
 <c:set var="subPosition" scope="request"
-	value="${fn:substring(sessionScope.hr.position,3,6)}" />
+	value="${fn:substringAfter(sessionScope.hr.position,'/')}" />
 <form
 	action="${pageContext.request.contextPath }/servlet/ModifyUserInfoServlet"
 	method="post">
@@ -165,18 +165,17 @@
 				<span>填写职务</span>
 			</div>
 			<div>
-				<input name="position" type="text"
+				<input name="position1" type="text"
 					value="${validate ? sessionScope.hr.position:requestScope.form.position }">
 			</div>
 			<p>${requestScope.form.errors.position }</p>
 		</li>
 		<li id="warpper_sub_administration" class="border_lefft_right"
 			style="display:${(validate ? sessionScope.hr.category:requestScope.form.category)=='行政'?'block':'none' };">
-			<span>职务</span> <input name="position" type="text"
-			value="${validate ? sessionScope.hr.position:requestScope.form.position }"
+			<span>职务</span> <input name="position2" type="text"
+			value="${validate ? fn:substringBefore(sessionScope.hr.position,'/'):requestScope.form.position }"
 			style="margin-left:10px;"> <span style="margin-left:20px;">职级</span>
-			<select id="select_sub_position" name="subPosition"
-			onchange="subPositionChange()" style="margin-left: 10px;">
+			<select name="subPosition" style="margin-left: 10px;">
 				<option value="正部级"
 					${(validate ? subPosition:requestScope.form.subPosition)=='正部级'?'selected':'' }>正部级</option>
 				<option value="副部级"
@@ -189,9 +188,7 @@
 					${(validate ? subPosition:requestScope.form.subPosition)=='正科级'?'selected':'' }>正科级</option>
 				<option value="副科级"
 					${(validate ? subPosition:requestScope.form.subPosition)=='副科级'?'selected':'' }>副科级</option>
-		</select><input name="subPosition" id="sub_postion" type="text"
-			style="display:none;"
-			value="${validate ? subPosition:requestScope.form.subPosition}">
+		</select>
 			<p>${requestScope.form.errors.position }</p>
 		</li>
 		<li id="wrapper_sub_student" class="border_without_top"
@@ -200,16 +197,14 @@
 				<span>选择学位</span>
 			</div>
 			<div>
-				<select name="position">
+				<select name="position3">
 					<option value="本科"
 						${(validate ? sessionScope.hr.position:requestScope.form.position)=='本科'?'selected':'' }>本科</option>
 					<option value="硕士"
 						${(validate ? sessionScope.hr.position:requestScope.form.position)=='硕士'?'selected':'' }>硕士</option>
 					<option value="博士"
 						${(validate ? sessionScope.hr.position:requestScope.form.position)=='博士'?'selected':'' }>博士</option>
-				</select> <input name="position" id="student" type="text"
-					style="display:none;"
-					value="${validate ? sessionScope.hr.position:requestScope.form.position }">
+				</select>
 			</div>
 		</li>
 	</ul>

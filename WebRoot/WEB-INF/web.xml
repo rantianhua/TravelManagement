@@ -40,6 +40,10 @@
 		<servlet-name>RegisterServlet</servlet-name>
 		<servlet-class>cn.sdu.travel.web.servlet.RegisterServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>ModifyUserInfoServlet</servlet-name>
+		<servlet-class>cn.sdu.travel.web.servlet.ModifyUserInfoServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>UploadFileServlet</servlet-name>
 		<url-pattern>/UploadFile.html</url-pattern>
@@ -52,13 +56,20 @@
 		<servlet-name>RegisterServlet</servlet-name>
 		<url-pattern>/servlet/RegisterServlet</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ModifyUserInfoServlet</servlet-name>
+		<url-pattern>/servlet/ModifyUserInfoServlet</url-pattern>
+	</servlet-mapping>
 
 	<servlet>
 		<servlet-name>Apply</servlet-name>
 		<jsp-file>/WEB-INF/pages/MyJsp.jsp</jsp-file>
 	</servlet>
+
+
 	<servlet-mapping>
 		<servlet-name>Apply</servlet-name>
 		<url-pattern>/apply.html</url-pattern>
 	</servlet-mapping>
+
 </web-app>

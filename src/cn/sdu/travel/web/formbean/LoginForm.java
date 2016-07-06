@@ -3,13 +3,10 @@ package cn.sdu.travel.web.formbean;
 import java.util.HashMap;
 import java.util.Map;
 
-import cn.sdu.travel.service.LoginService;
-import cn.sdu.travel.service.impl.LoginServiceImpl;
-
 public class LoginForm {
 	private String id;
 	private String password;
-	private Map errors = new HashMap<String, String>();
+	private Map<String, String> errors = new HashMap<String, String>();
 
 	public String getId() {
 		return id;
@@ -40,13 +37,11 @@ public class LoginForm {
 		if (this.id == null || this.id.trim().equals("")) {
 			isOk = false;
 			errors.put("id", "身份证号不能为空！");
-		} else {
-			if (this.id.length() != 18
-					|| !this.id
-							.matches("^[1-9]\\d{5}[1-9]\\d{3}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}([0-9]|X)$")) {
-				isOk = false;
-				errors.put("id", "身份证号格式错误！");
-			}
+		} else if (this.id.length() != 18
+				|| !this.id
+						.matches("^[1-9]\\d{5}[1-9]\\d{3}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}([0-9]|X)$")) {
+			isOk = false;
+			errors.put("id", "身份证号格式错误！");
 		}
 
 		if (this.password == null || this.password.trim().equals("")) {

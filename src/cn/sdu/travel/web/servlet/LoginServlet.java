@@ -21,9 +21,6 @@ public class LoginServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String id = request.getParameter("id");
-		String password = request.getParameter("password");
-
 		// 表单校验
 		LoginForm form = WebUtils.request2Bean(request, LoginForm.class);
 		if (!form.validate()) {
@@ -35,8 +32,8 @@ public class LoginServlet extends HttpServlet {
 
 		// 登录
 		LoginService service = new LoginServiceImpl();
-		password = DigestUtils.md5Hex(password);
-		Map<String, Object> result = service.login(id, password);
+		String password = DigestUtils.md5Hex(form.getPassword());
+		Map<String, Object> result = service.login(form.getId(), password);
 		if (!((int) result.get("returnCode") == Constants.LOGIN_SUCCESS)) {
 			request.setAttribute("form", form);
 			request.setAttribute("returnInfo", result.get("returnInfo"));
@@ -45,8 +42,8 @@ public class LoginServlet extends HttpServlet {
 			return;
 		}
 
-		request.getSession().setAttribute("hr",
-				(HumanResource) result.get("data"));
+		HumanResource hr = (HumanResource) result.get("data");
+		request.getSession().setAttribute("hr", hr);
 		request.getRequestDispatcher("/WEB-INF/pages/userdetail.jsp").forward(
 				request, response);
 	}

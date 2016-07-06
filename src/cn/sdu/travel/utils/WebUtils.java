@@ -1,11 +1,14 @@
 package cn.sdu.travel.utils;
 
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.ConvertUtils;
+import org.apache.commons.beanutils.locale.converters.DateLocaleConverter;
 
 public class WebUtils {
 	// 生成唯一ID
@@ -30,6 +33,16 @@ public class WebUtils {
 					"checkcode");
 			BeanUtils.setProperty(bean, "s_checkcode", s_checkcode);
 			return bean;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	// 复制一个bean到另一个bean
+	public static void copyBean(Object src, Object dest) {
+		try {
+			ConvertUtils.register(new DateLocaleConverter(), Date.class);
+			BeanUtils.copyProperties(dest, src);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}

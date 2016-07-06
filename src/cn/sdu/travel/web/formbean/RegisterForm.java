@@ -11,7 +11,7 @@ public class RegisterForm {
 	private String id;
 	private String password;
 	private String passwordConfirm;
-	private Map errors = new HashMap<String, String>();
+	private Map<String, String> errors = new HashMap<String, String>();
 
 	public String getId() {
 		return id;

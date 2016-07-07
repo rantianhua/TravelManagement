@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import javax.persistence.criteria.CriteriaBuilder.In;
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp.BasicDataSourceFactory;
@@ -21,6 +22,7 @@ public class HrDbUtils {
 					.getResourceAsStream("hr_dbcpconfig.properties");
 			BasicDataSourceFactory factory = new BasicDataSourceFactory();
 			prop.load(in);
+			in.close();
 			ds = factory.createDataSource(prop);
 		} catch (Exception e) {
 			throw new ExceptionInInitializerError(e);

@@ -23,10 +23,12 @@ public class ApplicantServiceImpl implements ApplicantService {
 		EmergencyContactPersonDao edao = new EmergencyContactPersonDaoImpl();
 
 		try {
+			HrDbUtils.startTransaction();
 			hdao.update(hr);
 			EmergencyContactPerson ecp = hr.getEcp();
 			if (ecp != null) {
 				edao.update(ecp);
+				HrDbUtils.commitTransaction();
 			}
 			map.put("returnCode", 1300);
 			map.put("returnInfo", "修改个人资料成功！");

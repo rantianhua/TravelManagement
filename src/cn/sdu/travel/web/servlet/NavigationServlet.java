@@ -7,34 +7,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class NavigationServlet
- */
 @WebServlet("/NavigationServlet")
 public class NavigationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public NavigationServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		parseRightPage(request,response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		parseRightPage(request,response);
 	}
 	
@@ -59,7 +40,7 @@ public class NavigationServlet extends HttpServlet {
 			path = "/WEB-INF/pages/backwriteoff.jsp";
 			break;
 		case "5":
-			path = "/WEB-INF/pages/userdetail.jsp";
+			path = "/WEB-INF/pages/edituserinfo.jsp";
 			break;
 		default:
 			break;
@@ -68,10 +49,8 @@ public class NavigationServlet extends HttpServlet {
 			request.getRequestDispatcher(path).forward(
 					request, response);
 		} catch (ServletException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

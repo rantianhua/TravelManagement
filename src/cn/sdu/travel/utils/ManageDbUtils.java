@@ -21,6 +21,7 @@ public class ManageDbUtils {
 					.getResourceAsStream("manage_dbcpconfig.properties");
 			BasicDataSourceFactory factory = new BasicDataSourceFactory();
 			prop.load(in);
+			in.close();
 			ds = factory.createDataSource(prop);
 		} catch (Exception e) {
 			throw new ExceptionInInitializerError(e);

@@ -1,18 +1,19 @@
 package cn.sdu.travel.bean;
 
+import java.util.List;
+
 //出国申请
 public class Application {
 	private String applicationNumber;
+	private String applicantId;
+	private String assigneeId;
+	private String applyDate;
 	private String invitationRaw;
 	private String invitationZh;
 	private String plan;
 	private String purpose;
 	private String passportInfo;
 	private String type;
-	private String conferenceName;
-	private String conferenceDesc;
-	private String speechOutline;
-	private String papersOutline;
 	private String groupUnit;
 	private String examineUnit;
 	private String groupWork;
@@ -21,14 +22,14 @@ public class Application {
 	private String identifyType;
 	private String licenceType;
 	private String inviterPay;
-	private String fundsId;
 	private String loan;
+	private String status;
 
 	private VisitPlan vplan;
 	private VisitPurpose vpurpose;
 	private Passport passport;
 	private Inviter inviter;
-	private Funds funds;
+	private List<Funds> funds;
 
 	public String getApplicationNumber() {
 		return applicationNumber;
@@ -36,6 +37,30 @@ public class Application {
 
 	public void setApplicationNumber(String applicationNumber) {
 		this.applicationNumber = applicationNumber;
+	}
+
+	public String getApplicantId() {
+		return applicantId;
+	}
+
+	public void setApplicantId(String applicantId) {
+		this.applicantId = applicantId;
+	}
+
+	public String getAssigneeId() {
+		return assigneeId;
+	}
+
+	public void setAssigneeId(String assigneeId) {
+		this.assigneeId = assigneeId;
+	}
+
+	public String getApplyDate() {
+		return applyDate;
+	}
+
+	public void setApplyDate(String applyDate) {
+		this.applyDate = applyDate;
 	}
 
 	public String getInvitationRaw() {
@@ -60,38 +85,6 @@ public class Application {
 
 	public void setType(String type) {
 		this.type = type;
-	}
-
-	public String getConferenceName() {
-		return conferenceName;
-	}
-
-	public void setConferenceName(String conferenceName) {
-		this.conferenceName = conferenceName;
-	}
-
-	public String getConferenceDesc() {
-		return conferenceDesc;
-	}
-
-	public void setConferenceDesc(String conferenceDesc) {
-		this.conferenceDesc = conferenceDesc;
-	}
-
-	public String getSpeechOutline() {
-		return speechOutline;
-	}
-
-	public void setSpeechOutline(String speechOutline) {
-		this.speechOutline = speechOutline;
-	}
-
-	public String getPapersOutline() {
-		return papersOutline;
-	}
-
-	public void setPapersOutline(String papersOutline) {
-		this.papersOutline = papersOutline;
 	}
 
 	public String getGroupUnit() {
@@ -190,14 +183,6 @@ public class Application {
 		this.inviterInfo = inviterInfo;
 	}
 
-	public String getFundsId() {
-		return fundsId;
-	}
-
-	public void setFundsId(String fundsId) {
-		this.fundsId = fundsId;
-	}
-
 	public VisitPlan getVplan() {
 		return vplan;
 	}
@@ -230,11 +215,20 @@ public class Application {
 		this.inviter = inviter;
 	}
 
-	public Funds getFunds() {
+	public List<Funds> getFunds() {
 		return funds;
 	}
 
-	public void setFunds(Funds funds) {
+	public void setFunds(List<Funds> funds) {
 		this.funds = funds;
 	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 }

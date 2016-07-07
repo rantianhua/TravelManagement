@@ -21,16 +21,15 @@
 DROP TABLE IF EXISTS `application`;
 CREATE TABLE `application` (
   `application_number` char(36) NOT NULL default '',
+  `applicant_id` char(18) default NULL,
+  `assignee_id` char(18) default NULL,
+  `apply_date` date default NULL,
   `invitation_raw` varchar(255) default NULL,
   `invitation_zh` varchar(255) default NULL,
   `plan` char(36) default NULL,
   `purpose` char(36) default NULL,
   `passport_info` char(18) default NULL,
   `type` char(6) default NULL,
-  `conference_name` varchar(255) default NULL,
-  `conference_desc` mediumtext,
-  `speech_outline` mediumtext,
-  `papers_outline` mediumtext,
   `group_unit` varchar(255) default NULL,
   `examine_unit` varchar(255) default NULL,
   `group_work` varchar(255) default NULL,
@@ -39,14 +38,13 @@ CREATE TABLE `application` (
   `identify_type` varchar(255) default NULL,
   `licence_type` char(6) default NULL,
   `inviter_pay` varchar(255) default NULL,
-  `funds_id` char(36) default NULL,
   `loan` tinyint(1) default NULL,
+  `status` varchar(10) default NULL,
   PRIMARY KEY  (`application_number`),
   KEY `APPLICATION_FK_PURPOSE` (`purpose`),
   KEY `APPLICATION_FK_INVITER` (`inviter_info`),
   KEY `APPLICATION_FK_PLAN` (`plan`),
-  KEY `APPLICAITON_FK_PASSWORD` (`passport_info`),
-  KEY `APPLICATION_FK_FUNDS` (`funds_id`)
+  KEY `APPLICAITON_FK_PASSWORD` (`passport_info`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='短期/长期出访申请表';
 
 #
@@ -66,9 +64,11 @@ DROP TABLE IF EXISTS `funds`;
 CREATE TABLE `funds` (
   `id` char(36) NOT NULL default '',
   `pay_type` tinyint(1) default NULL,
-  `pay_item` varchar(255) default NULL,
+  `pay_amount` varchar(255) default NULL,
   `account_name` varchar(255) default NULL,
-  `funds_account` varchar(255) default NULL,
+  `pay_item` varchar(255) default NULL,
+  `ps` varchar(255) default NULL,
+  `pay_detail` mediumtext,
   `prove_file` varchar(255) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='经费负担情况';
@@ -89,7 +89,9 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `inviter`;
 CREATE TABLE `inviter` (
   `id` char(36) NOT NULL default '',
-  `title` varchar(255) default NULL,
+  `name` varchar(255) default NULL,
+  `title_ch` varchar(255) default NULL,
+  `title_en` varchar(255) default NULL,
   `unit_name` varchar(255) default NULL,
   `address` varchar(255) default NULL,
   `telephone` varchar(45) default NULL,
@@ -116,6 +118,12 @@ CREATE TABLE `passport` (
   `identity` char(18) NOT NULL,
   `id_card` varchar(255) default NULL,
   `img` varchar(255) default NULL,
+  `passport_name` varchar(50) default NULL,
+  `name` varchar(50) default NULL,
+  `sex` char(2) default NULL,
+  `issuing_place` varchar(255) default NULL,
+  `birthday` date default NULL,
+  `exp_date` date default NULL,
   `account_book` varchar(255) default NULL,
   PRIMARY KEY  (`identity`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='护照信息表';
@@ -135,11 +143,12 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `visit_destination`;
 CREATE TABLE `visit_destination` (
-  `destination` varchar(255) default NULL,
+  `plan_id` char(36) NOT NULL default '',
+  `country` varchar(255) default NULL,
+  `city` varchar(255) default NULL,
   `arrival_date` datetime default NULL,
   `exit_city_date` datetime default NULL,
   `trans_addr` varchar(255) default NULL,
-  `plan_id` char(36) NOT NULL default '',
   KEY `DESTINATION` (`plan_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='出访计划表';
 
@@ -194,6 +203,12 @@ CREATE TABLE `visit_purpose` (
   `teacher_title` varchar(255) default NULL,
   `teacher_expertise` varchar(255) default NULL,
   `degree_type` varchar(255) default NULL,
+  `conference_name_ch` varchar(255) default NULL,
+  `conference_name_en` varchar(255) default NULL,
+  `conference_desc` varchar(255) default NULL,
+  `speech` char(2) default NULL,
+  `speech_outline` varchar(255) default NULL,
+  `paper_outline` varchar(255) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='出访目的表';
 
@@ -215,6 +230,13 @@ ADD CONSTRAINT `APPLICAITON_FK_PASSWORD` FOREIGN KEY (`passport_info`) REFERENCE
 ADD CONSTRAINT `APPLICATION_FK_INVITER` FOREIGN KEY (`inviter_info`) REFERENCES `inviter` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
 ADD CONSTRAINT `APPLICATION_FK_PLAN` FOREIGN KEY (`plan`) REFERENCES `visit_plan` (`plan_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
 ADD CONSTRAINT `APPLICATION_FK_PURPOSE` FOREIGN KEY (`purpose`) REFERENCES `visit_purpose` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+#
+#  Foreign keys for table funds
+#
+
+ALTER TABLE `funds`
+ADD CONSTRAINT `FUNDS_FK_APPLICATION` FOREIGN KEY (`id`) REFERENCES `application` (`application_number`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 #
 #  Foreign keys for table visit_destination

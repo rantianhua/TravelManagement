@@ -15,16 +15,15 @@ public class ApplicationDaoImpl implements ApplicationDao {
 	@Override
 	public void add(Application app) throws SQLException {
 		QueryRunner runner = new QueryRunner();
-		String sql = "insert into application(application_number,invitation_raw,invitaion_zh,plan,purpose,passport_info,type,conference_name,conference_desc,speech_outline,papers_outline,group_unit,examine_unit,group_work,group_members,inviter_info,identify_type,licence_type,inviter_pay,funds_id,loan) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-		Object[] param = { app.getApplicationNumber(), app.getInvitationRaw(),
-				app.getInvitationZh(), app.getPlan(), app.getPurpose(),
-				app.getPassportInfo(), app.getType(), app.getConferenceName(),
-				app.getConferenceDesc(), app.getSpeechOutline(),
-				app.getPapersOutline(), app.getGroupUnit(),
-				app.getExamineUnit(), app.getGroupWork(),
+		String sql = "insert into application(application_number,applicant_id,assignee_id,,apply_date,invitation_raw,invitaion_zh,plan,purpose,passport_info,type,group_unit,examine_unit,group_work,group_members,inviter_info,identify_type,licence_type,inviter_pay,loan,status) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		Object[] param = { app.getApplicationNumber(), app.getApplicantId(),
+				app.getAssigneeId(), app.getApplyDate(),
+				app.getInvitationRaw(), app.getInvitationZh(), app.getPlan(),
+				app.getPurpose(), app.getPassportInfo(), app.getType(),
+				app.getGroupUnit(), app.getExamineUnit(), app.getGroupWork(),
 				app.getGroupMembers(), app.getInviterInfo(),
 				app.getIdentifyType(), app.getLicenceType(),
-				app.getInviterPay(), app.getFundsId(), app.getLoan() };
+				app.getInviterPay(), app.getLoan(), app.getStatus() };
 		runner.update(ManageDbUtils.getConnection(), sql, param);
 	}
 
@@ -38,16 +37,14 @@ public class ApplicationDaoImpl implements ApplicationDao {
 	@Override
 	public void update(Application app) throws SQLException {
 		QueryRunner runner = new QueryRunner();
-		String sql = "update application set invitation_raw=?,invitaion_zh=?,plan=?,purpose=?,passport_info=?,type=?,conference_name=?,conference_desc=?,speech_outline=?,papers_outline=?,group_unit=?,examine_unit=?,group_work=?,group_members=?,inviter_info=?,identify_type=?,licence_type=?,inviter_pay=?,funds_id=?,loan=? where application_number=?";
-		Object[] param = { app.getInvitationRaw(), app.getInvitationZh(),
-				app.getPlan(), app.getPurpose(), app.getPassportInfo(),
-				app.getType(), app.getConferenceName(),
-				app.getConferenceDesc(), app.getSpeechOutline(),
-				app.getPapersOutline(), app.getGroupUnit(),
+		String sql = "update application set apply_date=?,invitation_raw=?,invitaion_zh=?,plan=?,purpose=?,passport_info=?,type=?,group_unit=?,examine_unit=?,group_work=?,group_members=?,inviter_info=?,identify_type=?,licence_type=?,inviter_pay=?,loan=?,status=? where application_number=?";
+		Object[] param = { app.getApplyDate(), app.getInvitationRaw(),
+				app.getInvitationZh(), app.getPlan(), app.getPurpose(),
+				app.getPassportInfo(), app.getType(), app.getGroupUnit(),
 				app.getExamineUnit(), app.getGroupWork(),
 				app.getGroupMembers(), app.getInviterInfo(),
 				app.getIdentifyType(), app.getLicenceType(),
-				app.getInviterPay(), app.getFundsId(), app.getLoan(),
+				app.getInviterPay(), app.getLoan(), app.getStatus(),
 				app.getApplicationNumber() };
 		runner.update(ManageDbUtils.getConnection(), sql, param);
 	}
@@ -64,8 +61,8 @@ public class ApplicationDaoImpl implements ApplicationDao {
 	public List<Application> getAll() throws SQLException {
 		QueryRunner runner = new QueryRunner();
 		String sql = "select * form application";
-		return (List<Application>) runner.query(ManageDbUtils.getConnection(), sql,
-				new BeanListHandler(Application.class));
+		return (List<Application>) runner.query(ManageDbUtils.getConnection(),
+				sql, new BeanListHandler(Application.class));
 	}
 
 }

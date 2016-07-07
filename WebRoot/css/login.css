@@ -1,5 +1,6 @@
 @CHARSET "UTF-8";
-body{
+
+body {
 	position: absolute;
 	background-color: #1ABC9C;
 	height: 100%;
@@ -7,11 +8,14 @@ body{
 	font-family: Microsoft Yahei;
 	margin: 0px;
 }
+
 .div_wrapper {
 	width: 38%;
-	background-color:  #ECF0F1;
-	border-radius:5px;
+	border-radius: 5px;
 	padding: 60px;
+	background-color: #ECF0F1;
+	border-radius: 5px;
+	border-radius: 5px;
 }
 
 .div_inputs {
@@ -23,7 +27,7 @@ body{
 	height: 50px;
 	border-radius: 5px;
 	border: 1px solid white;
-	background-color:white;
+	background-color: white;
 	padding-left: 10px;
 	padding-right: 50px;
 }
@@ -34,8 +38,8 @@ body{
 }
 
 .sure {
-	width:100%;
-	height:50px;
+	width: 100%;
+	height: 50px;
 	border: 0px;
 	border-radius: 5px;
 	background-color: #1ABC9C;
@@ -46,8 +50,8 @@ body{
 	outline: none;
 }
 
-a{
-	text-align:center;
+a {
+	text-align: center;
 	color: #95A5A6;
 }
 
@@ -57,7 +61,7 @@ a:HOVER {
 
 img {
 	width: 32px;
-	height:32px;
+	height: 32px;
 }
 
 span {

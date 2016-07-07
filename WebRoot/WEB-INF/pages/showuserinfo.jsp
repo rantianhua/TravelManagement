@@ -43,7 +43,7 @@
 				<c:when test="${sessionScope.hr.category eq '教学' }">
 					<li><span class="text-span">职&#12288;&#12288;务：</span>${fn.substringBefore(sessionScope.hr.position,'/') }</li>
 				</c:when>
-			
+
 			</c:choose>
 		</ul>
 		<hr>

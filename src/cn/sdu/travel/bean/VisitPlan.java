@@ -1,16 +1,15 @@
 package cn.sdu.travel.bean;
 
-import java.util.Date;
 import java.util.List;
 
 //出行计划
 public class VisitPlan {
 	private String planId;
 	private String outCity;
-	private Date exitBorderDate;
+	private String exitBorderDate;
 	private String backCity;
-	private Date enterBorderDate;
-	
+	private String enterBorderDate;
+
 	private List<VisitDestination> destinations;
 
 	public String getPlanId() {
@@ -29,14 +28,6 @@ public class VisitPlan {
 		this.outCity = outCity;
 	}
 
-	public Date getExitBorderDate() {
-		return exitBorderDate;
-	}
-
-	public void setExitBorderDate(Date exitBorderDate) {
-		this.exitBorderDate = exitBorderDate;
-	}
-
 	public String getBackCity() {
 		return backCity;
 	}
@@ -45,11 +36,19 @@ public class VisitPlan {
 		this.backCity = backCity;
 	}
 
-	public Date getEnterBorderDate() {
+	public String getExitBorderDate() {
+		return exitBorderDate;
+	}
+
+	public void setExitBorderDate(String exitBorderDate) {
+		this.exitBorderDate = exitBorderDate;
+	}
+
+	public String getEnterBorderDate() {
 		return enterBorderDate;
 	}
 
-	public void setEnterBorderDate(Date enterBorderDate) {
+	public void setEnterBorderDate(String enterBorderDate) {
 		this.enterBorderDate = enterBorderDate;
 	}
 

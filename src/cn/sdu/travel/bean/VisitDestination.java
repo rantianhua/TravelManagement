@@ -1,35 +1,50 @@
 package cn.sdu.travel.bean;
 
-import java.util.Date;
-
 public class VisitDestination {
-	private String destination;
-	private Date arriveDate;
-	private Date exitCityDate;
-	private String transAddr;
 	private String planId;
+	private String country;
+	private String city;
+	private String arriveDate;
+	private String exitCityDate;
+	private String transAddr;
 
-	public String getDestination() {
-		return destination;
+	public String getPlanId() {
+		return planId;
 	}
 
-	public void setDestination(String destination) {
-		this.destination = destination;
+	public void setPlanId(String planId) {
+		this.planId = planId;
 	}
 
-	public Date getArriveDate() {
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getArriveDate() {
 		return arriveDate;
 	}
 
-	public void setArriveDate(Date arriveDate) {
+	public void setArriveDate(String arriveDate) {
 		this.arriveDate = arriveDate;
 	}
 
-	public Date getExitCityDate() {
+	public String getExitCityDate() {
 		return exitCityDate;
 	}
 
-	public void setExitCityDate(Date exitCityDate) {
+	public void setExitCityDate(String exitCityDate) {
 		this.exitCityDate = exitCityDate;
 	}
 
@@ -39,14 +54,6 @@ public class VisitDestination {
 
 	public void setTransAddr(String transAddr) {
 		this.transAddr = transAddr;
-	}
-
-	public String getPlanId() {
-		return planId;
-	}
-
-	public void setPlanId(String planId) {
-		this.planId = planId;
 	}
 
 }

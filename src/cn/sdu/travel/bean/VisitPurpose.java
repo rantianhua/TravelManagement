@@ -14,6 +14,12 @@ public class VisitPurpose {
 	private String teacherTitle;
 	private String teacherExpertise;
 	private String degreeType;
+	private String conferenceNameCh;
+	private String conferenceNameEn;
+	private String conferenceDesc;
+	private String speech;
+	private String speechOutline;
+	private String paperOutline;
 
 	public String getId() {
 		return id;
@@ -109,6 +115,54 @@ public class VisitPurpose {
 
 	public void setDegreeType(String degreeType) {
 		this.degreeType = degreeType;
+	}
+
+	public String getConferenceNameCh() {
+		return conferenceNameCh;
+	}
+
+	public void setConferenceNameCh(String conferenceNameCh) {
+		this.conferenceNameCh = conferenceNameCh;
+	}
+
+	public String getConferenceNameEn() {
+		return conferenceNameEn;
+	}
+
+	public void setConferenceNameEn(String conferenceNameEn) {
+		this.conferenceNameEn = conferenceNameEn;
+	}
+
+	public String getConferenceDesc() {
+		return conferenceDesc;
+	}
+
+	public void setConferenceDesc(String conferenceDesc) {
+		this.conferenceDesc = conferenceDesc;
+	}
+
+	public String getSpeech() {
+		return speech;
+	}
+
+	public void setSpeech(String speech) {
+		this.speech = speech;
+	}
+
+	public String getSpeechOutline() {
+		return speechOutline;
+	}
+
+	public void setSpeechOutline(String speechOutline) {
+		this.speechOutline = speechOutline;
+	}
+
+	public String getPaperOutline() {
+		return paperOutline;
+	}
+
+	public void setPaperOutline(String paperOutline) {
+		this.paperOutline = paperOutline;
 	}
 
 }

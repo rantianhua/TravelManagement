@@ -26,7 +26,8 @@ public class SessionCheckFilter implements Filter {
 		HttpServletResponse response = (HttpServletResponse) resp;
 
 		String servletPath = request.getServletPath();
-		if (servletPath.equals("/web/login.jsp")
+		if (servletPath.equals("/index.jsp")
+				|| servletPath.equals("/web/login.jsp")
 				|| servletPath.equals("/web/register.jsp")
 				|| servletPath.equals("/web/error.jsp")
 				|| servletPath.equals("/servlet/LoginServlet")) {
@@ -34,7 +35,9 @@ public class SessionCheckFilter implements Filter {
 			return;
 		}
 		if (request.getSession().getAttribute("hr") == null) {
-			request.getRequestDispatcher("/web/error.jsp").forward(request, response);;
+			request.getRequestDispatcher("/web/error.jsp").forward(request,
+					response);
+			;
 			return;
 		}
 		chain.doFilter(request, response);

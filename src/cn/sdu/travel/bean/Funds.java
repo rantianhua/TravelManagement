@@ -4,9 +4,11 @@ package cn.sdu.travel.bean;
 public class Funds {
 	private String id;
 	private String payType;
-	private String payItem;
+	private String payAmount;
 	private String accountName;
-	private String fundsAccount;
+	private String payItem;
+	private String ps;
+	private String payDetail;
 	private String proveFile;
 
 	public String getId() {
@@ -25,12 +27,12 @@ public class Funds {
 		this.payType = payType;
 	}
 
-	public String getPayItem() {
-		return payItem;
+	public String getPayAmount() {
+		return payAmount;
 	}
 
-	public void setPayItem(String payItem) {
-		this.payItem = payItem;
+	public void setPayAmount(String payAmount) {
+		this.payAmount = payAmount;
 	}
 
 	public String getAccountName() {
@@ -41,12 +43,28 @@ public class Funds {
 		this.accountName = accountName;
 	}
 
-	public String getFundsAccount() {
-		return fundsAccount;
+	public String getPayItem() {
+		return payItem;
 	}
 
-	public void setFundsAccount(String fundsAccount) {
-		this.fundsAccount = fundsAccount;
+	public void setPayItem(String payItem) {
+		this.payItem = payItem;
+	}
+
+	public String getPs() {
+		return ps;
+	}
+
+	public void setPs(String ps) {
+		this.ps = ps;
+	}
+
+	public String getPayDetail() {
+		return payDetail;
+	}
+
+	public void setPayDetail(String payDetail) {
+		this.payDetail = payDetail;
 	}
 
 	public String getProveFile() {
@@ -57,11 +75,4 @@ public class Funds {
 		this.proveFile = proveFile;
 	}
 
-	@Override
-	public String toString() {
-		return "Funds [id=" + id + ", payType=" + payType + ", payItem="
-				+ payItem + ", accountName=" + accountName + ", fundsAccount="
-				+ fundsAccount + ", proveFile=" + proveFile + "]";
-	}
-	
 }

@@ -3,7 +3,9 @@ package cn.sdu.travel.bean;
 //邀请人信息
 public class Inviter {
 	private String id;
-	private String title;
+	private String name;
+	private String titleCh;
+	private String titleEn;
 	private String unitName;
 	private String address;
 	private String telephone;
@@ -18,12 +20,28 @@ public class Inviter {
 		this.id = id;
 	}
 
-	public String getTitle() {
-		return title;
+	public String getName() {
+		return name;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getTitleCh() {
+		return titleCh;
+	}
+
+	public void setTitleCh(String titleCh) {
+		this.titleCh = titleCh;
+	}
+
+	public String getTitleEn() {
+		return titleEn;
+	}
+
+	public void setTitleEn(String titleEn) {
+		this.titleEn = titleEn;
 	}
 
 	public String getUnitName() {
@@ -65,12 +83,4 @@ public class Inviter {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-
-	@Override
-	public String toString() {
-		return "Inviter [id=" + id + ", title=" + title + ", unitName="
-				+ unitName + ", address=" + address + ", telephone="
-				+ telephone + ", email=" + email + ", url=" + url + "]";
-	}
-
 }

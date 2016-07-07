@@ -1,5 +1,7 @@
 package cn.sdu.travel.bean;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 //个人信息
@@ -12,7 +14,7 @@ public class HumanResource {
 	private String sex;
 	private String namePinyin;
 	private String otherName;
-	private Date birthday;
+	private String birthday;
 	private String category;
 	private String position;
 	private String company;
@@ -80,11 +82,11 @@ public class HumanResource {
 		this.otherName = otherName;
 	}
 
-	public Date getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(Date birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
 

@@ -5,7 +5,7 @@
 	rel="stylesheet">
 <link href="${pageContext.request.contextPath }/css/apply.abroad.css"
 	rel="stylesheet">
-<form class="form-horizontal" role="form">
+<form class="form-horizontal" role="form" method="post">
 	<div class="form-group">
 		<div class="col-offset-2 col-sm-4">
 			<h3 class="text-info text-center">时限检验</h3>
@@ -556,6 +556,14 @@
 			</tr>
 		</table>
 	</div>
+	<div class="form-group">
+		<div class="col-sm-6" style="text-align: right;">
+			<button type="submit" class="btn btn-default">保&#12288;存</button>
+		</div>
+		<div class="col-sm-6" style="text-align: left;">
+			<button type="submit" class="btn btn-default">下一步</button>
+		</div>
+	</div>
 </form>
 
 <script type="text/javascript"
@@ -643,16 +651,16 @@
 			$("#passport_desc").html("短期请假、停薪留职、辞职等因私申请适用，外籍人士不可适用因私证照");
 		}
 	});
-	
+
 	//参团情况
 	$("input[name=canTuan]").bind('click', function() {
 		if ($("input[name=canTuan]:checked").val() == "是") {
 			$("#div_can_tuan").show();
 		} else {
-				$("#div_can_tuan").hide();
+			$("#div_can_tuan").hide();
 		}
 	});
-	
+
 	//选择目的
 	$("#select_purpose").change(function() {
 		checkPurpose($("#select_purpose").val());

@@ -2,3 +2,15 @@
 label span {
 	color:red;
 }
+
+.red {
+	color:red;
+}
+
+.p_btn {
+	
+}
+
+.p_btn:HOVER {
+	color: green;
+}

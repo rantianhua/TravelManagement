@@ -5,7 +5,11 @@
 	rel="stylesheet">
 <link href="${pageContext.request.contextPath }/css/apply.abroad.css"
 	rel="stylesheet">
-<form class="form-horizontal" role="form" method="post">
+<form class="form-horizontal" role="form" method="post"
+	onsubmit="return checkSubmit()" action="/ht.html">
+	<!-- 用来存放中转城市的个数 -->
+	<input id="destination_index" style="display: none;"
+		name="destinationIndex" type="text">
 	<div class="form-group">
 		<div class="col-offset-2 col-sm-4">
 			<h3 class="text-info text-center">时限检验</h3>
@@ -19,6 +23,13 @@
 		<div class="col-sm-6">
 			<input id="start_time" class="form-control choose_date" type="text"
 				name="startTime" data-date-format="yyyy-mm-dd">
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-4"></div>
+		<div class="col-sm-6">
+			<p class="text-danger small text-left" id="warn_time_check"
+				style="display: none;"></p>
 		</div>
 	</div>
 	<!-- 提示信息 -->
@@ -59,6 +70,13 @@
 		<label class="control-label col-sm-4"><span>* </span>申请人身份证号</label>
 		<div class="col-sm-6">
 			<input class="form-control" type="text">
+		</div>
+	</div>
+	<div class="form-group" style="display: none;" id="warn_real_identity">
+		<div class="col-sm-4"></div>
+		<div class="col-sm-6">
+			<!-- 该处填写表单校验的错误 -->
+			<p class="text-danger small text-left">表单校验信息</p>
 		</div>
 	</div>
 	<div class="form-group">
@@ -149,11 +167,25 @@
 			<input class="form-control" type="text">
 		</div>
 	</div>
+	<div class="form-group" style="display: none;">
+		<div class="col-sm-4"></div>
+		<div class="col-sm-6">
+			<!-- 该处填写表单校验的错误 -->
+			<p class="text-danger small text-left">授课名称校验</p>
+		</div>
+	</div>
 	<div class="form-group" id="div_cooperation_content"
 		style="display: none;">
 		<label class="control-label col-sm-4"><span>* </span>合作内容</label>
 		<div class="col-sm-6">
 			<input class="form-control" type="text">
+		</div>
+	</div>
+	<div class="form-group" style="display: none;">
+		<div class="col-sm-4"></div>
+		<div class="col-sm-6">
+			<!-- 该处填写表单校验的错误 -->
+			<p class="text-danger small text-left">合作内容校验</p>
 		</div>
 	</div>
 	<div class="form-group" id="div_train_content" style="display: block;">
@@ -162,10 +194,24 @@
 			<input class="form-control" type="text">
 		</div>
 	</div>
+	<div class="form-group">
+		<div class="col-sm-4"></div>
+		<div class="col-sm-6">
+			<!-- 该处填写表单校验的错误 -->
+			<p class="text-danger small text-left">培训内容校验</p>
+		</div>
+	</div>
 	<div class="form-group" id="div_study_content" style="display: none;">
 		<label class="control-label col-sm-4"><span>* </span>进修内容</label>
 		<div class="col-sm-6">
 			<input class="form-control" type="text">
+		</div>
+	</div>
+	<div class="form-group" style="display: none;">
+		<div class="col-sm-4"></div>
+		<div class="col-sm-6">
+			<!-- 该处填写表单校验的错误 -->
+			<p class="text-danger small text-left">进修内容校验</p>
 		</div>
 	</div>
 	<div class="form-group" id="div_degree_content" style="display: none;">
@@ -174,23 +220,51 @@
 			<input class="form-control" type="text">
 		</div>
 	</div>
+	<div class="form-group" style="display: none;">
+		<div class="col-sm-4"></div>
+		<div class="col-sm-6">
+			<!-- 该处填写表单校验的错误 -->
+			<p class="text-danger small text-left">攻读学位类别校验</p>
+		</div>
+	</div>
 	<div id="div_foreign_parter" style="display: none;">
 		<div class="form-group">
-			<label class="control-label col-sm-4"><span>* </span>外方合伙伴姓名</label>
+			<label class="control-label col-sm-4"><span>* </span>外方合作伙伴姓名</label>
 			<div class="col-sm-6">
 				<input class="form-control" type="text">
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="control-label col-sm-4"><span>* </span>外方合伙伴头衔</label>
+			<div class="col-sm-4"></div>
+			<div class="col-sm-6">
+				<!-- 该处填写表单校验的错误 -->
+				<p class="text-danger small text-left">外方合作伙伴姓名校验</p>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-4"><span>* </span>外方合作伙伴头衔</label>
 			<div class="col-sm-6">
 				<input class="form-control" type="text">
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="control-label col-sm-4"><span>* </span>外方合伙伴专长</label>
+			<div class="col-sm-4"></div>
+			<div class="col-sm-6">
+				<!-- 该处填写表单校验的错误 -->
+				<p class="text-danger small text-left">外方合作伙伴头衔校验</p>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-4"><span>* </span>外方合作伙伴专长</label>
 			<div class="col-sm-6">
 				<input class="form-control" type="text">
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-6">
+				<!-- 该处填写表单校验的错误 -->
+				<p class="text-danger small text-left">外方合作伙伴专长校验</p>
 			</div>
 		</div>
 	</div>
@@ -202,15 +276,36 @@
 			</div>
 		</div>
 		<div class="form-group">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-6">
+				<!-- 该处填写表单校验的错误 -->
+				<p class="text-danger small text-left">指导教师姓名校验</p>
+			</div>
+		</div>
+		<div class="form-group">
 			<label class="control-label col-sm-4"><span>* </span>指导教师头衔</label>
 			<div class="col-sm-6">
 				<input class="form-control" type="text">
 			</div>
 		</div>
 		<div class="form-group">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-6">
+				<!-- 该处填写表单校验的错误 -->
+				<p class="text-danger small text-left">指导教师头衔校验</p>
+			</div>
+		</div>
+		<div class="form-group">
 			<label class="control-label col-sm-4"><span>* </span>指导教师专长</label>
 			<div class="col-sm-6">
 				<input class="form-control" type="text">
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-6">
+				<!-- 该处填写表单校验的错误 -->
+				<p class="text-danger small text-left">指导教师专长校验</p>
 			</div>
 		</div>
 	</div>
@@ -222,15 +317,36 @@
 			</div>
 		</div>
 		<div class="form-group">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-6">
+				<!-- 该处填写表单校验的错误 -->
+				<p class="text-danger small text-left">国际会议中文名校验</p>
+			</div>
+		</div>
+		<div class="form-group">
 			<label class="control-label col-sm-4"><span>* </span>国际会议英文名</label>
 			<div class="col-sm-6">
 				<input class="form-control" type="text">
 			</div>
 		</div>
 		<div class="form-group">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-6">
+				<!-- 该处填写表单校验的错误 -->
+				<p class="text-danger small text-left">国际会议英文名校验</p>
+			</div>
+		</div>
+		<div class="form-group">
 			<label class="control-label col-sm-4"><span>* </span>会议情况简介</label>
 			<div class="col-sm-6">
 				<textarea class="form-control"></textarea>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-6">
+				<!-- 该处填写表单校验的错误 -->
+				<p class="text-danger small text-left">会议情况简介校验</p>
 			</div>
 		</div>
 		<div class="form-group">
@@ -276,56 +392,61 @@
 	<div class="form-group">
 		<label class="control-label col-sm-4"><span>* </span>离境日期</label>
 		<div class="col-sm-6">
-			<input type="text" class="form-control choose_date" name="outDate">
+			<input type="text" class="form-control choose_date" name="outDate"
+				id="input_exit_date">
 		</div>
 	</div>
-	<div class="form-group">
-		<label class="control-label col-sm-4"><span>* </span>抵达国家</label>
-		<div class="col-sm-6">
-			<input type="text" name="reachCountry1" class="form-control">
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="control-label col-sm-4"><span>* </span>抵达城市</label>
-		<div class="col-sm-6">
-			<input type="text" name="reachCity1" id="reach_city"
-				class="form-control">
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="control-label col-sm-4"><span>* </span>抵达日期</label>
-		<div class="col-sm-6">
-			<input type="text" name="reachDate1" class="form-control choose_date">
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="control-label col-sm-4"><span>* </span>离境日期</label>
-		<div class="col-sm-6">
-			<input type="text" name="exitDate1" class="form-control choose_date">
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="control-label col-sm-4">是否过境转机</label>
-		<div class="col-sm-6">
-			<div>
-				<label class="checkbox-inline"> <input type="radio"
-					value="0" checked name="transfer1">是
-				</label> <label class="checkbox-inline"> <input type="radio"
-					value="1" name="transfer1">否
-				</label>
+	<div>
+		<div class="form-group">
+			<label class="control-label col-sm-4"><span>* </span>抵达国家</label>
+			<div class="col-sm-6">
+				<input type="text" name="reachCountry1" class="form-control">
 			</div>
 		</div>
-	</div>
-	<div class="form-group">
-		<label class="control-label col-sm-4"><span>* </span>转机地点</label>
-		<div class="col-sm-6">
-			<input type="text" name="transferAdress1" class="form-control">
+		<div class="form-group">
+			<label class="control-label col-sm-4"><span>* </span>抵达城市</label>
+			<div class="col-sm-6">
+				<input type="text" name="reachCity1" id="reach_city"
+					class="form-control">
+			</div>
 		</div>
-	</div>
-	<div class="form-group">
-		<label class="control-label col-sm-4"><span>* </span>停留时间</label>
-		<div class="col-sm-6">
-			<p id="stayTime1" class="form-control-static"></p>
+		<div class="form-group">
+			<label class="control-label col-sm-4"><span>* </span>抵达日期</label>
+			<div class="col-sm-6">
+				<input type="text" name="reachDate1"
+					class="form-control choose_date">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-4"><span>* </span>离境日期</label>
+			<div class="col-sm-6">
+				<input type="text" name="exitDate1" class="form-control choose_date">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-4">是否过境转机</label>
+			<div class="col-sm-6">
+				<div>
+					<label class="checkbox-inline"> <input type="radio"
+						value="0" checked name="transfer1">是
+					</label> <label class="checkbox-inline"> <input type="radio"
+						value="1" name="transfer1">否
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-4"><span>* </span>转机地点</label>
+			<div class="col-sm-6">
+				<input type="text" name="transferAdress1" class="form-control">
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-6">
+				<p class="text-info text-right p_btn" id="deletDestination1"
+					onclick="deletDestination(this.id)">删除该中途城市</p>
+			</div>
 		</div>
 	</div>
 	<div class="form-group" id="div_add_destination">
@@ -343,13 +464,21 @@
 	<div class="form-group">
 		<label class="control-label col-sm-4"><span>* </span>入境日期</label>
 		<div class="col-sm-6">
-			<input type="text" class="form-control choose_date" name="enterDate">
+			<input type="text" class="form-control choose_date" name="enterDate"
+				id="input_enter_date">
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group" style="display: none">
 		<label class="control-label col-sm-4">出访天数</label>
 		<div class="col-sm-6">
 			<p id="visit_total_days" class="form-control-static"></p>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-4"></div>
+		<div class="col-sm-6">
+			<!-- 该处填写表单校验的错误 -->
+			<p class="text-danger small text-left">出访路线及计划部分校验</p>
 		</div>
 	</div>
 	<div class="form-group">
@@ -395,6 +524,13 @@
 			<label class="control-label col-sm-4"><span>* </span>成员名单</label>
 			<div class="col-sm-6">
 				<input type="file">
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-6">
+				<!-- 该处填写表单校验的错误 -->
+				<p class="text-danger small text-left">参团出访部分校验</p>
 			</div>
 		</div>
 	</div>
@@ -467,6 +603,13 @@
 			<input type="file">
 		</div>
 	</div>
+	<div class="form-group">
+		<div class="col-sm-4"></div>
+		<div class="col-sm-6">
+			<!-- 该处填写表单校验的错误 -->
+			<p class="text-danger small text-left">邀请部分校验</p>
+		</div>
+	</div>
 	<!-- 经费信息 -->
 	<div class="form-group">
 		<div class="col-offset-2 col-sm-4">
@@ -481,22 +624,30 @@
 		<table class="table table-bordered">
 			<tr>
 				<td>邀请方负担情况</td>
-				<td><label> <input type="radio" value="0" checked
+				<td><label class="checkbox-inline"> <input type="radio" value="全部负担" checked
 						name="fudan">全部负担
-				</label> &nbsp;&nbsp;&nbsp; <label> <input type="radio" value="1"
+				</label> &nbsp;&nbsp;&nbsp; <label class="checkbox-inline"> <input type="radio" value="部分负担"
 						name="fudan">部分负担
-				</label> <label> <input type="radio" value="２" name="fudan">不负担
+				</label> <label class="checkbox-inline"> <input type="radio" value="不负担" name="fudan">不负担
 				</label></td>
 			</tr>
-			<tr>
+			<tr id="tr_part_pay">
 				<td>部分负担费用</td>
-				<td><select>
-						<option value="住宿费，餐费" selected>住宿费，餐费</option>
-						<option value="机票费">机票费</option>
-						<option value="其他">其他</option>
-				</select> <input type="text" placeholder="选择其他时，请再次说明付费项目"></td>
+				<td>
+					<div class="col-sm-5">
+						<select class="form-control">
+							<option value="住宿费，餐费" selected>住宿费，餐费</option>
+							<option value="机票费">机票费</option>
+							<option value="其他">其他</option>
+						</select>
+					</div>
+					<div class="col-sm-5">
+						<input type="text" class="form-control"
+							placeholder="选择其他时，请再次说明付费项目">
+					</div>
+				</td>
 			</tr>
-			<tr>
+			<tr id="tr_our_pay">
 				<td>我方负担情况</td>
 				<td>
 					<table class="table table-bordered">
@@ -507,45 +658,45 @@
 							<th>备注</th>
 						</tr>
 						<tr>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-							<td><select>
+							<td><input type="text" class="form-control"></td>
+							<td><input type="text" class="form-control"></td>
+							<td><select class="form-control">
 									<option value="住宿费，餐费">住宿费，餐费</option>
 									<option value="机票费">机票费</option>
 									<option value="其他">其他</option>
 							</select></td>
-							<td><input type="text"></td>
+							<td><input type="text" class="form-control"></td>
 						</tr>
 						<tr>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-							<td><select>
+							<td><input type="text" class="form-control"></td>
+							<td><input type="text" class="form-control"></td>
+							<td><select class="form-control">
 									<option value="住宿费，餐费">住宿费，餐费</option>
 									<option value="机票费">机票费</option>
 									<option value="其他">其他</option>
 							</select></td>
-							<td><input type="text"></td>
+							<td><input type="text" class="form-control"></td>
 						</tr>
 						<tr>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-							<td><select>
+							<td><input type="text" class="form-control"></td>
+							<td><input type="text" class="form-control"></td>
+							<td><select class="form-control">
 									<option value="住宿费，餐费">住宿费，餐费</option>
 									<option value="机票费">机票费</option>
 									<option value="其他">其他</option>
 							</select></td>
-							<td><input type="text"></td>
+							<td><input type="text" class="form-control"></td>
 						</tr>
 					</table>
 				</td>
 			</tr>
-			<tr>
+			<tr id="tr_other_pay">
 				<td>其他出资方</td>
 				<td>
 					<table class="table table-bordered">
 						<tr>
 							<td>资助范围</td>
-							<td><textarea rows="4"></textarea></td>
+							<td><textarea class="form-control"></textarea></td>
 						</tr>
 						<tr>
 							<td>证明文件</td>
@@ -556,6 +707,11 @@
 			</tr>
 		</table>
 	</div>
+	<div style="width:85%;margin-left:15%;">
+		<!-- 该处填写表单校验的错误 -->
+		<p class="text-danger small text-left">经费信息部分校验</p>
+	</div>
+
 	<div class="form-group">
 		<div class="col-sm-6" style="text-align: right;">
 			<button type="submit" class="btn btn-default">保&#12288;存</button>
@@ -574,7 +730,115 @@
 	charset="UTF-8"></script>
 <script>
 	var reachIndex = 2;
-	bindDateTimePicker();
+	$(document)
+			.ready(
+					function() {
+						bindDateTimePicker();
+						$("#start_time").change(function() {
+							checkTime();
+						});
+						$("#input_exit_date").change(function() {
+							calOutDays();
+						});
+						$("#input_enter_date").change(function() {
+							calOutDays();
+						});
+						//是否选择委托申请
+						$("input[name=help_apply]").bind(
+								'click',
+								function() {
+									if ($("input[name=help_apply]:checked")
+											.val() == "是") {
+										//委托申请
+										$("#real_identity").show();
+										$("#warn_real_identity").show();
+									} else {
+										$("#real_identity").hide();
+										$("#warn_real_identity").hide();
+									}
+								});
+
+						//选择证照类型
+						$("input[name=passport_type]")
+								.bind(
+										'click',
+										function() {
+											if ($(
+													"input[name=passport_type]:checked")
+													.val() == "因公证照") {
+												$("#passport_desc").html(
+														"适用于工作和学习的出境目的");
+											} else {
+												$("#passport_desc")
+														.html(
+																"短期请假、停薪留职、辞职等因私申请适用，外籍人士不可适用因私证照");
+											}
+										});
+
+						//参团情况
+						$("input[name=canTuan]").bind('click', function() {
+							if ($("input[name=canTuan]:checked").val() == "是") {
+								$("#div_can_tuan").show();
+							} else {
+								$("#div_can_tuan").hide();
+							}
+						});
+
+						//选择目的
+						$("#select_purpose").change(function() {
+							checkPurpose($("#select_purpose").val());
+						});
+
+						//长期短期出访的选择
+						$("input[name=visit_type]")
+								.bind(
+										'click',
+										function() {
+											$("#select_purpose").empty();
+											$("#select_purpose")
+													.append(
+															"<option value='培训' selected>培训</option>");
+											$("#select_purpose")
+													.append(
+															"<option value='进修'>进修</option>");
+											$("#select_purpose")
+													.append(
+															"<option value='科研合作'>科研合作</option>");
+											$("#select_purpose")
+													.append(
+															"<option value='任教'>任教</option>");
+											if ($(
+													"input[name=visit_type]:checked")
+													.val() == "长期") {
+												$("#select_purpose")
+														.append(
+																"<option value='攻读学位'>攻读学位</option>");
+											} else {
+												$("#select_purpose")
+														.append(
+																"<option value='参加国际会议'>参加国际会议</option>");
+											}
+											checkPurpose("培训");
+										});
+						$("input[name=fudan]").bind('click', function() {
+							var value = $("input[name=fudan]:checked").val();
+							if (value == "全部负担") {
+								$("#tr_our_pay").hide();
+								$("#tr_other_pay").hide();
+								$("#tr_part_pay").hide();
+							} else if (value == "部分负担") {
+								$("#tr_our_pay").show();
+								$("#tr_other_pay").show();
+								$("#tr_part_pay").show();
+							} else {
+								$("#tr_our_pay").show();
+								$("#tr_other_pay").show();
+								$("#tr_part_pay").hide();
+							}
+						});
+
+					});
+
 	function bindDateTimePicker() {
 		$('.choose_date').datetimepicker({
 			format : "yyyy-mm-dd",
@@ -585,172 +849,153 @@
 			startView : 2,
 			language : 'zh-CN',
 			minView : 'month'
-		}).on('changeDate', function() {
-			$('.choose_date').trigger("input");
-		});
-		//$('.choose_date').bind('input propertychange onchange oninput',checkTime);
+		})
 	};
 
+	//添加一个新的中途到达城市
 	function addDestination() {
-		var newReach = '<div class="form-group"><label class="control-label col-sm-4"><span>* </span>抵达国家</label><div class="col-sm-6"><input type="text"name="reachCountry' + reachIndex +'" class="form-control"></div></div><div class="form-group"><label class="control-label col-sm-4"><span>* </span>抵达城市</label><div class="col-sm-6"><input type="text"name="reachCity' + reachIndex + '" class="form-control"></div></div><div class="form-group"><label class="control-label col-sm-4"><span>* </span>抵达日期</label><div class="col-sm-6"><input type="text"name="reachDate' + reachIndex + '" class="form-control choose_date"></div></div><div class="form-group"><label class="control-label col-sm-4"><span>* </span>离境日期</label><div class="col-sm-6"><input type="text"name="exitDate' + reachIndex + '" class="form-control choose_date"></div></div><div class="form-group"><label class="control-label col-sm-4">是否过境转机</label><div class="col-sm-6"><div><label class="checkbox-inline"><input type="radio"value="0"checked name="transfer'+reachIndex+'">是</label><label class="checkbox-inline"><input type="radio"value="1"name="transfer'+reachIndex+'">否</label></div></div></div><div class="form-group"><label class="control-label col-sm-4"><span>* </span>转机地点</label><div class="col-sm-6"><input type="text"name="transferAdress'+reachIndex+'"class="form-control"></div></div><div class="form-group"style="display: none;"><label class="control-label col-sm-4"><span>* </span>停留时间</label><div class="col-sm-6"><p id="stayTime' + reachIndex +'" class="form-control-static"></p></div></div>';
+		var newReach = '	<div><div class="form-group"><label class="control-label col-sm-4"><span>* </span>抵达国家</label><div class="col-sm-6"><input type="text"name="reachCountry' + reachIndex +'" class="form-control"></div></div><div class="form-group"><label class="control-label col-sm-4"><span>* </span>抵达城市</label><div class="col-sm-6"><input type="text"name="reachCity' + reachIndex + '" class="form-control"></div></div><div class="form-group"><label class="control-label col-sm-4"><span>* </span>抵达日期</label><div class="col-sm-6"><input type="text"name="reachDate' + reachIndex + '" class="form-control choose_date"></div></div><div class="form-group"><label class="control-label col-sm-4"><span>* </span>离境日期</label><div class="col-sm-6"><input type="text"name="exitDate' + reachIndex + '" class="form-control choose_date"></div></div><div class="form-group"><label class="control-label col-sm-4">是否过境转机</label><div class="col-sm-6"><div><label class="checkbox-inline"><input type="radio"value="0"checked name="transfer'+reachIndex+'">是</label><label class="checkbox-inline"><input type="radio"value="1"name="transfer'+reachIndex+'">否</label></div></div></div><div class="form-group"><label class="control-label col-sm-4"><span>* </span>转机地点</label><div class="col-sm-6"><input type="text"name="transferAdress'+reachIndex+'"class="form-control"></div></div><div class="form-group"style="display: none;"><label class="control-label col-sm-4"><span>* </span>停留时间</label><div class="col-sm-6"><p id="stayTime' + reachIndex +'" class="form-control-static"></p></div></div><div class="form-group"><div class="col-sm-4"></div><div class="col-sm-6"><p class="text-info text-right p_btn" id="deletDestination"'
+				+ reachIndex
+				+ ' onclick="deletDestination(this.id)">删除该中途城市</p></div></div></div>';
 		$("#div_add_destination").before(newReach);
 		reachIndex = reachIndex + 1;
 		bindDateTimePicker();
 	}
 
+	//计算出访天数
+	function calOutDays() {
+		var outDate = $("#input_exit_date").val();
+		var backDate = $("#input_enter_date").val();
+		if (checkDateFormat(outDate) && checkDateFormat(backDate)) {
+			var days = indicateDays(backDate, outDate);
+			$("#visit_total_days").parent().parent().show();
+			$("#visit_total_days").text(days + "天");
+		}
+	}
+
+	//检查时间格式是否正确
+	function checkDateFormat(date) {
+		var result = date.match(/^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2})$/);
+		if (result == null)
+			return false;
+		var d = new Date(result[1], result[3] - 1, result[4]);
+		return (d.getFullYear() == result[1] && (d.getMonth() + 1) == result[3] && d
+				.getDate() == result[4]);
+	}
+
 	//根据时间做计算和检查
 	function checkTime() {
-		var dateName = $(this).attr("name");
-		var searchReachIndex = dateName.search("reachDate");
-		var searchExitIndex = dateName.search("exitDate");
-		if (dateName == "startTime") {
-			var startTime = $('#start_time').val();
-			var toDay = new Date();
-			var toDayS = toDay.getYear() + "-" + (toDay.getMonth() + 1) + "-"
-					+ toDay.getDay();
-			if (startTime.length < 10)
-				return;
-			var days = indicateDays(startTime, toDayS);
-			if (days < 5) {
-				alert("时间不够，不足５天无法办理");
-			}
-		} else if (searchExitIndex != -1 || searchReachIndex != -1) {
-			//计算中间到达地点的停留时间
-			/*var i;
-			if(searchExitIndex != -1) {
-				i = dateName.substring("exitDate".length,dateName.length);
-			}else {
-				i = dateName.substring("reachDate".length,dateName.length);
-			}
-			var reachDate = $("input[name=reachDate" + i + "]").val();
-			var exitDate = $("input[name=exitDate" + i + "]").val();
-			if(reachDate.length < 10  || exitDate < 10) return;
-			var days = indicateDays(exitDate,reachDate);
-			alert(days);
-			if(days >= 0) {
-				$("#stayTime" + i).text("停留" + days + "天");
-			}*/
+		var startTime = $('#start_time').val();
+		if (!checkDateFormat(startTime))
+			return;
+		var toDay = new Date();
+		var toDayS = toDay.getFullYear() + "-" + (toDay.getMonth() + 1) + "-"
+				+ toDay.getDate();
+		var days = indicateDays(startTime, toDayS);
+		if (days < 5) {
+			$("#warn_time_check").show();
+			$("#warn_time_check").text("时间不够，不足５天无法办理");
+		} else {
+			$("#warn_time_check").text("");
+			$("#warn_time_check").hide();
 		}
-
 	}
-	//是否选择委托申请
-	$("input[name=help_apply]").bind('click', function() {
-		if ($("input[name=help_apply]:checked").val() == "是") {
-			//委托申请
-			$("#real_identity").show();
-		} else {
-			$("#real_identity").hide();
-		}
-	});
-
-	//选择证照类型
-	$("input[name=passport_type]").bind('click', function() {
-		if ($("input[name=passport_type]:checked").val() == "因公证照") {
-			$("#passport_desc").html("适用于工作和学习的出境目的");
-		} else {
-			$("#passport_desc").html("短期请假、停薪留职、辞职等因私申请适用，外籍人士不可适用因私证照");
-		}
-	});
-
-	//参团情况
-	$("input[name=canTuan]").bind('click', function() {
-		if ($("input[name=canTuan]:checked").val() == "是") {
-			$("#div_can_tuan").show();
-		} else {
-			$("#div_can_tuan").hide();
-		}
-	});
-
-	//选择目的
-	$("#select_purpose").change(function() {
-		checkPurpose($("#select_purpose").val());
-	})
 
 	function checkPurpose(purpose) {
 		switch (purpose) {
 		case "进修":
 			$("#div_study_content").show();
+			$("#div_study_content").next().show();
 			$("#div_teacher_content").show();
 			$("#div_class_name").hide();
+			$("#div_class_name").next().hide();
 			$("#div_cooperation_content").hide();
+			$("#div_cooperation_content").next().hide();
 			$("#div_train_content").hide();
+			$("#div_train_content").next().hide();
 			$("#div_degree_content").hide();
+			$("#div_degree_content").next().hide();
 			$("#div_foreign_parter").hide();
 			$("#div_meeting_content").hide();
 			break;
 		case "任教":
 			$("#div_study_content").hide();
+			$("#div_study_content").next().hide();
 			$("#div_teacher_content").hide();
 			$("#div_class_name").show();
+			$("#div_class_name").next().show();
 			$("#div_cooperation_content").hide();
+			$("#div_cooperation_content").next().hide();
 			$("#div_train_content").hide();
+			$("#div_train_content").next().hide();
 			$("#div_degree_content").hide();
+			$("#div_degree_content").next().hide();
 			$("#div_foreign_parter").show();
 			$("#div_meeting_content").hide();
 			break;
 		case "培训":
 			$("#div_study_content").hide();
+			$("#div_study_content").next().hide();
 			$("#div_teacher_content").hide();
 			$("#div_class_name").hide();
+			$("#div_class_name").next().hide();
 			$("#div_cooperation_content").hide();
+			$("#div_cooperation_content").next().hide();
 			$("#div_train_content").show();
+			$("#div_train_content").next().show();
 			$("#div_degree_content").hide();
+			$("#div_degree_content").next().hide();
 			$("#div_foreign_parter").hide();
 			$("#div_meeting_content").hide();
 			break;
 		case "科研合作":
 			$("#div_study_content").hide();
+			$("#div_study_content").next().hide();
 			$("#div_teacher_content").hide();
 			$("#div_class_name").hide();
+			$("#div_class_name").next().hide();
 			$("#div_cooperation_content").show();
+			$("#div_cooperation_content").next().show();
 			$("#div_train_content").hide();
+			$("#div_train_content").next().hide();
 			$("#div_degree_content").hide();
+			$("#div_degree_content").next().hide();
 			$("#div_foreign_parter").show();
 			$("#div_meeting_content").hide();
 			break;
 		case "攻读学位":
 			$("#div_study_content").hide();
+			$("#div_study_content").next().hide();
 			$("#div_teacher_content").show();
 			$("#div_class_name").hide();
+			$("#div_class_name").next().hide();
 			$("#div_cooperation_content").hide();
+			$("#div_cooperation_content").next().hide();
 			$("#div_train_content").hide();
+			$("#div_train_content").next().hide();
 			$("#div_degree_content").show();
+			$("#div_degree_content").next().show();
 			$("#div_foreign_parter").hide();
 			$("#div_meeting_content").hide();
 			break;
 		case "参加国际会议":
 			$("#div_study_content").hide();
+			$("#div_study_content").next().hide();
 			$("#div_teacher_content").hide();
 			$("#div_class_name").hide();
+			$("#div_class_name").next().hide();
 			$("#div_cooperation_content").hide();
+			$("#div_cooperation_content").next().hide();
 			$("#div_train_content").hide();
+			$("#div_train_content").next().hide();
 			$("#div_degree_content").hide();
+			$("#div_train_content").next().hide();
 			$("#div_foreign_parter").hide();
 			$("#div_meeting_content").show();
 			break;
 		}
 	}
 
-	//长期短期出访的选择
-	$("input[name=visit_type]").bind(
-			'click',
-			function() {
-				$("#select_purpose").empty();
-				$("#select_purpose").append(
-						"<option value='培训' selected>培训</option>");
-				$("#select_purpose").append("<option value='进修'>进修</option>");
-				$("#select_purpose").append(
-						"<option value='科研合作'>科研合作</option>");
-				$("#select_purpose").append("<option value='任教'>任教</option>");
-				if ($("input[name=visit_type]:checked").val() == "长期") {
-					$("#select_purpose").append(
-							"<option value='攻读学位'>攻读学位</option>");
-				} else {
-					$("#select_purpose").append(
-							"<option value='参加国际会议'>参加国际会议</option>");
-				}
-				checkPurpose("培训");
-			});
 	//计算两个日期之间的天数
 	function indicateDays(dateOne, dateTwo) {
 		var date1 = dateOne.split("-");
@@ -761,6 +1006,23 @@
 		var dateE = new Date(date2[0], date2[1] - 1, date2[2]);
 		var days = parseInt(Math.abs(dateS - dateE) / 1000 / 60 / 60 / 24);
 		return days;
+	}
+
+	function deletDestination(id) {
+		$("#" + id).parent().parent().parent().remove();
+	}
+
+	function checkSubmit() {
+		if (!checkDateFormat($("#start_time").val())) {
+			alert("必须完成时限检验！");
+			return false;
+		}
+		if ($("#warn_time_check").text().length > 0) {
+			alert("时限检验不通过，无法继续操作！");
+			return false;
+		}
+		$("#destination_index").val(reachIndex);
+		return true;
 	}
 </script>
 </body>

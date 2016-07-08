@@ -72,15 +72,16 @@
 				<span>性&#12288;&#12288;别</span>
 			</div>
 			<div>
-				<label> <input type="radio" name="sex" value="男"
+				<label> <input id="radio" type="radio" name="sex" value="男"
 					${(validate ? sessionScope.hr.sex:requestScope.form.sex)=='男'?'checked':'' }>
 					男
-				</label> &nbsp;&nbsp;&nbsp; <label> <input type="radio" name="sex"
-					value="女"
+				</label> &nbsp;&nbsp;&nbsp; <label> <input id="radio" type="radio"
+					name="sex" value="女"
 					${(validate ? sessionScope.hr.sex:requestScope.form.sex)=='女'?'checked':'' }>
 					女
 				</label>
 			</div>
+			<p>${requestScope.form.errors.sex }</p>
 		</li>
 		<li class="border_lefft_right">
 			<div>出生日期</div>

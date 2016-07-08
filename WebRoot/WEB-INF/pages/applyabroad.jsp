@@ -590,14 +590,12 @@
 		});
 		//$('.choose_date').bind('input propertychange onchange oninput',checkTime);
 	};
-
 	function addDestination() {
 		var newReach = '<div class="form-group"><label class="control-label col-sm-4"><span>* </span>抵达国家</label><div class="col-sm-6"><input type="text"name="reachCountry' + reachIndex +'" class="form-control"></div></div><div class="form-group"><label class="control-label col-sm-4"><span>* </span>抵达城市</label><div class="col-sm-6"><input type="text"name="reachCity' + reachIndex + '" class="form-control"></div></div><div class="form-group"><label class="control-label col-sm-4"><span>* </span>抵达日期</label><div class="col-sm-6"><input type="text"name="reachDate' + reachIndex + '" class="form-control choose_date"></div></div><div class="form-group"><label class="control-label col-sm-4"><span>* </span>离境日期</label><div class="col-sm-6"><input type="text"name="exitDate' + reachIndex + '" class="form-control choose_date"></div></div><div class="form-group"><label class="control-label col-sm-4">是否过境转机</label><div class="col-sm-6"><div><label class="checkbox-inline"><input type="radio"value="0"checked name="transfer'+reachIndex+'">是</label><label class="checkbox-inline"><input type="radio"value="1"name="transfer'+reachIndex+'">否</label></div></div></div><div class="form-group"><label class="control-label col-sm-4"><span>* </span>转机地点</label><div class="col-sm-6"><input type="text"name="transferAdress'+reachIndex+'"class="form-control"></div></div><div class="form-group"style="display: none;"><label class="control-label col-sm-4"><span>* </span>停留时间</label><div class="col-sm-6"><p id="stayTime' + reachIndex +'" class="form-control-static"></p></div></div>';
 		$("#div_add_destination").before(newReach);
 		reachIndex = reachIndex + 1;
 		bindDateTimePicker();
 	}
-
 	//根据时间做计算和检查
 	function checkTime() {
 		var dateName = $(this).attr("name");
@@ -631,7 +629,6 @@
 				$("#stayTime" + i).text("停留" + days + "天");
 			}*/
 		}
-
 	}
 	//是否选择委托申请
 	$("input[name=help_apply]").bind('click', function() {
@@ -642,7 +639,6 @@
 			$("#real_identity").hide();
 		}
 	});
-
 	//选择证照类型
 	$("input[name=passport_type]").bind('click', function() {
 		if ($("input[name=passport_type]:checked").val() == "因公证照") {
@@ -651,7 +647,6 @@
 			$("#passport_desc").html("短期请假、停薪留职、辞职等因私申请适用，外籍人士不可适用因私证照");
 		}
 	});
-
 	//参团情况
 	$("input[name=canTuan]").bind('click', function() {
 		if ($("input[name=canTuan]:checked").val() == "是") {
@@ -660,12 +655,10 @@
 			$("#div_can_tuan").hide();
 		}
 	});
-
 	//选择目的
 	$("#select_purpose").change(function() {
 		checkPurpose($("#select_purpose").val());
 	})
-
 	function checkPurpose(purpose) {
 		switch (purpose) {
 		case "进修":
@@ -730,7 +723,6 @@
 			break;
 		}
 	}
-
 	//长期短期出访的选择
 	$("input[name=visit_type]").bind(
 			'click',

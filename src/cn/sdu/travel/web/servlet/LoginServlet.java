@@ -43,6 +43,7 @@ public class LoginServlet extends HttpServlet {
 		}
 		HumanResource hr = (HumanResource) result.get("data");
 		request.getSession().setAttribute("hr", hr);
+		request.setAttribute("action", "2");
 		request.getRequestDispatcher("/WEB-INF/pages/showuserinfo.jsp").forward(
 				request, response);
 	}

@@ -58,7 +58,7 @@
 </div>
 <script>
 	function editInfo() {
-		window.location.href = "/TravelManagement/servlet/NavigationServlet?action=5";
+		window.location.href = "/TravelManagement/servlet/NavigationServlet?action=7";
 	}
 </script>
 </body>

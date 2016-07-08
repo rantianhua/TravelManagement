@@ -1,4 +1,13 @@
 @CHARSET "UTF-8";
+
+#img {
+	width: 180px;
+	height: 100px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 40px;
+}
+
 .header {
 	background-color: #ecf0f1;
 	padding-left: 15px;
@@ -20,7 +29,7 @@
 }
 
 .content {
-	margin:40px;
+	margin: 40px;
 }
 
 .content ul li {
@@ -30,9 +39,9 @@
 }
 
 hr {
-	border-top:1px dotted;
+	border-top: 1px dotted;
 }
 
 .red {
-	color:#e74c3c;
+	color: #e74c3c;
 }

@@ -24,23 +24,34 @@ public class NavigationServlet extends HttpServlet {
 		String path = null;
 		switch (rep) {
 		case "1":
-			//显示个人信息详情
+			//显示公示信息
 			path = "/WEB-INF/pages/showuserinfo.jsp";
 			break;
 		case "2":
+			//显示个人信息详情
+			path = "/WEB-INF/pages/showuserinfo.jsp";
+			break;
+		case "3":
+			//护照管理
+			path = "/WEB-INF/pages/passport.jsp";
+			break;
+		case "4":
 			//申请出国
 			path = "/WEB-INF/pages/applyabroad.jsp";
 			break;
-		case "3":
+		case "5":
 			//状态查询
 			path = "/WEB-INF/pages/checkstatus.jsp";
 			break;	
-		case "4":
+		case "6":
 			//回国校验
 			path = "/WEB-INF/pages/backwriteoff.jsp";
 			break;
-		case "5":
+		case "7":
 			path = "/WEB-INF/pages/edituserinfo.jsp";
+			break;
+		case "8":
+			path = "/WEB-INF/pages/editpassport.jsp";
 			break;
 		default:
 			break;

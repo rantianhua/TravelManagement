@@ -624,11 +624,12 @@
 		<table class="table table-bordered">
 			<tr>
 				<td>邀请方负担情况</td>
-				<td><label class="checkbox-inline"> <input type="radio" value="全部负担" checked
-						name="fudan">全部负担
-				</label> &nbsp;&nbsp;&nbsp; <label class="checkbox-inline"> <input type="radio" value="部分负担"
-						name="fudan">部分负担
-				</label> <label class="checkbox-inline"> <input type="radio" value="不负担" name="fudan">不负担
+				<td><label class="checkbox-inline"> <input type="radio"
+						value="全部负担" checked name="fudan">全部负担
+				</label> &nbsp;&nbsp;&nbsp; <label class="checkbox-inline"> <input
+						type="radio" value="部分负担" name="fudan">部分负担
+				</label> <label class="checkbox-inline"> <input type="radio"
+						value="不负担" name="fudan">不负担
 				</label></td>
 			</tr>
 			<tr id="tr_part_pay">
@@ -895,9 +896,6 @@
 		if (days < 5) {
 			$("#warn_time_check").show();
 			$("#warn_time_check").text("时间不够，不足５天无法办理");
-		} else {
-			$("#warn_time_check").text("");
-			$("#warn_time_check").hide();
 		}
 	}
 

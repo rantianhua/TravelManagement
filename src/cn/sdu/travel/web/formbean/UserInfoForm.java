@@ -198,6 +198,11 @@ public class UserInfoForm {
 			isOk = false;
 			this.errors.put("namePinyin", "请填写姓名拼音！");
 		}
+		
+		if (this.sex.trim().equals("") || this.sex == null) {
+			isOk = false;
+			this.errors.put("sex", "请选择您的性别！");
+		}
 
 		if (this.birthday.trim().equals("") || this.birthday == null) {
 			isOk = false;

@@ -24,6 +24,7 @@ public class Constants {
 	public static final int USED_ID = 1201;
 	public static final int UNUSED_ID = 1202;
 	public static final int MODIFY_USER_INFO_SUCCESS = 1300;
+	public static final int MODIFY_PASSPORT_INFO_SUCCESS = 1300;
 	public static final int DB_ERROR = 1999;
 
 }

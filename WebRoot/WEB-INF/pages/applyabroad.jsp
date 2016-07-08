@@ -6,7 +6,9 @@
 <link href="${pageContext.request.contextPath }/css/apply.abroad.css"
 	rel="stylesheet">
 <form class="form-horizontal" role="form" method="post"
-	onsubmit="return checkSubmit()" action="/ht.html">
+	onsubmit="return checkSubmit()" action="../apply.html">
+	<!-- 用来区分下一步和临时保存 -->
+	<input id="submit_name" name="name" style="display:none;" value="tempSave">
 	<!-- 用来存放中转城市的个数 -->
 	<input id="destination_index" style="display: none;"
 		name="destinationIndex" type="text">
@@ -715,10 +717,10 @@
 
 	<div class="form-group">
 		<div class="col-sm-6" style="text-align: right;">
-			<button type="submit" class="btn btn-default">保&#12288;存</button>
+			<button type="submit" class="btn btn-default" onclick="setName('tempName')">保&#12288;存</button>
 		</div>
 		<div class="col-sm-6" style="text-align: left;">
-			<button type="submit" class="btn btn-default">下一步</button>
+			<button type="submit" class="btn btn-default" onclick="setName('next')">下一步</button>
 		</div>
 	</div>
 </form>
@@ -898,6 +900,9 @@
 		if (days < 5) {
 			$("#warn_time_check").show();
 			$("#warn_time_check").text("时间不够，不足５天无法办理");
+		}else {
+			$("#warn_time_check").text("");
+			$("#warn_time_check").hide();
 		}
 	}
 
@@ -1012,6 +1017,12 @@
 		$("#" + id).parent().parent().parent().remove();
 	}
 
+	//用来区分临时保存还是下一步
+	var name = "tempSave";
+	function setName(n) {
+		name = n;
+	}
+	
 	function checkSubmit() {
 		if (!checkDateFormat($("#start_time").val())) {
 			alert("必须完成时限检验！");
@@ -1022,6 +1033,7 @@
 			return false;
 		}
 		$("#destination_index").val(reachIndex);
+		$("#submit_name").val(name);
 		return true;
 	}
 </script>

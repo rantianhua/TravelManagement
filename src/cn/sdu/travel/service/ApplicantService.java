@@ -10,5 +10,7 @@ public interface ApplicantService {
 	Map<String, Object> saveUserInfo(HumanResource hr);
 	
 	Map<String, Object> savePassportInfo(Passport p);
+	
+	Map<String, Object> getPassportInfo(String id);
 
 }

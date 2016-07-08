@@ -30,12 +30,13 @@ public class SessionCheckFilter implements Filter {
 				|| servletPath.equals("/web/login.jsp")
 				|| servletPath.equals("/web/register.jsp")
 				|| servletPath.equals("/web/error.jsp")
-				|| servletPath.equals("/servlet/LoginServlet")) {
+				|| servletPath.equals("/servlet/LoginServlet")
+				|| servletPath.equals("/servlet/RegisterServlet")) {
 			chain.doFilter(request, response);
 			return;
 		}
 		if (request.getSession().getAttribute("hr") == null) {
-			request.getRequestDispatcher("/web/error.jsp").forward(request,
+			request.getRequestDispatcher("/web/nosession.jsp").forward(request,
 					response);
 			;
 			return;

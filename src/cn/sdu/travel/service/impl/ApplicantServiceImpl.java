@@ -20,7 +20,7 @@ import cn.sdu.travel.utils.ManageDbUtils;
 //申请者服务接口实现
 public class ApplicantServiceImpl implements ApplicantService {
 
-	//修改个人资料
+	// 修改个人资料
 	@Override
 	public Map<String, Object> saveUserInfo(HumanResource hr) {
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -32,7 +32,11 @@ public class ApplicantServiceImpl implements ApplicantService {
 			hdao.update(hr);
 			EmergencyContactPerson ecp = hr.getEcp();
 			if (ecp != null) {
-				edao.update(ecp);
+				if (edao.find(hr.getEmergencyContactPerson()) == null) {
+					edao.add(ecp);
+				} else {
+					edao.update(ecp);
+				}
 				HrDbUtils.commitTransaction();
 			}
 			map.put("returnCode", 1300);
@@ -49,13 +53,13 @@ public class ApplicantServiceImpl implements ApplicantService {
 
 		return map;
 	}
-	
-	//修改护照信息
+
+	// 修改护照信息
 	@Override
 	public Map<String, Object> savePassportInfo(Passport p) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		PassportDao pdao = new PassportDaoImpl();
-		
+
 		try {
 			ManageDbUtils.startTransaction();
 			Passport find = pdao.find(p.getIdentity());
@@ -73,8 +77,30 @@ public class ApplicantServiceImpl implements ApplicantService {
 			map.put("returnInfo", "数据库异常！");
 			e.printStackTrace();
 			return map;
+		} finally {
+			ManageDbUtils.closeConnection();
 		}
-		
+
+		return map;
+	}
+
+	// 获取护照信息
+	@Override
+	public Map<String, Object> getPassportInfo(String id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		PassportDao pdao = new PassportDaoImpl();
+		try {
+			Passport p = pdao.find(id);
+			map.put("returnCode", 1401);
+			map.put("data", p);
+		} catch (SQLException e) {
+			map.put("returnCode", 1999);
+			map.put("returnInfo", "数据库异常！");
+			e.printStackTrace();
+			return map;
+		} finally {
+			ManageDbUtils.closeConnection();
+		}
 		return map;
 	}
 }

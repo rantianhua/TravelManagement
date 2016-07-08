@@ -11,7 +11,7 @@
 <c:set var="none" scope="request" value="${empty requestScope.passport}" />
 <form
 	action="${pageContext.request.contextPath }/servlet/ModifyPassportInfoServlet"
-	method="post">
+	enctype="multipart/form-data" method="post">
 	<ul>
 		<li class="list-group-item li_header">
 			<h4 class="list-group-item-heading">护照信息</h4>
@@ -22,9 +22,10 @@
 			</div>
 			<div>
 				<input name="passportName"
-					value="${validate ? requestScope.passportName:requestScope.form.passportName }"
+					value="${validate ? requestScope.passport.passportName:requestScope.form.passportName }"
 					type="text">
 			</div>
+			<p>${requestScope.form.errors.passportName }</p>
 		</li>
 		<li class="border_lefft_right">
 			<div>
@@ -34,7 +35,7 @@
 				<input name="name" type="text"
 					value="${validate ? (none ? sessionScope.hr.nameCh:requestScope.passport.name):requestScope.form.name }">
 			</div>
-			<p>${requestScope.form.errors.nameCh }</p>
+			<p>${requestScope.form.errors.name }</p>
 		</li>
 		<li class="border_lefft_right">
 			<div>
@@ -58,7 +59,7 @@
 			</div>
 			<div>
 				<input name="issuingPlace"
-					value="${validate ? requestScope.issuingPlace:requestScope.form.issuingPlace }"
+					value="${validate ? requestScope.passport.issuingPlace:requestScope.form.issuingPlace }"
 					type="text">
 			</div>
 			<p>${requestScope.form.errors.issuingPlace }</p>
@@ -83,15 +84,19 @@
 					value="${validate ? requestScope.passport.expDate:requestScope.form.expDate }"
 					type="text" data-date-format="yyyy-mm-dd">
 			</div>
-			<p>${requestScope.form.errors.birthday }</p>
+			<p>${requestScope.form.errors.expDate }</p>
 		</li>
 		<li class="border_lefft_right">
 			<div>
 				<span>护照照片</span>
 			</div>
 			<div>
-				<img id="img" src=""><input id="upload" type="file">
+				<img id="img"
+					src="${pageContext.request.contextPath }/img/default/default2.png"><input
+					id="upload1" name="img" type="file"
+					onchange="preImg(this.id,'img');">
 			</div>
+			<p>${requestScope.form.errors.img }${requestScope.message }</p>
 		</li>
 	</ul>
 	<ul>
@@ -103,8 +108,12 @@
 				<span>身份证照片</span>
 			</div>
 			<div>
-				<img id="img" src=""><input id="upload" type="file">
+				<img id="idCard"
+					src="${pageContext.request.contextPath }/img/default/default2.png"><input
+					id="upload2" name="idCard" type="file"
+					onchange="preImg(this.id,'idCard');">
 			</div>
+			<p>${requestScope.form.errors.idCard }${requestScope.message }</p>
 		</li>
 	</ul>
 	<ul>
@@ -116,10 +125,18 @@
 				<span>户口本照片</span>
 			</div>
 			<div>
-				<img id="img" src=""><input id="upload" type="file">
+				<img id="accountBook"
+					src="${pageContext.request.contextPath }/img/default/default2.png"><input
+					id="upload3" name="accountBook" type="file"
+					onchange="preImg(this.id,'accountBook');">
 			</div>
+			<p>${requestScope.form.errors.accountBook }${requestScope.message }</p>
 		</li>
 	</ul>
+	<div
+		style="width:40%;margin-left:auto;margin-right:auto;position: relative;text-align: center;margin-bottom: 100px;">
+		<input type="submit" value="提交" style="width:100px;">
+	</div>
 </form>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/js/bootstrap-datetimepicker.js"
@@ -148,7 +165,26 @@
 		language : 'zh-CN',
 		minView : 'month'
 	});
+	function preImg(sourceId, targetId) {
+		var url = getFileUrl(sourceId);
+		var imgPre = document.getElementById(targetId);
+		imgPre.src = url;
+	}
+	function getFileUrl(sourceId) {
+		var url;
+		if (navigator.userAgent.indexOf("MSIE") >= 1) { // IE
+			url = document.getElementById(sourceId).value;
+		} else if (navigator.userAgent.indexOf("Firefox") > 0) { // Firefox
+			url = window.URL
+					.createObjectURL(document.getElementById(sourceId).files
+							.item(0));
+		} else if (navigator.userAgent.indexOf("Chrome") > 0) { // Chrome
+			url = window.URL
+					.createObjectURL(document.getElementById(sourceId).files
+							.item(0));
+		}
+		return url;
+	}
 </script>
-]
 </body>
 </html>

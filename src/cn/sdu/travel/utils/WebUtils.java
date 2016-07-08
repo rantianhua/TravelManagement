@@ -1,5 +1,6 @@
 package cn.sdu.travel.utils;
 
+import java.io.File;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.UUID;
@@ -14,6 +15,25 @@ public class WebUtils {
 	// 生成唯一ID
 	public static String generateID() {
 		return UUID.randomUUID().toString();
+	}
+
+	// 生成上传文件的文件名
+	public static String generateFileName(String filename) {
+		return UUID.randomUUID().toString() + "_" + filename;
+	}
+
+	// 生成上传文件的存储目录
+	public static String generateSavePath(String path, String filename) {
+		int hashcode = filename.hashCode();
+		int dir1 = hashcode & 15;
+		int dir2 = (hashcode >> 4) & 0xf;
+
+		String savepath = path + File.separator + dir1 + File.separator + dir2;
+		File file = new File(savepath);
+		if (!file.exists()) {
+			file.mkdirs();
+		}
+		return savepath;
 	}
 
 	// 将request中的参数复制到bean

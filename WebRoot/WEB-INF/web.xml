@@ -60,6 +60,11 @@
     <servlet-name>ShowApplicationServlet</servlet-name>
     <servlet-class>cn.sdu.travel.web.servlet.ShowApplicationServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>ApplyAbroadServlet</servlet-name>
+    <servlet-class>cn.sdu.travel.web.servlet.ApplyAbroadServlet</servlet-class>
+  </servlet>
+
 
 
     <servlet-mapping>
@@ -73,5 +78,9 @@
   <servlet-mapping>
     <servlet-name>ShowApplicationServlet</servlet-name>
     <url-pattern>/servlet/ShowApplicationServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ApplyAbroadServlet</servlet-name>
+    <url-pattern>/servlet/ApplyAbroadServlet</url-pattern>
   </servlet-mapping>
 </web-app>

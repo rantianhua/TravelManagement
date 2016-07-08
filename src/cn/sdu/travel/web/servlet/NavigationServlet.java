@@ -30,12 +30,12 @@ public class NavigationServlet extends HttpServlet {
 	}
 
 	private void parseRightPage(HttpServletRequest request,
-			HttpServletResponse response) {
+			HttpServletResponse response) throws ServletException, IOException {
 		String rep = request.getParameter("action");
 		String path = null;
 
 		// 加载护照信息
-		if (rep.equals("3") || rep.equals("4") || rep.equals("8")) {
+		if (rep.equals("3") || rep.equals("4") || rep.equals("8") || rep.equals("9")) {
 			ApplicantService service = new ApplicantServiceImpl();
 			HumanResource hr = (HumanResource) request.getSession()
 					.getAttribute("hr");
@@ -43,11 +43,7 @@ public class NavigationServlet extends HttpServlet {
 			if ((int) map.get("returnCode") != Constants.GET_PASSPORT_INFO_SUCCESS) {
 				request.setAttribute("returnInfo", map.get("returnInfo"));
 				path = "/web/exception.jsp";
-				try {
-					request.getRequestDispatcher(path).forward(request, response);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+				request.getRequestDispatcher(path).forward(request, response);
 				return;
 			} else {
 				Passport p = (Passport) map.get("data");
@@ -69,33 +65,33 @@ public class NavigationServlet extends HttpServlet {
 			path = "/WEB-INF/pages/passport.jsp";
 			break;
 		case "4":
-			// 申请出国
-			path = "/WEB-INF/pages/applyabroad.jsp";
+			// 流程说明
+			path = "/WEB-INF/pages/brief.jsp";
 			break;
 		case "5":
 			// 状态查询
 			path = "/WEB-INF/pages/checkstatus.jsp";
 			break;
 		case "6":
-			// 回国校验
+			// 回国核销
 			path = "/WEB-INF/pages/backwriteoff.jsp";
 			break;
 		case "7":
+			// 修改个人信息
 			path = "/WEB-INF/pages/edituserinfo.jsp";
 			break;
 		case "8":
+			// 修改证照信息
 			path = "/WEB-INF/pages/editpassport.jsp";
+			break;
+		case "9":
+			// 申请出国
+			path = "/WEB-INF/pages/applyabroad.jsp";
 			break;
 		default:
 			break;
 		}
-		try {
-			request.getRequestDispatcher(path).forward(request, response);
-		} catch (ServletException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		request.getRequestDispatcher(path).forward(request, response);
 	}
 
 }

@@ -134,6 +134,7 @@ CREATE TABLE `passport` (
 
 LOCK TABLES `passport` WRITE;
 /*!40000 ALTER TABLE `passport` DISABLE KEYS */;
+INSERT INTO `passport` VALUES ('140000199508080001','\\upload\\picture\\9\\7\\cdbc6904-cf27-4381-ada4-e728696dff80_idcard.jpg','\\upload\\picture\\1\\9\\a17dad58-2b91-424b-8b47-3dcdd7dfec2f_passport.jpg','美利坚合众国护照','任浩航','男','华盛顿','1995-08-08','2021-01-01','\\upload\\picture\\2\\14\\5c2a9713-0d2c-4775-bf0f-7470baf16d7b_accountbook.jpg');
 /*!40000 ALTER TABLE `passport` ENABLE KEYS */;
 UNLOCK TABLES;
 

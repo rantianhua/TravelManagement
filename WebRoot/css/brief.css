@@ -1,0 +1,33 @@
+@CHARSET "UTF-8";
+
+#label1 {
+	word-wrap: break-word;
+	word-break: break-all;
+	display: block;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: large;
+	margin-top: 35px;
+	font-family: Microsoft YaHei;
+	text-align: center;
+	font-size: xx-large;
+}
+
+#label2 {
+	word-wrap: break-word;
+	word-break: break-all;
+	display: block;
+	width: 70%;
+	font-size: medium;
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	font-family: Microsoft YaHei;
+	text-align: left;
+}
+
+#btn {
+	width: 80px;
+	margin-bottom: 20px;
+}

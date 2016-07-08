@@ -21,7 +21,7 @@
 DROP TABLE IF EXISTS `emergency_contact_person`;
 CREATE TABLE `emergency_contact_person` (
   `id` char(36) NOT NULL default '0',
-  `name` varchar(20) NOT NULL default '',
+  `name` varchar(20) default '',
   `email` varchar(40) default NULL,
   `mobile_phone` varchar(20) default NULL,
   `fixed_phone` varchar(20) default NULL,
@@ -34,7 +34,8 @@ CREATE TABLE `emergency_contact_person` (
 
 LOCK TABLES `emergency_contact_person` WRITE;
 /*!40000 ALTER TABLE `emergency_contact_person` DISABLE KEYS */;
-INSERT INTO `emergency_contact_person` VALUES ('d47ed4e2-8b9d-4368-8931-ab86f23e46ae','王五','wangwu@gmail.com','13535353535','6543210');
+INSERT INTO `emergency_contact_person` VALUES ('9d391a17-4b45-43c9-b138-308dbf8fdbee','张宏伟','','','1111111');
+INSERT INTO `emergency_contact_person` VALUES ('d47ed4e2-8b9d-4368-8931-ab86f23e46ae','王五','wangwu@gmail.com','13888888888','1234567');
 /*!40000 ALTER TABLE `emergency_contact_person` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -50,7 +51,7 @@ CREATE TABLE `human_resource` (
   `name_ch` varchar(20) default NULL,
   `name_en` varchar(50) default NULL,
   `sex` char(4) default '男',
-  `name_pinyin` varchar(30) default NULL,
+  `name_pinyin` varchar(50) default NULL,
   `other_name` varchar(50) default NULL,
   `birthday` date default '1990-01-01',
   `category` char(4) default NULL,
@@ -69,10 +70,8 @@ CREATE TABLE `human_resource` (
 
 LOCK TABLES `human_resource` WRITE;
 /*!40000 ALTER TABLE `human_resource` DISABLE KEYS */;
-INSERT INTO `human_resource` VALUES ('140000199503230002','e10adc3949ba59abbe56e057f20f883e','r10','李四','Lee','男','Li Si','狗蛋','1995-08-10','学生','本科','软件学院','1234567','lisi@sina.com','13434343434','5438250','d47ed4e2-8b9d-4368-8931-ab86f23e46ae');
-INSERT INTO `human_resource` VALUES ('140000199503230001','e10adc3949ba59abbe56e057f20f883e','r10','张三','Jung','男',NULL,NULL,'1995-12-23',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'d47ed4e2-8b9d-4368-8931-ab86f23e46ae');
-INSERT INTO `human_resource` VALUES ('140000199503230003','e10adc3949ba59abbe56e057f20f883e',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
-INSERT INTO `human_resource` VALUES ('140000199503230004','e10adc3949ba59abbe56e057f20f883e',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `human_resource` VALUES ('140000199503230002','e10adc3949ba59abbe56e057f20f883e','r10','李四','Lee','女','Li Si','四娃','1995-03-23','行政','辅导员/正科级','经济学院','1234567','lisi@sina.com','13666666666','6666666','d47ed4e2-8b9d-4368-8931-ab86f23e46ae');
+INSERT INTO `human_resource` VALUES ('140000199508080001','e10adc3949ba59abbe56e057f20f883e','r10','任浩航','','男','Ren Haohang','大潮吊','1995-08-08','学生','本科','软件学院','123456','','15555555555','','9d391a17-4b45-43c9-b138-308dbf8fdbee');
 /*!40000 ALTER TABLE `human_resource` ENABLE KEYS */;
 UNLOCK TABLES;
 

@@ -95,37 +95,37 @@
 	<div class="form-group">
 		<label class="control-label col-sm-4">证照名称</label>
 		<div class="col-sm-6">
-			<p class="form-control-static">证照名称</p>
+			<input class="form-control passport_input" disabled value="证照名称">
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="control-label col-sm-4">姓名</label>
 		<div class="col-sm-6">
-			<p class="form-control-static">证照名称</p>
+			<input class="form-control passport_input" disabled value="姓名">
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="control-label col-sm-4">性别</label>
 		<div class="col-sm-6">
-			<p class="form-control-static">证照名称</p>
+			<input class="form-control passport_input" disabled value="性别">
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="control-label col-sm-4">签发地</label>
 		<div class="col-sm-6">
-			<p class="form-control-static">证照名称</p>
+			<input class="form-control passport_input" disabled value="签发地">
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="control-label col-sm-4">生日</label>
 		<div class="col-sm-6">
-			<p class="form-control-static">证照名称</p>
+			<input class="form-control passport_input choose_date" disabled value="生日">
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="control-label col-sm-4">有效日期</label>
 		<div class="col-sm-6">
-			<p class="form-control-static">证照名称</p>
+			<input class="form-control passport_input choose_date" disabled value="有效日期">
 		</div>
 	</div>
 	<!-- 出访目的 -->
@@ -753,9 +753,11 @@
 										//委托申请
 										$("#real_identity").show();
 										$("#warn_real_identity").show();
+										$(".passport_input").removeAttr("disabled");
 									} else {
 										$("#real_identity").hide();
 										$("#warn_real_identity").hide();
+										$(".passport_input").attr("disabled","disabled");
 									}
 								});
 

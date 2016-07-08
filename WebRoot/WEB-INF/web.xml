@@ -24,18 +24,6 @@
 		<url-pattern>*.jsp</url-pattern>
 		<url-pattern>/servlet/*</url-pattern>
 	</filter-mapping>
-	<context-param>
-		<param-name>file_temp_dir</param-name>
-		<param-value>D:\travelmanagement_files\temp</param-value>
-	</context-param>
-	<context-param>
-		<param-name>file_save_dir</param-name>
-		<param-value>D:\travelmanagement_files\save</param-value>
-	</context-param>
-	<servlet>
-		<servlet-name>UploadFileServlet</servlet-name>
-		<servlet-class>cn.sdu.travel.web.servlet.UploadFile</servlet-class>
-	</servlet>
 	<servlet>
 		<servlet-name>LoginServlet</servlet-name>
 		<servlet-class>cn.sdu.travel.web.servlet.LoginServlet</servlet-class>
@@ -48,10 +36,6 @@
 		<servlet-name>ModifyUserInfoServlet</servlet-name>
 		<servlet-class>cn.sdu.travel.web.servlet.ModifyUserInfoServlet</servlet-class>
 	</servlet>
-	<servlet-mapping>
-		<servlet-name>UploadFileServlet</servlet-name>
-		<url-pattern>/UploadFile.html</url-pattern>
-	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>LoginServlet</servlet-name>
 		<url-pattern>/servlet/LoginServlet</url-pattern>
@@ -68,8 +52,26 @@
         <servlet-name>NavigationServlet</servlet-name>
         <servlet-class>cn.sdu.travel.web.servlet.NavigationServlet</servlet-class>
     </servlet>
+  <servlet>
+    <servlet-name>ModifyPassportInfoServlet</servlet-name>
+    <servlet-class>cn.sdu.travel.web.servlet.ModifyPassportInfoServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ShowApplicationServlet</servlet-name>
+    <servlet-class>cn.sdu.travel.web.servlet.ShowApplicationServlet</servlet-class>
+  </servlet>
+
+
     <servlet-mapping>
         <servlet-name>NavigationServlet</servlet-name>
         <url-pattern>/servlet/NavigationServlet</url-pattern>
     </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ModifyPassportInfoServlet</servlet-name>
+    <url-pattern>/servlet/ModifyPassportInfoServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ShowApplicationServlet</servlet-name>
+    <url-pattern>/servlet/ShowApplicationServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

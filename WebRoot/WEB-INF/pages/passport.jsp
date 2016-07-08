@@ -23,13 +23,19 @@
 		</ul>
 		<hr>
 		<h4 class="red">护照照片</h4>
-		<img id="img" src="">
+		<img id="img"
+			src="${pageContext.request.contextPath }${requestScope.passport.img }"
+			onerror="this.src='../img/default/default.png';this.onerror=null">
 		<hr>
 		<h4 class="red">身份证照片</h4>
-		<img id="img" src="">
+		<img id="img"
+			src="${pageContext.request.contextPath }${requestScope.passport.idCard }"
+			onerror="this.src='../img/default/default.png';this.onerror=null">
 		<hr>
 		<h4 class="red">户口本照片</h4>
-		<img id="img" src="">
+		<img id="img"
+			src="${pageContext.request.contextPath }${requestScope.passport.accountBook }"
+			onerror="this.src='../img/default/default.png';this.onerror=null">
 	</div>
 </div>
 <script>

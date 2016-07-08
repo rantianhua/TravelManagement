@@ -2,6 +2,11 @@
 <%@ include file="navigation.jsp"%>
 <link href="${pageContext.request.contextPath }/css/check.status.css"
 	rel="stylesheet" />
+<script>
+function checkdetail(){
+	location.href='${pageContext.request.contextPath}/servlet/ShowApplicationServlet';
+}
+</script>
 <div class="contianer">
 	<h4 class="red">我的申请</h4>
 	<table class="table table-hover">
@@ -15,7 +20,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
+			<tr onclick="checkdetail()">
 				<td>123456</td>
 				<td>2016-7-7</td>
 				<td>炮决金正恩</td>

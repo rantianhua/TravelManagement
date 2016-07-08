@@ -31,7 +31,7 @@ public class PassportDaoImpl implements PassportDao {
 	@Override
 	public void update(Passport p) throws SQLException {
 		QueryRunner runner = new QueryRunner();
-		String sql = "update passport set id_card=?,img=?,passport_name=?,name,sex=?,issuing_place=?,birthday=?,exp_date=?,account_book=? where identity=?";
+		String sql = "update passport set id_card=?,img=?,passport_name=?,name=?,sex=?,issuing_place=?,birthday=?,exp_date=?,account_book=? where identity=?";
 		Object[] param = { p.getIdCard(), p.getImg(), p.getPassportName(),
 				p.getName(), p.getSex(), p.getIssuingPlace(), p.getBirthday(),
 				p.getExpDate(), p.getAccountBook(), p.getIdentity() };

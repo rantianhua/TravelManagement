@@ -189,22 +189,22 @@ public class UserInfoForm {
 
 	public boolean validate() {
 		boolean isOk = true;
-		if (this.nameCh.trim().equals("") || this.nameCh == null) {
-			if (this.nameEn.trim().equals("") || this.nameEn == null) {
+		if (this.nameCh == null || this.nameCh.trim().equals("")) {
+			if (this.nameEn == null || this.nameEn.trim().equals("")) {
 				isOk = false;
 				this.errors.put("nameCh", "中英文名必须至少填写一项！");
 			}
-		} else if (this.namePinyin.trim().equals("") || this.namePinyin == null) {
+		} else if (this.namePinyin == null || this.namePinyin.trim().equals("")) {
 			isOk = false;
 			this.errors.put("namePinyin", "请填写姓名拼音！");
 		}
-		
-		if (this.sex.trim().equals("") || this.sex == null) {
+
+		if (this.sex == null || this.sex.trim().equals("")) {
 			isOk = false;
 			this.errors.put("sex", "请选择您的性别！");
 		}
 
-		if (this.birthday.trim().equals("") || this.birthday == null) {
+		if (this.birthday == null || this.birthday.trim().equals("")) {
 			isOk = false;
 			this.errors.put("birthday", "请填写您的生日！");
 		} else if (!this.birthday.matches("^[12]\\d{3}-[01]\\d-[0123]\\d$")) {
@@ -212,15 +212,15 @@ public class UserInfoForm {
 			this.errors.put("birthday", "无效的日期格式！");
 		}
 
-		if (this.passport.trim().equals("") || this.passport == null) {
+		if (this.passport == null || this.passport.trim().equals("")) {
 			isOk = false;
 			this.errors.put("passport", "请填写您的护照号码！");
 		}
 
-		if (this.email.trim().equals("") || this.email == null) {
-			if (this.mobilePhone.trim().equals("") || this.mobilePhone == null) {
-				if (this.fixedPhone.trim().equals("")
-						|| this.fixedPhone == null) {
+		if (this.email == null || this.email.trim().equals("")) {
+			if (this.mobilePhone == null || this.mobilePhone.trim().equals("")) {
+				if (this.fixedPhone == null
+						|| this.fixedPhone.trim().equals("")) {
 					isOk = false;
 					this.errors.put("email", "请至少填写一种联系方式！");
 				}
@@ -233,22 +233,22 @@ public class UserInfoForm {
 			}
 		}
 
-		if (this.position.trim().equals("") || this.position == null) {
+		if (this.position == null || this.position.trim().equals("")) {
 			isOk = false;
 			this.errors.put("position", "请填写您的职务！");
 		}
 
-		if (this.company.trim().equals("") || this.company == null) {
+		if (this.company == null || this.company.trim().equals("")) {
 			isOk = false;
 			this.errors.put("company", "请填写您的所在单位！");
 		}
 
 		if (!(this.ecpName == null || this.ecpName.trim().equals(""))) {
-			if (this.ecpEmail.trim().equals("") || this.ecpEmail == null) {
-				if (this.ecpMobilePhone.trim().equals("")
-						|| this.ecpMobilePhone == null) {
-					if (this.ecpFixedPhone.trim().equals("")
-							|| this.ecpFixedPhone == null) {
+			if (this.ecpEmail == null || this.ecpEmail.trim().equals("")) {
+				if (this.ecpMobilePhone == null
+						|| this.ecpMobilePhone.trim().equals("")) {
+					if (this.ecpFixedPhone == null
+							|| this.ecpFixedPhone.trim().equals("")) {
 						isOk = false;
 						this.errors.put("ecpEmail", "请至少填写一种联系方式！");
 					}

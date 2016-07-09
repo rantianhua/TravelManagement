@@ -5,10 +5,16 @@
 	rel="stylesheet">
 <link href="${pageContext.request.contextPath }/css/apply.abroad.css"
 	rel="stylesheet">
+<c:set var="validate" scope="request" value="${empty requestScope.form}" />
+<br>
+<br>
+<br>
 <form class="form-horizontal" role="form" method="post"
-	onsubmit="return checkSubmit()" action="../apply.html">
+	onsubmit="return
+checkSubmit()" action="../servlet/ApplyAbroadServlet">
 	<!-- 用来区分下一步和临时保存 -->
-	<input id="submit_name" name="name" style="display:none;" value="tempSave">
+	<input id="submit_name" name="name" style="display:none;"
+		value="tempSave">
 	<!-- 用来存放中转城市的个数 -->
 	<input id="destination_index" style="display: none;"
 		name="destinationIndex" type="text">
@@ -50,9 +56,12 @@
 		<label class="control-label col-sm-4"><span>* </span> 选择身份</label>
 		<div class="col-sm-6">
 			<select class="form-control">
-				<option>教学及科研人员</option>
-				<option>行政人员</option>
-				<option>学生</option>
+				<option
+					${(validate ? sessionScope.hr.category:requestScope.form.category)=='教学'?'selected':'' }>教学及科研人员</option>
+				<option
+					${(validate ? sessionScope.hr.category:requestScope.form.category)=='行政'?'selected':'' }>行政人员</option>
+				<option
+					${(validate ? sessionScope.hr.category:requestScope.form.category)=='学生'?'selected':'' }>学生</option>
 			</select>
 		</div>
 	</div>
@@ -97,37 +106,43 @@
 	<div class="form-group">
 		<label class="control-label col-sm-4">证照名称</label>
 		<div class="col-sm-6">
-			<input class="form-control passport_input" disabled value="证照名称">
+			<input class="form-control passport_input" disabled
+				value="${validate ? requestScope.passport.passportName:requestScope.form.passportName }">
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="control-label col-sm-4">姓名</label>
 		<div class="col-sm-6">
-			<input class="form-control passport_input" disabled value="姓名">
+			<input class="form-control passport_input" disabled
+				value="${validate ? requestScope.passport.name:requestScope.form.name }">
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="control-label col-sm-4">性别</label>
 		<div class="col-sm-6">
-			<input class="form-control passport_input" disabled value="性别">
+			<input class="form-control passport_input" disabled
+				value="${validate ? requestScope.passport.sex:requestScope.form.sex }">
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="control-label col-sm-4">签发地</label>
 		<div class="col-sm-6">
-			<input class="form-control passport_input" disabled value="签发地">
+			<input class="form-control passport_input" disabled
+				value="${validate ? requestScope.passport.issuingPlace:requestScope.form.issuingPlace }">
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="control-label col-sm-4">生日</label>
 		<div class="col-sm-6">
-			<input class="form-control passport_input choose_date" disabled value="生日">
+			<input class="form-control passport_input choose_date" disabled
+				value="${validate ? requestScope.passport.birthday:requestScope.form.birthday }">
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="control-label col-sm-4">有效日期</label>
 		<div class="col-sm-6">
-			<input class="form-control passport_input choose_date" disabled value="有效日期">
+			<input class="form-control passport_input choose_date" disabled
+				value="${validate ? requestScope.passport.expDate:requestScope.form.expDate }">
 		</div>
 	</div>
 	<!-- 出访目的 -->
@@ -714,15 +729,19 @@
 		<!-- 该处填写表单校验的错误 -->
 		<p class="text-danger small text-left">经费信息部分校验</p>
 	</div>
+	<br>
 
 	<div class="form-group">
 		<div class="col-sm-6" style="text-align: right;">
-			<button type="submit" class="btn btn-default" onclick="setName('tempName')">保&#12288;存</button>
+			<button type="submit" class="btn btn-default"
+				onclick="setName('tempName')">保&#12288;存</button>
 		</div>
 		<div class="col-sm-6" style="text-align: left;">
-			<button type="submit" class="btn btn-default" onclick="setName('next')">下一步</button>
+			<button type="submit" class="btn btn-default"
+				onclick="setName('next')">下一步</button>
 		</div>
 	</div>
+	<br> <br>
 </form>
 
 <script type="text/javascript"
@@ -755,11 +774,11 @@
 										//委托申请
 										$("#real_identity").show();
 										$("#warn_real_identity").show();
-										$(".passport_input").removeAttr("disabled");
+										$(".passport_input").removeAttr(
+												"disabled");
+										$(".passport_input").val("");
 									} else {
-										$("#real_identity").hide();
-										$("#warn_real_identity").hide();
-										$(".passport_input").attr("disabled","disabled");
+										location.href = '${pageContext.request.contextPath}/servlet/ApplyAbroadServlet';
 									}
 								});
 
@@ -900,7 +919,7 @@
 		if (days < 5) {
 			$("#warn_time_check").show();
 			$("#warn_time_check").text("时间不够，不足５天无法办理");
-		}else {
+		} else {
 			$("#warn_time_check").text("");
 			$("#warn_time_check").hide();
 		}
@@ -1022,7 +1041,7 @@
 	function setName(n) {
 		name = n;
 	}
-	
+
 	function checkSubmit() {
 		if (!checkDateFormat($("#start_time").val())) {
 			alert("必须完成时限检验！");

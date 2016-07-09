@@ -40,6 +40,7 @@ public class ManageDbUtils {
 			if (conn == null) {
 				// 代表线程上没有绑定链接
 				conn = ds.getConnection();
+				tl.set(conn);
 			}
 			return conn;
 		} catch (SQLException e) {

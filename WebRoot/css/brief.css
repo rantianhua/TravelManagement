@@ -8,7 +8,7 @@
 	margin-left: auto;
 	margin-right: auto;
 	font-size: large;
-	margin-top: 35px;
+	margin-top: 90px;
 	font-family: Microsoft YaHei;
 	text-align: center;
 	font-size: xx-large;
@@ -20,14 +20,19 @@
 	display: block;
 	width: 70%;
 	font-size: medium;
-	margin-top: 20px;
+	margin-top: 30px;
 	margin-left: auto;
 	margin-right: auto;
 	font-family: Microsoft YaHei;
 	text-align: left;
 }
 
+#bdiv {
+	text-align: center;
+}
+
 #btn {
 	width: 80px;
+	margin-top: 40px;
 	margin-bottom: 20px;
 }

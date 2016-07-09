@@ -42,8 +42,7 @@ public class RegisterServlet extends HttpServlet {
 			request.getRequestDispatcher("/web/register.jsp").forward(request,
 					response);
 		} else {
-			request.setAttribute("returnInfo", result.get("returnInfo"));
-			request.getRequestDispatcher("/web/exception.jsp").forward(request,
+			request.getRequestDispatcher("/web/login.jsp").forward(request,
 					response);
 		}
 	}

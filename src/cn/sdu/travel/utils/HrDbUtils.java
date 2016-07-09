@@ -40,6 +40,7 @@ public class HrDbUtils {
 			Connection conn = tl.get();
 			if (conn == null) {
 				conn = ds.getConnection();
+				tl.set(conn);
 			}
 			return conn;
 		} catch (SQLException e) {

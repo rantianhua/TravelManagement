@@ -18,7 +18,7 @@
 <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<nav class="navbar navbar-default" role="navigation"
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation"
 		style="background-color: #1ABC9C;">
 		<div class="navbar-header">
 			<a class="navbar-brand" href="#" style="color:white;">出入境管理</a>

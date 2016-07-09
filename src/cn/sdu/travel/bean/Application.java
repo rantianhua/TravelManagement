@@ -8,6 +8,7 @@ public class Application {
 	private String applicantId;
 	private String assigneeId;
 	private String applyDate;
+	private String category;
 	private String invitationRaw;
 	private String invitationZh;
 	private String plan;
@@ -23,6 +24,9 @@ public class Application {
 	private String licenceType;
 	private String inviterPay;
 	private String loan;
+	private String publicNotificationId;
+	private String recordId;
+	private String verification;
 	private String status;
 
 	private VisitPlan vplan;
@@ -30,6 +34,8 @@ public class Application {
 	private Passport passport;
 	private Inviter inviter;
 	private List<Funds> funds;
+	private PublicNotification notification;
+	private Record record;
 
 	public String getApplicationNumber() {
 		return applicationNumber;
@@ -61,6 +67,14 @@ public class Application {
 
 	public void setApplyDate(String applyDate) {
 		this.applyDate = applyDate;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public String getInvitationRaw() {
@@ -222,6 +236,30 @@ public class Application {
 	public void setFunds(List<Funds> funds) {
 		this.funds = funds;
 	}
+	
+	public String getPublicNotificationId() {
+		return publicNotificationId;
+	}
+
+	public void setPublicNotificationId(String publicNotificationId) {
+		this.publicNotificationId = publicNotificationId;
+	}
+
+	public String getRecordId() {
+		return recordId;
+	}
+
+	public void setRecordId(String recordId) {
+		this.recordId = recordId;
+	}
+
+	public String getVerification() {
+		return verification;
+	}
+
+	public void setVerification(String verification) {
+		this.verification = verification;
+	}
 
 	public String getStatus() {
 		return status;
@@ -231,4 +269,19 @@ public class Application {
 		this.status = status;
 	}
 
+	public PublicNotification getNotification() {
+		return notification;
+	}
+
+	public void setNotification(PublicNotification notification) {
+		this.notification = notification;
+	}
+
+	public Record getRecord() {
+		return record;
+	}
+
+	public void setRecord(Record record) {
+		this.record = record;
+	}
 }

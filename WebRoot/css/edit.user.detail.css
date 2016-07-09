@@ -1,18 +1,22 @@
 @CHARSET "UTF-8";
 
-#upload1{
+#form {
+	margin-top: 90px;
+}
+
+#upload1 {
 	margin-top: 15px;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-#upload2{
+#upload2 {
 	margin-top: 15px;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-#upload3{
+#upload3 {
 	margin-top: 15px;
 	margin-left: auto;
 	margin-right: auto;
@@ -37,7 +41,6 @@ form>ul {
 ul li {
 	display: block;
 }
-
 
 img {
 	width: 180px;

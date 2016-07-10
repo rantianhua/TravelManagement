@@ -15,6 +15,10 @@ public interface ApplicationDao {
 
 	Application find(String appNo) throws SQLException;
 
+	List<Application> getMyOwnApply(String id) throws SQLException;
+
+	List<Application> getMyAssigneeApply(String id) throws SQLException;
+
 	List<Application> getAll() throws SQLException;
 
 }

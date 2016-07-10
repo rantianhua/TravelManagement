@@ -101,7 +101,7 @@ public class ModifyPassportInfoServlet extends HttpServlet {
 				request.setAttribute("passport", p);
 			}
 		} catch (FileUploadBase.FileSizeLimitExceededException e) {
-			request.setAttribute("message", "文件大小不能超过5m");
+			request.setAttribute("message", "文件大小不能超过5M");
 			request.setAttribute("action", "8");
 			request.getRequestDispatcher("/WEB-INF/pages/editpassport.jsp")
 					.forward(request, response);

@@ -1,6 +1,9 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="navigation.jsp"%>
 <form class="form-horizontal" role="form" method="post">
+<br>
+<br> <br>
+<br> <br>
 	<div style="width: 70%;margin-left:auto;margin-right:auto;display: block">
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -221,6 +224,8 @@
 	<div class="container" style="text-align: center;">
 		<button type="submit" class="btn btn-primary">确认提交</button>
 	</div>
+	<br>
+	<br>
 </form>
 </body>
 </html>

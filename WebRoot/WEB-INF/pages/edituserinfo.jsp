@@ -10,6 +10,10 @@
 <c:set var="validate" scope="request" value="${empty requestScope.form}" />
 <c:set var="subPosition" scope="request"
 	value="${fn:substringAfter(sessionScope.hr.position,'/')}" />
+<br>
+<br>
+<br>
+<br>
 <form id="form"
 	action="${pageContext.request.contextPath }/servlet/ModifyUserInfoServlet"
 	method="post">

@@ -9,6 +9,10 @@
 	rel="stylesheet" />
 <c:set var="validate" scope="request" value="${empty requestScope.form}" />
 <c:set var="none" scope="request" value="${empty requestScope.passport}" />
+<br>
+<br>
+<br>
+<br>
 <form id="form"
 	action="${pageContext.request.contextPath }/servlet/ModifyPassportInfoServlet"
 	enctype="multipart/form-data" method="post">

@@ -232,6 +232,7 @@ public class ApplyAbroadServlet extends HttpServlet {
 				}
 				app.setApplicantId(hr.getId());
 				app.setApplyDate(sdf.format(new Date()));
+				app.setPurposeContent(form.getPurpose());
 				if (form.getPlanInfo() == null
 						|| form.getPlanInfo().trim().equals("")) {
 					app.setPlan(WebUtils.generateID());
@@ -240,9 +241,9 @@ public class ApplyAbroadServlet extends HttpServlet {
 				}
 				if (form.getPurposeInfo() == null
 						|| form.getPurposeInfo().trim().equals("")) {
-					app.setPurposeId(WebUtils.generateID());
+					app.setPurpose(WebUtils.generateID());
 				} else {
-					app.setPurposeId(form.getPurposeInfo());
+					app.setPurpose(form.getPurposeInfo());
 				}
 				if (form.getInviterInfo() == null
 						|| form.getInviterInfo().trim().equals("")) {
@@ -282,7 +283,7 @@ public class ApplyAbroadServlet extends HttpServlet {
 
 				VisitPurpose vpurpose = new VisitPurpose();
 				WebUtils.copyBean(form, vpurpose);
-				vpurpose.setId(app.getPurposeId());
+				vpurpose.setId(app.getPurpose());
 				app.setVpurpose(vpurpose);
 
 				Inviter inviter = new Inviter();

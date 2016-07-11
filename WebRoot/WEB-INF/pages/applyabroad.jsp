@@ -813,6 +813,7 @@
 	<div
 		style="width:70%;margin-left:auto;margin-right:auto;margin-top: 40px;">
 		<table class="table table-bordered">
+			<!-- 第一行 -->
 			<tr>
 				<td>邀请方负担情况</td>
 				<td><label class="checkbox-inline"> <input type="radio"
@@ -826,8 +827,9 @@
 						${(validate ? requestScope.apply.inviterPay:requestScope.form.inviterPay)=='2' ? 'checked':'' }>不负担
 				</label></td>
 			</tr>
+			<!-- 第二行 -->
 			<tr id="tr_part_pay"
-				style="display: ${(validate ? requestScope.apply.inviterPay:requestScope.form.inviterPay)=='1' ? 'block':'none' };">
+				style="display: ${(validate ? requestScope.apply.inviterPay:requestScope.form.inviterPay)=='1' ? '':'none' };">
 				<td>部分负担费用</td>
 				<td>
 					<div class="col-sm-5">
@@ -847,8 +849,9 @@
 					</div>
 				</td>
 			</tr>
+			<!-- 第三行 -->
 			<tr id="tr_our_pay"
-				style="display: ${((validate ? requestScope.apply.inviterPay:requestScope.form.inviterPay)=='1' || (validate ? requestScope.apply.inviterPay:requestScope.form.inviterPay)=='2')? 'block':'none' };">
+				style="display: ${((validate ? requestScope.apply.inviterPay:requestScope.form.inviterPay)=='1' || (validate ? requestScope.apply.inviterPay:requestScope.form.inviterPay)=='2')? '':'none' };">
 				<td>我方负担情况</td>
 				<td>
 					<table class="table table-bordered">
@@ -915,14 +918,15 @@
 					</table>
 				</td>
 			</tr>
+			<!-- 第四行 -->
 			<tr id="tr_other_pay"
-				style="display: ${((validate ? requestScope.apply.inviterPay:requestScope.form.inviterPay)=='1' ||(validate ? requestScope.apply.inviterPay:requestScope.form.inviterPay)=='2') ? 'block':'none' };">
+				style="display: ${((validate ? requestScope.apply.inviterPay:requestScope.form.inviterPay)=='1' ||(validate ? requestScope.apply.inviterPay:requestScope.form.inviterPay)=='2') ? '':'none' };">
 				<td>其他出资方</td>
 				<td>
 					<table class="table table-bordered">
 						<tr>
 							<td>是否借贷</td>
-							<td><select name="loan">
+							<td><select name="loan" class="form-control">
 									<option value="1"
 										${(validate ? requestScope.apply.loan:requestScope.form.loan)=='1' ? 'checked':'' }>是</option>
 									<option value="0"
@@ -1277,6 +1281,7 @@
 		}
 		$("#destination_index").val(reachIndex);
 		$("#submit_name").val(name);
+		$("#warn_time_check").text("");
 		return true;
 	}
 </script>

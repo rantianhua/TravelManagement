@@ -6,6 +6,7 @@ public class VisitDestination {
 	private String city;
 	private String arriveDate;
 	private String exitCityDate;
+	private String transfer;
 	private String transAddr;
 
 	public String getPlanId() {
@@ -46,6 +47,14 @@ public class VisitDestination {
 
 	public void setExitCityDate(String exitCityDate) {
 		this.exitCityDate = exitCityDate;
+	}
+
+	public String getTransfer() {
+		return transfer;
+	}
+
+	public void setTransfer(String transfer) {
+		this.transfer = transfer;
 	}
 
 	public String getTransAddr() {

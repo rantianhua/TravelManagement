@@ -11,6 +11,8 @@ public class Inviter {
 	private String telephone;
 	private String email;
 	private String url;
+	private String invitationRaw;
+	private String invitationZh;
 
 	public String getId() {
 		return id;
@@ -82,5 +84,21 @@ public class Inviter {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public String getInvitationRaw() {
+		return invitationRaw;
+	}
+
+	public void setInvitationRaw(String invitationRaw) {
+		this.invitationRaw = invitationRaw;
+	}
+
+	public String getInvitationZh() {
+		return invitationZh;
+	}
+
+	public void setInvitationZh(String invitationZh) {
+		this.invitationZh = invitationZh;
 	}
 }

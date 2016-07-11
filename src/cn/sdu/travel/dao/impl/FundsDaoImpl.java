@@ -1,9 +1,10 @@
 package cn.sdu.travel.dao.impl;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
-import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import cn.sdu.travel.bean.Funds;
 import cn.sdu.travel.dao.FundsDao;
@@ -38,10 +39,10 @@ public class FundsDaoImpl implements FundsDao {
 	}
 
 	@Override
-	public Funds find(String id) throws SQLException {
+	public List<Funds> findFunds(String id) throws SQLException {
 		QueryRunner runner = new QueryRunner();
 		String sql = "select * from funds where id=?";
-		return (Funds) runner.query(ManageDbUtils.getConnection(), sql, id,
-				new BeanHandler(Funds.class));
+		return (List<Funds>) runner.query(ManageDbUtils.getConnection(), sql, id,
+				new BeanListHandler(Funds.class));
 	}
 }

@@ -39,7 +39,7 @@ public class VisitPlanDaoImpl implements VisitPlanDao {
 	@Override
 	public VisitPlan find(String pid) throws SQLException {
 		QueryRunner runner = new QueryRunner();
-		String sql = "selete * from visit_plan where plan_id=?";
+		String sql = "select * from visit_plan where plan_id=?";
 		return (VisitPlan) runner.query(ManageDbUtils.getConnection(), sql,
 				pid, new BeanHandler(VisitPlan.class));
 	}

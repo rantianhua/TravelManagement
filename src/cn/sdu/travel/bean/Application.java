@@ -8,19 +8,18 @@ public class Application {
 	private String applicantId;
 	private String assigneeId;
 	private String applyDate;
+	private String passportId;
 	private String category;
-	private String invitationRaw;
-	private String invitationZh;
 	private String plan;
 	private String purpose;
-	private String passportInfo;
+	private String purposeId;
 	private String type;
+	private String canTuan;
 	private String groupUnit;
 	private String examineUnit;
 	private String groupWork;
 	private String groupMembers;
 	private String inviterInfo;
-	private String identifyType;
 	private String licenceType;
 	private String inviterPay;
 	private String loan;
@@ -28,6 +27,9 @@ public class Application {
 	private String recordId;
 	private String verification;
 	private String status;
+
+	// 状态的中文表述
+	private String state;
 
 	private VisitPlan vplan;
 	private VisitPurpose vpurpose;
@@ -69,6 +71,14 @@ public class Application {
 		this.applyDate = applyDate;
 	}
 
+	public String getPassportId() {
+		return passportId;
+	}
+
+	public void setPassportId(String passportId) {
+		this.passportId = passportId;
+	}
+
 	public String getCategory() {
 		return category;
 	}
@@ -77,28 +87,20 @@ public class Application {
 		this.category = category;
 	}
 
-	public String getInvitationRaw() {
-		return invitationRaw;
-	}
-
-	public void setInvitationRaw(String invitationRaw) {
-		this.invitationRaw = invitationRaw;
-	}
-
-	public String getInvitationZh() {
-		return invitationZh;
-	}
-
-	public void setInvitationZh(String invitationZh) {
-		this.invitationZh = invitationZh;
-	}
-
 	public String getType() {
 		return type;
 	}
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public String getCanTuan() {
+		return canTuan;
+	}
+
+	public void setCanTuan(String canTuan) {
+		this.canTuan = canTuan;
 	}
 
 	public String getGroupUnit() {
@@ -131,14 +133,6 @@ public class Application {
 
 	public void setGroupMembers(String groupMembers) {
 		this.groupMembers = groupMembers;
-	}
-
-	public String getIdentifyType() {
-		return identifyType;
-	}
-
-	public void setIdentifyType(String identifyType) {
-		this.identifyType = identifyType;
 	}
 
 	public String getLicenceType() {
@@ -181,12 +175,12 @@ public class Application {
 		this.purpose = purpose;
 	}
 
-	public String getPassportInfo() {
-		return passportInfo;
+	public String getPurposeId() {
+		return purposeId;
 	}
 
-	public void setPassportInfo(String passportInfo) {
-		this.passportInfo = passportInfo;
+	public void setPurposeId(String purposeId) {
+		this.purposeId = purposeId;
 	}
 
 	public String getInviterInfo() {
@@ -236,7 +230,7 @@ public class Application {
 	public void setFunds(List<Funds> funds) {
 		this.funds = funds;
 	}
-	
+
 	public String getPublicNotificationId() {
 		return publicNotificationId;
 	}
@@ -284,4 +278,16 @@ public class Application {
 	public void setRecord(Record record) {
 		this.record = record;
 	}
+
+	public String getState() {
+		if (this.status.equals("0000000000")) {
+			return "未审批";
+		}
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
 }

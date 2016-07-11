@@ -11,6 +11,8 @@ public interface PassportDao {
 	void delete(String id) throws SQLException;
 
 	void update(Passport p) throws SQLException;
+	
+	void updateForApply(Passport p) throws SQLException;
 
 	Passport find(String id) throws SQLException;
 

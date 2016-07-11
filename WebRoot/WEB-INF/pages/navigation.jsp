@@ -35,7 +35,7 @@
 				<li <c:if test="${action eq '3' || action eq '8'}">class="active"</c:if>><a
 					href="${pageContext.request.contextPath }/servlet/NavigationServlet?action=3"
 					class="nav_a">证照管理</a></li>
-				<li <c:if test="${action eq '4' || action eq '9'}">class="active"</c:if>><a
+				<li <c:if test="${action eq '4' || action eq '9' || action eq '11'}">class="active"</c:if>><a
 					href="${pageContext.request.contextPath }/servlet/NavigationServlet?action=4"
 					class="nav_a">出国申请</a></li>
 				<li <c:if test="${action eq '5'}">class="active"</c:if>><a

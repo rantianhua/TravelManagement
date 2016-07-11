@@ -15,15 +15,14 @@ public class ApplicationDaoImpl implements ApplicationDao {
 	@Override
 	public void add(Application app) throws SQLException {
 		QueryRunner runner = new QueryRunner();
-		String sql = "insert into application(application_number,applicant_id,assignee_id,,apply_date,category,invitation_raw,invitaion_zh,plan,purpose,passport_info,type,group_unit,examine_unit,group_work,group_members,inviter_info,identify_type,licence_type,inviter_pay,loan,public_notification_id,record_id,verification,status) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into application(application_number,applicant_id,assignee_id,apply_date,passport_id,category,plan,purpose,purpose_id,type,can_tuan,group_unit,examine_unit,group_work,group_members,inviter_info,licence_type,inviter_pay,loan,public_notification_id,record_id,verification,status) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		Object[] param = { app.getApplicationNumber(), app.getApplicantId(),
-				app.getAssigneeId(), app.getApplyDate(), app.getCategory(),
-				app.getInvitationRaw(), app.getInvitationZh(), app.getPlan(),
-				app.getPurpose(), app.getPassportInfo(), app.getType(),
+				app.getAssigneeId(), app.getApplyDate(), app.getPassportId(),
+				app.getCategory(), app.getPlan(), app.getPurpose(),
+				app.getPurposeId(), app.getType(), app.getCanTuan(),
 				app.getGroupUnit(), app.getExamineUnit(), app.getGroupWork(),
 				app.getGroupMembers(), app.getInviterInfo(),
-				app.getIdentifyType(), app.getLicenceType(),
-				app.getInviterPay(), app.getLoan(),
+				app.getLicenceType(), app.getInviterPay(), app.getLoan(),
 				app.getPublicNotificationId(), app.getRecordId(),
 				app.getVerification(), app.getStatus() };
 		runner.update(ManageDbUtils.getConnection(), sql, param);
@@ -39,15 +38,14 @@ public class ApplicationDaoImpl implements ApplicationDao {
 	@Override
 	public void update(Application app) throws SQLException {
 		QueryRunner runner = new QueryRunner();
-		String sql = "update application set applicant_id=?,assignee_id=?,apply_date=?,category=?invitation_raw=?,invitaion_zh=?,plan=?,purpose=?,passport_info=?,type=?,group_unit=?,examine_unit=?,group_work=?,group_members=?,inviter_info=?,identify_type=?,licence_type=?,inviter_pay=?,loan=?,public_notification_id=?,record_id=?,verification=?,status=? where application_number=?";
+		String sql = "update application set applicant_id=?,assignee_id=?,apply_date=?,passport_id=?,category=?,plan=?,purpose=?,purpose_id=?,type=?,can_tuan=?,group_unit=?,examine_unit=?,group_work=?,group_members=?,inviter_info=?,licence_type=?,inviter_pay=?,loan=?,public_notification_id=?,record_id=?,verification=?,status=? where application_number=?";
 		Object[] param = { app.getApplicantId(), app.getAssigneeId(),
-				app.getApplyDate(), app.getCategory(), app.getInvitationRaw(),
-				app.getInvitationZh(), app.getPlan(), app.getPurpose(),
-				app.getPassportInfo(), app.getType(), app.getGroupUnit(),
+				app.getApplyDate(), app.getPassportId(), app.getCategory(),
+				app.getPlan(), app.getPurpose(), app.getPurposeId(),
+				app.getType(), app.getCanTuan(), app.getGroupUnit(),
 				app.getExamineUnit(), app.getGroupWork(),
 				app.getGroupMembers(), app.getInviterInfo(),
-				app.getIdentifyType(), app.getLicenceType(),
-				app.getInviterPay(), app.getLoan(),
+				app.getLicenceType(), app.getInviterPay(), app.getLoan(),
 				app.getPublicNotificationId(), app.getRecordId(),
 				app.getVerification(), app.getStatus(),
 				app.getApplicationNumber() };
@@ -57,9 +55,25 @@ public class ApplicationDaoImpl implements ApplicationDao {
 	@Override
 	public Application find(String appNo) throws SQLException {
 		QueryRunner runner = new QueryRunner();
-		String sql = "select * form application where application_number=?";
+		String sql = "select * from application where application_number=?";
 		return (Application) runner.query(ManageDbUtils.getConnection(), sql,
 				appNo, new BeanHandler(Application.class));
+	}
+
+	@Override
+	public List<Application> getMyOwnApply(String id) throws SQLException {
+		QueryRunner runner = new QueryRunner();
+		String sql = "select * from application where applicant_id=? and assignee_id=''";
+		return (List<Application>) runner.query(ManageDbUtils.getConnection(),
+				sql, id, new BeanListHandler(Application.class));
+	}
+
+	@Override
+	public List<Application> getMyAssigneeApply(String id) throws SQLException {
+		QueryRunner runner = new QueryRunner();
+		String sql = "select * from application where applicant_id=? and assignee_id!=''";
+		return (List<Application>) runner.query(ManageDbUtils.getConnection(),
+				sql, id, new BeanListHandler(Application.class));
 	}
 
 	@Override

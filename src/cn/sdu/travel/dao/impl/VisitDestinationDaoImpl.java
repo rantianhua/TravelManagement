@@ -14,7 +14,7 @@ public class VisitDestinationDaoImpl implements VisitDestinationDao {
 	@Override
 	public void add(VisitDestination vd) throws SQLException {
 		QueryRunner runner = new QueryRunner();
-		String sql = "insert into visit_destination(plan_id,country,city,arrive_date,exit_city_date,trans_addr) values(?,?,?,?,?)";
+		String sql = "insert into visit_destination(plan_id,country,city,arrive_date,exit_city_date,trans_addr) values(?,?,?,?,?,?)";
 		Object[] param = { vd.getPlanId(), vd.getCountry(), vd.getCity(),
 				vd.getArriveDate(), vd.getExitCityDate(), vd.getTransAddr() };
 		runner.update(ManageDbUtils.getConnection(), sql, param);

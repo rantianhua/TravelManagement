@@ -14,10 +14,11 @@ public class InviterDaoImpl implements InviterDao {
 	@Override
 	public void add(Inviter i) throws SQLException {
 		QueryRunner runner = new QueryRunner();
-		String sql = "insert into inviter(id,name,title_ch,title_en,unit_name,address,telephone,email,url) values(?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into inviter(id,name,title_ch,title_en,unit_name,address,telephone,email,url,invitation_raw,invitation_zh) values(?,?,?,?,?,?,?,?,?,?,?)";
 		Object[] param = { i.getId(), i.getName(), i.getTitleCh(),
 				i.getTitleEn(), i.getUnitName(), i.getAddress(),
-				i.getTelephone(), i.getEmail(), i.getUrl() };
+				i.getTelephone(), i.getEmail(), i.getUrl(),
+				i.getInvitationRaw(), i.getInvitationZh() };
 		runner.update(ManageDbUtils.getConnection(), sql, param);
 	}
 
@@ -31,10 +32,11 @@ public class InviterDaoImpl implements InviterDao {
 	@Override
 	public void update(Inviter i) throws SQLException {
 		QueryRunner runner = new QueryRunner();
-		String sql = "update inviter set name=?,title_ch=?,title_en=?,unit_name=?,address=?,telephone=?,email=?,url=? where id=?";
+		String sql = "update inviter set name=?,title_ch=?,title_en=?,unit_name=?,address=?,telephone=?,email=?,url=?,invitation_raw=?,invitation_zh=? where id=?";
 		Object[] param = { i.getName(), i.getTitleCh(), i.getTitleEn(),
 				i.getUnitName(), i.getAddress(), i.getTelephone(),
-				i.getEmail(), i.getUrl(), i.getId() };
+				i.getEmail(), i.getUrl(), i.getId(), i.getInvitationRaw(),
+				i.getInvitationZh() };
 		runner.update(ManageDbUtils.getConnection(), sql, param);
 	}
 

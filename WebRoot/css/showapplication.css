@@ -1,0 +1,41 @@
+@CHARSET "UTF-8";
+#container{
+	width:70%;
+	margin-top:90px;
+	margin-left:auto;
+	margin-right:auto;
+}
+#btn{
+  width:10%;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:20px;
+  height:60px;
+}
+#btn1{
+	float:left;
+	width:5%;
+	margin-left:auto;
+	margin-right:auto;
+	height:60px;
+}
+#btn2{
+	float:right;
+	width:5%;
+	margin-left:auto;
+	margin-right:auto;
+	height:60px;
+}
+.head{
+	text-align:center;
+	font-size:25px;
+}
+.attributes{
+	background-color:#F9FCF8;
+	font-size:22px;	
+	table-layout: fixed;WORD-BREAK: break-all; WORD-WRAP: break-word;
+}
+.answer{
+	font-size:22px;
+	table-layout: fixed;WORD-BREAK: break-all; WORD-WRAP: break-word;
+}

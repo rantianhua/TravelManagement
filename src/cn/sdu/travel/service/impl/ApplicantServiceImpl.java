@@ -228,4 +228,56 @@ public class ApplicantServiceImpl implements ApplicantService {
 		}
 		return map;
 	}
+
+	// 获取申请详细信息
+	@Override
+	public Map<String, Object> getApplyDetail(String appNo) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		ApplicationDao adao = new ApplicationDaoImpl();
+		VisitPlanDao vplandao = new VisitPlanDaoImpl();
+		VisitDestinationDao vddao = new VisitDestinationDaoImpl();
+		VisitPurposeDao vpdao = new VisitPurposeDaoImpl();
+		PassportDao pdao = new PassportDaoImpl();
+		InviterDao idao = new InviterDaoImpl();
+		FundsDao fdao = new FundsDaoImpl();
+
+		try {
+			ManageDbUtils.startTransaction();
+
+			Application app = adao.find(appNo);
+			if (app == null) {
+				map.put("returnCode", 1601);
+				map.put("returnInfo", "获取申请信息失败！");
+			} else {
+				VisitPlan plan = vplandao.find(app.getPlan());
+				if (plan != null) {
+					List<VisitDestination> destinations = vddao.findDestinations(app.getPlan());
+					plan.setDestinations(destinations);
+				}
+				app.setVplan(plan);
+				VisitPurpose purpose = vpdao.find(app.getPurpose());
+				app.setVpurpose(purpose);
+				Passport passport = pdao.find(app.getPassportId());
+				app.setPassport(passport);
+				Inviter inviter = idao.find(app.getInviterInfo());
+				app.setInviter(inviter);
+				List<Funds> funds = fdao.findFunds(app.getApplicationNumber());
+				app.setFunds(funds);
+			}
+			ManageDbUtils.commitTransaction();
+			
+			map.put("returnCode", 1602);
+			map.put("returnInfo", "获取申请信息成功！");
+			map.put("data", app);
+		} catch (SQLException e) {
+			map.put("returnCode", 1999);
+			map.put("returnInfo", "数据库异常！");
+			e.printStackTrace();
+			return map;
+		} finally {
+			ManageDbUtils.closeConnection();
+		}
+
+		return map;
+	}
 }

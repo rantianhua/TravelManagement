@@ -35,8 +35,8 @@ public class InviterDaoImpl implements InviterDao {
 		String sql = "update inviter set name=?,title_ch=?,title_en=?,unit_name=?,address=?,telephone=?,email=?,url=?,invitation_raw=?,invitation_zh=? where id=?";
 		Object[] param = { i.getName(), i.getTitleCh(), i.getTitleEn(),
 				i.getUnitName(), i.getAddress(), i.getTelephone(),
-				i.getEmail(), i.getUrl(), i.getId(), i.getInvitationRaw(),
-				i.getInvitationZh() };
+				i.getEmail(), i.getUrl(), i.getInvitationRaw(),
+				i.getInvitationZh(), i.getId() };
 		runner.update(ManageDbUtils.getConnection(), sql, param);
 	}
 

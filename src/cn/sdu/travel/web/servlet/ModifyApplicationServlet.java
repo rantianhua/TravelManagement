@@ -13,7 +13,7 @@ import cn.sdu.travel.service.ApplicantService;
 import cn.sdu.travel.service.impl.ApplicantServiceImpl;
 import cn.sdu.travel.utils.Constants;
 
-public class ShowApplicationServlet extends HttpServlet {
+public class ModifyApplicationServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -21,15 +21,16 @@ public class ShowApplicationServlet extends HttpServlet {
 		ApplicantService service = new ApplicantServiceImpl();
 		Map<String, Object> map = service.getApplyDetail(appNo);
 		if ((int) map.get("returnCode") == Constants.GET_APPLY_DETAIL_SUCCESS) {
+			request.setAttribute("action", "9");
 			request.setAttribute("apply", (Application) map.get("data"));
-			request.setAttribute("action", "10");
-			request.getRequestDispatcher("/WEB-INF/pages/showapplicaiton.jsp")
-					.forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/pages/applyabroad.jsp").forward(
+					request, response);
 		} else {
 			request.setAttribute("returnInfo", map.get("returnInfo"));
 			request.getRequestDispatcher("/web/exception.jsp").forward(request,
 					response);
 		}
+
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)

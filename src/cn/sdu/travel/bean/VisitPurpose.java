@@ -7,7 +7,7 @@ public class VisitPurpose {
 	private String partnerName;
 	private String partnerTitle;
 	private String partnerExpertise;
-	private String cooperationCotent;
+	private String cooperationContent;
 	private String trainContent;
 	private String studyContent;
 	private String teacherName;
@@ -61,12 +61,12 @@ public class VisitPurpose {
 		this.partnerExpertise = partnerExpertise;
 	}
 
-	public String getCooperationCotent() {
-		return cooperationCotent;
+	public String getCooperationContent() {
+		return cooperationContent;
 	}
 
-	public void setCooperationCotent(String cooperationCotent) {
-		this.cooperationCotent = cooperationCotent;
+	public void setCooperationContent(String cooperationContent) {
+		this.cooperationContent = cooperationContent;
 	}
 
 	public String getTrainContent() {

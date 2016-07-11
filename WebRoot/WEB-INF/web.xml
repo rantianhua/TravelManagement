@@ -53,6 +53,16 @@
 		<servlet-name>ApplyAbroadServlet</servlet-name>
 		<servlet-class>cn.sdu.travel.web.servlet.ApplyAbroadServlet</servlet-class>
 	</servlet>
+  <servlet>
+    <servlet-name>ModifyApplicationServlet</servlet-name>
+    <servlet-class>cn.sdu.travel.web.servlet.ModifyApplicationServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ShowNotifyServlet</servlet-name>
+    <servlet-class>cn.sdu.travel.web.servlet.ShowNotifyServlet</servlet-class>
+  </servlet>
+
+
 
 	<servlet-mapping>
 		<servlet-name>LoginServlet</servlet-name>
@@ -82,4 +92,12 @@
 		<servlet-name>ApplyAbroadServlet</servlet-name>
 		<url-pattern>/servlet/ApplyAbroadServlet</url-pattern>
 	</servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ModifyApplicationServlet</servlet-name>
+    <url-pattern>/servlet/ModifyApplicationServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ShowNotifyServlet</servlet-name>
+    <url-pattern>/servlet/ShowNotifyServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

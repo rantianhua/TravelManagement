@@ -4,8 +4,9 @@
 <link href="${pageContext.request.contextPath }/css/check.status.css"
 	rel="stylesheet" />
 <script>
-	function checkdetail() {
-		location.href = '${pageContext.request.contextPath}/servlet/ShowApplicationServlet';
+	function checkdetail(appNo) {
+		location.href = '${pageContext.request.contextPath}/servlet/ShowApplicationServlet?appNo='
+				+ appNo;
 	}
 </script>
 <div class="contianer">
@@ -22,10 +23,10 @@
 		</thead>
 		<tbody>
 			<c:forEach var="apply" items="${requestScope.ownApply }">
-				<tr onclick="checkdetail()">
+				<tr onclick="checkdetail('${apply.applicationNumber }')">
 					<td>${apply.applicationNumber }</td>
 					<td>${apply.applyDate }</td>
-					<td>${apply.purpose }</td>
+					<td>${apply.purposeContent }</td>
 					<td>${apply.type }</td>
 					<td>${apply.state }</td>
 				</tr>
@@ -37,6 +38,7 @@
 		<thead>
 			<tr>
 				<th>申请编号</th>
+				<th>委托人身份证号</th>
 				<th>申请时间</th>
 				<th>出行目的</th>
 				<th>出行时长</th>
@@ -45,10 +47,11 @@
 		</thead>
 		<tbody>
 			<c:forEach var="apply" items="${requestScope.assigneeApply }">
-				<tr onclick="checkdetail()">
+				<tr onclick="checkdetail('${apply.applicationNumber }')">
 					<td>${apply.applicationNumber }</td>
+					<td>${apply.assigneeId }</td>
 					<td>${apply.applyDate }</td>
-					<td>${apply.purpose }</td>
+					<td>${apply.purposeContent }</td>
 					<td>${apply.type }</td>
 					<td>${apply.state }</td>
 				</tr>

@@ -25,7 +25,7 @@
 		</div>
 		<div>
 			<ul class="nav navbar-nav">
-				<li <c:if test="${action eq '1'}">class="active"</c:if>><a
+				<li <c:if test="${action eq '1' || action eq '12'}">class="active"</c:if>><a
 					href="${pageContext.request.contextPath }/servlet/NavigationServlet?action=1"
 					class="nav_a">公示信息</a></li>
 				<li
@@ -38,7 +38,7 @@
 				<li <c:if test="${action eq '4' || action eq '9' || action eq '11'}">class="active"</c:if>><a
 					href="${pageContext.request.contextPath }/servlet/NavigationServlet?action=4"
 					class="nav_a">出国申请</a></li>
-				<li <c:if test="${action eq '5'}">class="active"</c:if>><a
+				<li <c:if test="${action eq '5' || action eq '10'}">class="active"</c:if>><a
 					href="${pageContext.request.contextPath }/servlet/NavigationServlet?action=5"
 					class="nav_a">状态查询</a></li>
 				<li <c:if test="${action eq '6'}">class="active"</c:if>><a

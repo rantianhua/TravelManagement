@@ -78,7 +78,7 @@ public class NavigationServlet extends HttpServlet {
 		switch (rep) {
 		case "1":
 			// 显示公示信息
-			path = "/WEB-INF/pages/showuserinfo.jsp";
+			path = "/WEB-INF/pages/publicnotify.jsp";
 			break;
 		case "2":
 			// 显示个人信息详情

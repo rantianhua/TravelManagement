@@ -283,6 +283,9 @@ public class Application {
 		if (this.status.equals("0000000000")) {
 			return "未审批";
 		}
+		if (this.status.equals("----------")) {
+			return "已保存";
+		}
 		return state;
 	}
 

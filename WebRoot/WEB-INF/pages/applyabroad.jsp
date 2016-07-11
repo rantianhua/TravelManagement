@@ -121,46 +121,51 @@
 			</div>
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group passport_input"
+		style="display: ${(validate ? empty requestScope.apply.assigneeId:empty requestScope.form.assigneeId) ? 'none':'block'};">
 		<label class="control-label col-sm-4">证照名称</label>
 		<div class="col-sm-6">
-			<input class="form-control passport_input" name="passportName"
+			<input class="form-control pi" name="passportName"
 				value="${validate ? (none ? requestScope.passport.passportName:requestScope.apply.passport.passportName):requestScope.form.passportName }">
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group passport_input"
+		style="display: ${(validate ? empty requestScope.apply.assigneeId:empty requestScope.form.assigneeId) ? 'none':'block'};">
 		<label class="control-label col-sm-4">姓名</label>
 		<div class="col-sm-6">
-			<input class="form-control passport_input" name="name"
+			<input class="form-control pi" name="name"
 				value="${validate ? (none ? requestScope.passport.name:requestScope.apply.passport.name):requestScope.form.name }">
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group passport_input"
+		style="display: ${(validate ? empty requestScope.apply.assigneeId:empty requestScope.form.assigneeId) ? 'none':'block'};">
 		<label class="control-label col-sm-4">性别</label>
 		<div class="col-sm-6">
-			<input class="form-control passport_input" name="sex"
+			<input class="form-control pi" name="sex"
 				value="${validate ? (none ? requestScope.passport.sex:requestScope.apply.passport.sex):requestScope.form.sex }">
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group passport_input"
+		style="display: ${(validate ? empty requestScope.apply.assigneeId:empty requestScope.form.assigneeId) ? 'none':'block'};">
 		<label class="control-label col-sm-4">签发地</label>
 		<div class="col-sm-6">
-			<input class="form-control passport_input" name="issuingPlace"
+			<input class="form-control pi" name="issuingPlace"
 				value="${validate ? (none ? requestScope.passport.issuingPlace:requestScope.apply.passport.issuingPlace):requestScope.form.issuingPlace }">
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group passport_input"
+		style="display: ${(validate ? empty requestScope.apply.assigneeId:empty requestScope.form.assigneeId) ? 'none':'block'};">
 		<label class="control-label col-sm-4">生日</label>
 		<div class="col-sm-6">
-			<input class="form-control passport_input choose_date"
-				name="birthday"
+			<input class="form-control choose_date pi" name="birthday"
 				value="${validate ? (none ? requestScope.passport.birthday:requestScope.apply.passport.birthday):requestScope.form.birthday }">
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group passport_input"
+		style="display: ${(validate ? empty requestScope.apply.assigneeId:empty requestScope.form.assigneeId) ? 'none':'block'};">
 		<label class="control-label col-sm-4">有效日期</label>
 		<div class="col-sm-6">
-			<input class="form-control passport_input choose_date" name="expDate"
+			<input class="form-control choose_date pi" name="expDate"
 				value="${validate ? (none ? requestScope.passport.expDate:requestScope.apply.passport.expDate):requestScope.form.expDate }">
 		</div>
 	</div>
@@ -206,29 +211,29 @@
 		<div class="col-sm-6">
 			<select class="form-control" id="select_purpose" name="purpose">
 				<option value="培训"
-					${(validate ? requestScope.apply.vpurpose.purpose:requestScope.form.purpose)=='培训' ? 'selected':'' }>培训</option>
+					${(validate ? requestScope.apply.purposeContent:requestScope.form.purpose)=='培训' ? 'selected':'' }>培训</option>
 				<option value="进修"
-					${(validate ? requestScope.apply.vpurpose.purpose:requestScope.form.purpose)=='进修' ? 'selected':'' }>进修</option>
+					${(validate ? requestScope.apply.purposeContent:requestScope.form.purpose)=='进修' ? 'selected':'' }>进修</option>
 				<option value="任教"
-					${(validate ? requestScope.apply.vpurpose.purpose:requestScope.form.purpose)=='任教' ? 'selected':'' }>任教</option>
+					${(validate ? requestScope.apply.purposeContent:requestScope.form.purpose)=='任教' ? 'selected':'' }>任教</option>
 				<option value="科研合作"
-					${(validate ? requestScope.apply.vpurpose.purpose:requestScope.form.purpose)=='科研合作' ? 'selected':'' }>科研合作</option>
+					${(validate ? requestScope.apply.purposeContent:requestScope.form.purpose)=='科研合作' ? 'selected':'' }>科研合作</option>
 				<c:choose>
 					<c:when
-						test="${(validate ? requestScope.apply.vpurpose.purpose:requestScope.form.purpose)=='参加国际会议' }">
+						test="${(validate ? requestScope.apply.purposeContent:requestScope.form.purpose)=='参加国际会议' }">
 						<option value="参加国际会议"
-							${(validate ? requestScope.apply.vpurpose.purpose:requestScope.form.purpose)=='参加国际会议' ? 'selected':'' }>参加国际会议</option>
+							${(validate ? requestScope.apply.purposeContent:requestScope.form.purpose)=='参加国际会议' ? 'selected':'' }>参加国际会议</option>
 					</c:when>
 					<c:otherwise>
 						<option value="攻读学位"
-							${(validate ? requestScope.apply.vpurpose.purpose:requestScope.form.purpose)=='攻读学位' ? 'selected':'' }>攻读学位</option>
+							${(validate ? requestScope.apply.purposeContent:requestScope.form.purpose)=='攻读学位' ? 'selected':'' }>攻读学位</option>
 					</c:otherwise>
 				</c:choose>
 			</select>
 		</div>
 	</div>
 	<div class="form-group" id="div_class_name"
-		style="display: ${(validate ? requestScope.apply.vpurpose.purpose:requestScope.form.purpose)=='任教' ? 'blocked':'none' };">
+		style="display: ${(validate ? requestScope.apply.purposeContent:requestScope.form.purpose)=='任教' ? 'blocked':'none' };">
 		<label class="control-label col-sm-4"><span>* </span>授课名称</label>
 		<div class="col-sm-6">
 			<input class="form-control" type="text" name="className"
@@ -236,7 +241,7 @@
 		</div>
 	</div>
 	<div class="form-group"
-		style="display: ${(validate ? requestScope.apply.vpurpose.purpose:requestScope.form.purpose)=='任教' ? 'blocked':'none' };">
+		style="display: ${(validate ? requestScope.apply.purposeContent:requestScope.form.purpose)=='任教' ? 'blocked':'none' };">
 		<div class="col-sm-4"></div>
 		<div class="col-sm-6">
 			<!-- 该处填写表单校验的错误 -->
@@ -244,23 +249,23 @@
 		</div>
 	</div>
 	<div class="form-group" id="div_cooperation_content"
-		style="display: ${(validate ? requestScope.apply.vpurpose.purpose:requestScope.form.purpose)=='科研合作' ? 'blocked':'none' };">
+		style="display: ${(validate ? requestScope.apply.purposeContent:requestScope.form.purpose)=='科研合作' ? 'blocked':'none' };">
 		<label class="control-label col-sm-4"><span>* </span>合作内容</label>
 		<div class="col-sm-6">
-			<input class="form-control" type="text" name="cooperationCotent"
-				value="${validate ? requestScope.apply.vpurpose.cooperationCotent:requestScope.form.cooperationCotent }">
+			<input class="form-control" type="text" name="cooperationContent"
+				value="${validate ? requestScope.apply.vpurpose.cooperationContent:requestScope.form.cooperationContent }">
 		</div>
 	</div>
 	<div class="form-group"
-		style="display: ${(validate ? requestScope.apply.vpurpose.purpose:requestScope.form.purpose)=='科研合作' ? 'blocked':'none' };">
+		style="display: ${(validate ? requestScope.apply.purposeContent:requestScope.form.purpose)=='科研合作' ? 'blocked':'none' };">
 		<div class="col-sm-4"></div>
 		<div class="col-sm-6">
 			<!-- 该处填写表单校验的错误 -->
-			<p class="text-danger small text-left">${requestScope.form.errors.cooperationCotent }</p>
+			<p class="text-danger small text-left">${requestScope.form.errors.cooperationContent }</p>
 		</div>
 	</div>
 	<div class="form-group" id="div_train_content"
-		style="display: ${(validate ? requestScope.apply.vpurpose.purpose:requestScope.form.purpose)=='培训' ? 'blocked':'none' };">
+		style="display: ${(validate ? requestScope.apply.purposeContent:requestScope.form.purpose)=='培训' ? 'blocked':'none' };">
 		<label class="control-label col-sm-4"><span>* </span>培训内容</label>
 		<div class="col-sm-6">
 			<input class="form-control" type="text" name="trainContent"
@@ -268,7 +273,7 @@
 		</div>
 	</div>
 	<div class="form-group"
-		style="display: ${(validate ? requestScope.apply.vpurpose.purpose:requestScope.form.purpose)=='培训' ? 'blocked':'none' };">
+		style="display: ${(validate ? requestScope.apply.purposeContent:requestScope.form.purpose)=='培训' ? 'blocked':'none' };">
 		<div class="col-sm-4"></div>
 		<div class="col-sm-6">
 			<!-- 该处填写表单校验的错误 -->
@@ -276,7 +281,7 @@
 		</div>
 	</div>
 	<div class="form-group" id="div_study_content"
-		style="display: ${(validate ? requestScope.apply.vpurpose.purpose:requestScope.form.purpose)=='进修' ? 'blocked':'none' };">
+		style="display: ${(validate ? requestScope.apply.purposeContent:requestScope.form.purpose)=='进修' ? 'blocked':'none' };">
 		<label class="control-label col-sm-4"><span>* </span>进修内容</label>
 		<div class="col-sm-6">
 			<input class="form-control" type="text" name="studyContent"
@@ -284,7 +289,7 @@
 		</div>
 	</div>
 	<div class="form-group"
-		style="display: ${(validate ? requestScope.apply.vpurpose.purpose:requestScope.form.purpose)=='进修' ? 'blocked':'none' };">
+		style="display: ${(validate ? requestScope.apply.purposeContent:requestScope.form.purpose)=='进修' ? 'blocked':'none' };">
 		<div class="col-sm-4"></div>
 		<div class="col-sm-6">
 			<!-- 该处填写表单校验的错误 -->
@@ -292,7 +297,7 @@
 		</div>
 	</div>
 	<div class="form-group" id="div_degree_content"
-		style="display: ${(validate ? requestScope.apply.vpurpose.purpose:requestScope.form.purpose)=='攻读学位' ? 'blocked':'none' };">
+		style="display: ${(validate ? requestScope.apply.purposeContent:requestScope.form.purpose)=='攻读学位' ? 'blocked':'none' };">
 		<label class="control-label col-sm-4"><span>* </span>攻读学位类别</label>
 		<div class="col-sm-6">
 			<input class="form-control" type="text" name="degreeType"
@@ -300,7 +305,7 @@
 		</div>
 	</div>
 	<div class="form-group"
-		style="display: ${(validate ? requestScope.apply.vpurpose.purpose:requestScope.form.purpose)=='攻读学位' ? 'blocked':'none' };">
+		style="display: ${(validate ? requestScope.apply.purposeContent:requestScope.form.purpose)=='攻读学位' ? 'blocked':'none' };">
 		<div class="col-sm-4"></div>
 		<div class="col-sm-6">
 			<!-- 该处填写表单校验的错误 -->
@@ -308,7 +313,7 @@
 		</div>
 	</div>
 	<div id="div_foreign_parter"
-		style="display: ${((validate ? requestScope.apply.vpurpose.purpose:requestScope.form.purpose)=='科研合作' || (validate ? requestScope.apply.vpurpose.purpose:requestScope.form.purpose)=='任教') ? 'blocked':'none' };">
+		style="display: ${((validate ? requestScope.apply.purposeContent:requestScope.form.purpose)=='科研合作' || (validate ? requestScope.apply.purposeContent:requestScope.form.purpose)=='任教') ? 'blocked':'none' };">
 		<div class="form-group">
 			<label class="control-label col-sm-4"><span>* </span>外方合作伙伴姓名</label>
 			<div class="col-sm-6">
@@ -353,7 +358,7 @@
 		</div>
 	</div>
 	<div id="div_teacher_content"
-		style="display: ${(validate ? requestScope.apply.vpurpose.purpose:requestScope.form.purpose)=='进修' || (validate ? requestScope.apply.vpurpose.purpose:requestScope.form.purpose)=='攻读学位' ? 'blocked':'none' };">
+		style="display: ${(validate ? requestScope.apply.purposeContent:requestScope.form.purpose)=='进修' || (validate ? requestScope.apply.purposeContent:requestScope.form.purpose)=='攻读学位' ? 'blocked':'none' };">
 		<div class="form-group">
 			<label class="control-label col-sm-4"><span>* </span>指导教师姓名</label>
 			<div class="col-sm-6">
@@ -398,7 +403,7 @@
 		</div>
 	</div>
 	<div id="div_meeting_content"
-		style="display: ${(validate ? requestScope.apply.vpurpose.purpose:requestScope.form.purpose)=='参加国际会议' ? 'blocked':'none' };">
+		style="display: ${(validate ? requestScope.apply.purposeContent:requestScope.form.purpose)=='参加国际会议' ? 'blocked':'none' };">
 		<div class="form-group">
 			<label class="control-label col-sm-4"><span>* </span>国际会议中文名</label>
 			<div class="col-sm-6">
@@ -928,9 +933,9 @@
 							<td>是否借贷</td>
 							<td><select name="loan" class="form-control">
 									<option value="1"
-										${(validate ? requestScope.apply.loan:requestScope.form.loan)=='1' ? 'checked':'' }>是</option>
+										${(validate ? requestScope.apply.loan:requestScope.form.loan)=='1' ? 'selected':'' }>是</option>
 									<option value="0"
-										${(validate ? requestScope.apply.loan:requestScope.form.loan)=='0' ? 'checked':'' }>否</option>
+										${(validate ? requestScope.apply.loan:requestScope.form.loan)=='0' ? 'selected':'' }>否</option>
 							</select></td>
 						</tr>
 						<tr>
@@ -998,9 +1003,8 @@
 												//委托申请
 												$("#real_identity").show();
 												$("#warn_real_identity").show();
-												$(".passport_input")
-														.removeAttr("disabled");
-												$(".passport_input").val("");
+												$(".passport_input").show();
+												$(".pi").val("");
 											} else {
 												location.href = '${pageContext.request.contextPath}/servlet/ApplyAbroadServlet';
 											}
@@ -1045,25 +1049,25 @@
 											$("#select_purpose").empty();
 											$("#select_purpose")
 													.append(
-															"<option value='培训' ${(validate ? requestScope.apply.vpurpose.purpose:requestScope.form.purpose)=='培训' ? 'selected':'' }>培训</option>");
+															"<option value='培训' ${(validate ? requestScope.apply.purposeContent:requestScope.form.purpose)=='培训' ? 'selected':'' }>培训</option>");
 											$("#select_purpose")
 													.append(
-															"<option value='进修' ${(validate ? requestScope.apply.vpurpose.purpose:requestScope.form.purpose)=='进修' ? 'selected':'' }>进修</option>");
+															"<option value='进修' ${(validate ? requestScope.apply.purposeContent:requestScope.form.purpose)=='进修' ? 'selected':'' }>进修</option>");
 											$("#select_purpose")
 													.append(
-															"<option value='科研合作' ${(validate ? requestScope.apply.vpurpose.purpose:requestScope.form.purpose)=='科研合作' ? 'selected':'' }>科研合作</option>");
+															"<option value='科研合作' ${(validate ? requestScope.apply.purposeContent:requestScope.form.purpose)=='科研合作' ? 'selected':'' }>科研合作</option>");
 											$("#select_purpose")
 													.append(
-															"<option value='任教' ${(validate ? requestScope.apply.vpurpose.purpose:requestScope.form.purpose)=='任教' ? 'selected':'' }>任教</option>");
+															"<option value='任教' ${(validate ? requestScope.apply.purposeContent:requestScope.form.purpose)=='任教' ? 'selected':'' }>任教</option>");
 											if ($("input[name=type]:checked")
 													.val() == "长期") {
 												$("#select_purpose")
 														.append(
-																"<option value='攻读学位' ${(validate ? requestScope.apply.vpurpose.purpose:requestScope.form.purpose)=='攻读学位' ? 'selected':'' }>攻读学位</option>");
+																"<option value='攻读学位' ${(validate ? requestScope.apply.purposeContent:requestScope.form.purpose)=='攻读学位' ? 'selected':'' }>攻读学位</option>");
 											} else {
 												$("#select_purpose")
 														.append(
-																"<option value='参加国际会议' ${(validate ? requestScope.apply.vpurpose.purpose:requestScope.form.purpose)=='参加国际会议' ? 'selected':'' }>参加国际会议</option>");
+																"<option value='参加国际会议' ${(validate ? requestScope.apply.purposeContent:requestScope.form.purpose)=='参加国际会议' ? 'selected':'' }>参加国际会议</option>");
 											}
 											checkPurpose("培训");
 										});

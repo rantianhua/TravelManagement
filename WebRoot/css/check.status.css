@@ -9,5 +9,10 @@
 }
 
 .red {
-	color:#e74c3c;
+	color: #e74c3c;
+}
+
+.warn {
+	text-align: center;
+	color: #e74c3c;
 }

@@ -19,7 +19,7 @@ public class ApplyForm {
 	private String planInfo;
 	private String purposeInfo;
 	private String inviterInfo;
-	
+
 	private String startTime;
 
 	private String category;
@@ -44,7 +44,7 @@ public class ApplyForm {
 	private String partnerName;
 	private String partnerTitle;
 	private String partnerExpertise;
-	private String cooperationCotent;
+	private String cooperationContent;
 	private String degreeType;
 	private String conferenceNameCh;
 	private String conferenceNameEn;
@@ -84,6 +84,59 @@ public class ApplyForm {
 
 	private Map<String, String> errors = new HashMap<String, String>();
 
+	public boolean saveValidate() {
+		boolean isOk = true;
+		if (this.assigneeId != null && (!this.assigneeId.trim().equals(""))) {
+			if (this.assigneeId.length() != 18
+					|| !this.assigneeId
+							.matches("^[1-9]\\d{5}[1-9]\\d{3}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}([0-9]|X)$")) {
+				isOk = false;
+				this.errors.put("assigneeId", "身份证号格式错误！");
+			}
+		}
+
+		if (this.birthday != null && !this.birthday.trim().equals("")) {
+			if (!this.birthday.matches("^[12]\\d{3}-[01]\\d-[0123]\\d$")) {
+				isOk = false;
+				this.errors.put("passport", "无效的日期格式！");
+			}
+		} else if (this.expDate != null && !this.expDate.trim().equals("")) {
+			if (!this.expDate.matches("^[12]\\d{3}-[01]\\d-[0123]\\d$")) {
+				isOk = false;
+				this.errors.put("passport", "无效的日期格式！");
+			}
+		}
+
+		if (this.type == null || this.type.trim().equals("")) {
+			isOk = false;
+			this.errors.put("type", "请选择出访期限！");
+		}
+
+		if (this.enterBorderDate != null
+				&& !this.enterBorderDate.trim().equals("")) {
+			if (!this.enterBorderDate.matches("^[12]\\d{3}-[01]\\d-[0123]\\d$")) {
+				isOk = false;
+				this.errors.put("plan", "无效的日期格式！");
+			}
+		} else if (this.exitBorderDate != null
+				&& !this.exitBorderDate.trim().equals("")) {
+			if (!this.exitBorderDate.matches("^[12]\\d{3}-[01]\\d-[0123]\\d$")) {
+				isOk = false;
+				this.errors.put("plan", "无效的日期格式！");
+			}
+		}
+
+		if (this.email != null && !this.email.trim().equals("")) {
+			if (!this.email
+					.matches("^\\w[-\\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\\.)+[A-Za-z]{2,14}$")) {
+				isOk = false;
+				this.errors.put("invite", "错误的邮箱格式！");
+			}
+		}
+
+		return isOk;
+	}
+
 	public boolean commitValidate() throws ParseException {
 		boolean isOk = true;
 		if (this.assigneeId != null && (!this.assigneeId.trim().equals(""))) {
@@ -94,7 +147,7 @@ public class ApplyForm {
 				this.errors.put("assigneeId", "身份证号格式错误！");
 			} else {
 				RegisterService service = new RegisterServiceImpl();
-				Map map = service.checkId(this.assigneeId);
+				Map<String, Object> map = service.checkId(this.assigneeId);
 				if ((int) map.get("returnCode") == Constants.UNUSED_ID) {
 					isOk = false;
 					errors.put("assigneeId", "系统未录入该身份证号！");
@@ -155,8 +208,8 @@ public class ApplyForm {
 			}
 
 			if (this.purpose.equals("科研合作")) {
-				if (this.cooperationCotent == null
-						|| this.cooperationCotent.trim().equals("")) {
+				if (this.cooperationContent == null
+						|| this.cooperationContent.trim().equals("")) {
 					isOk = false;
 					this.errors.put("cooperationCotent", "请填写合作内容！");
 				}
@@ -636,12 +689,12 @@ public class ApplyForm {
 		this.partnerExpertise = partnerExpertise;
 	}
 
-	public String getCooperationCotent() {
-		return cooperationCotent;
+	public String getCooperationContent() {
+		return cooperationContent;
 	}
 
-	public void setCooperationCotent(String cooperationCotent) {
-		this.cooperationCotent = cooperationCotent;
+	public void setCooperationContent(String cooperationContent) {
+		this.cooperationContent = cooperationContent;
 	}
 
 	public String getDegreeType() {

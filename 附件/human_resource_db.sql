@@ -34,7 +34,8 @@ CREATE TABLE `emergency_contact_person` (
 
 LOCK TABLES `emergency_contact_person` WRITE;
 /*!40000 ALTER TABLE `emergency_contact_person` DISABLE KEYS */;
-INSERT INTO `emergency_contact_person` VALUES ('9d391a17-4b45-43c9-b138-308dbf8fdbee','张宏伟','','','1111111');
+INSERT INTO `emergency_contact_person` VALUES ('08206cc1-99ad-4a34-a7b8-9817a2696180','栾俊峰','luanjunfeng@163.com','','');
+INSERT INTO `emergency_contact_person` VALUES ('9d391a17-4b45-43c9-b138-308dbf8fdbee','张宏伟','zhw@163.com','16777777777','1111111');
 INSERT INTO `emergency_contact_person` VALUES ('d47ed4e2-8b9d-4368-8931-ab86f23e46ae','王五','wangwu@gmail.com','13888888888','1234567');
 /*!40000 ALTER TABLE `emergency_contact_person` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -71,7 +72,8 @@ CREATE TABLE `human_resource` (
 LOCK TABLES `human_resource` WRITE;
 /*!40000 ALTER TABLE `human_resource` DISABLE KEYS */;
 INSERT INTO `human_resource` VALUES ('140000199503230002','e10adc3949ba59abbe56e057f20f883e','r10','李四','Lee','女','Li Si','四娃','1995-03-23','行政','辅导员/正科级','经济学院','1234567','lisi@sina.com','13666666666','6666666','d47ed4e2-8b9d-4368-8931-ab86f23e46ae');
-INSERT INTO `human_resource` VALUES ('140000199508080001','e10adc3949ba59abbe56e057f20f883e','r10','任浩航','','男','Ren Haohang','大潮吊','1995-08-08','学生','本科','软件学院','123456','','15555555555','','9d391a17-4b45-43c9-b138-308dbf8fdbee');
+INSERT INTO `human_resource` VALUES ('140000199508080001','e10adc3949ba59abbe56e057f20f883e','r10','任浩航','Dick','男','Ren Haohang','大潮吊','1995-08-08','学生','本科','软件学院','123456','rhh@qq.com','15555555555','1234567','9d391a17-4b45-43c9-b138-308dbf8fdbee');
+INSERT INTO `human_resource` VALUES ('140000199503230003','e10adc3949ba59abbe56e057f20f883e','r10','孙朋朋','','女','Sun Pengpeng','','1995-06-15','行政','辅导员/正科级','软件学院','5555555','pengpeng@gmail.com','','','08206cc1-99ad-4a34-a7b8-9817a2696180');
 /*!40000 ALTER TABLE `human_resource` ENABLE KEYS */;
 UNLOCK TABLES;
 

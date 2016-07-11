@@ -18,4 +18,6 @@ public interface ApplicantService {
 	
 	Map<String, Object> getMyApply(String id);
 
+	Map<String, Object> getApplyDetail(String appNo);
+
 }

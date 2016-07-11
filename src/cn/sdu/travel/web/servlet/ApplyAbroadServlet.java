@@ -84,96 +84,229 @@ public class ApplyAbroadServlet extends HttpServlet {
 					submitName = item.getString("UTF-8");
 				}
 			}
+
+			// 封装表单
+			ApplyForm form = new ApplyForm();
+			int count = 1;
+			for (FileItem item : list) {
+				if (item.isFormField()) {
+					String name = item.getFieldName();
+					String value = item.getString("UTF-8");
+					BeanUtils.setProperty(form, name, value);
+
+					if (name.equals("cityCount")) {
+						count = Integer.parseInt(value);
+					}
+				} else {
+					String name = item.getFieldName();
+					String value = item.getName();
+					BeanUtils.setProperty(form, name, value);
+				}
+			}
+
+			// 封装中途抵达城市
+			for (int i = 1; i <= count; i++) {
+				VisitDestination vd = new VisitDestination();
+				String country = null, city = null, arriveDate = null, exitCityDate = null, transfer = null, transAddr = null;
+				for (FileItem item : list) {
+					if (item.isFormField()) {
+						if (item.getFieldName().equals("reachCountry" + i)) {
+							country = item.getString("UTF-8");
+						}
+						if (item.getFieldName().equals("reachCity" + i)) {
+							city = item.getString("UTF-8");
+						}
+						if (item.getFieldName().equals("reachDate" + i)) {
+							arriveDate = item.getString("UTF-8");
+						}
+						if (item.getFieldName().equals("exitDate" + i)) {
+							exitCityDate = item.getString("UTF-8");
+						}
+						if (item.getFieldName().equals("transfer" + i)) {
+							transfer = item.getString("UTF-8");
+						}
+						if (item.getFieldName().equals("transferAdress" + i)) {
+							transAddr = item.getString("UTF-8");
+						}
+					}
+				}
+				if (country != null || city != null || arriveDate != null
+						|| exitCityDate != null || transAddr != null) {
+					vd.setCountry(country);
+					vd.setCity(city);
+					vd.setArriveDate(arriveDate);
+					vd.setExitCityDate(exitCityDate);
+					vd.setTransfer(transfer);
+					vd.setTransAddr(transAddr);
+					form.getDests().add(vd);
+				}
+			}
+
+			// 封装经费信息
+			for (int i = 1; i < 5; i++) {
+				Funds f = new Funds();
+				String payAmount = null, accountName = null, payItem = null, ps = null;
+				for (FileItem item : list) {
+					if (item.isFormField()) {
+						if (item.getFieldName().equals("payAmount" + i)) {
+							payAmount = item.getString("UTF-8");
+						}
+						if (item.getFieldName().equals("accountName" + i)) {
+							accountName = item.getString("UTF-8");
+						}
+						if (item.getFieldName().equals("payItem" + i)) {
+							payItem = item.getString("UTF-8");
+						}
+						if (item.getFieldName().equals("ps" + i)) {
+							ps = item.getString("UTF-8");
+						}
+					}
+				}
+				f.setPayAmount(payAmount);
+				f.setAccountName(accountName);
+				f.setPayItem(payItem);
+				f.setPs(ps);
+				form.getFds().add(f);
+			}
+
 			if (submitName == null)
 				return;
 			if (submitName.equals("tempSave")) {
 				// 临时保存
-			} else if (submitName.equals("next")) {
-				// 封装表单
-				ApplyForm form = new ApplyForm();
-				int count = 1;
-				for (FileItem item : list) {
-					if (item.isFormField()) {
-						String name = item.getFieldName();
-						String value = item.getString("UTF-8");
-						BeanUtils.setProperty(form, name, value);
+				// 表单校验
+				if (!form.saveValidate()) {
+					request.setAttribute("form", form);
+					request.setAttribute("action", "9");
+					request.getRequestDispatcher(
+							"/WEB-INF/pages/applyabroad.jsp").forward(request,
+							response);
+					return;
+				}
 
-						if (name.equals("cityCount")) {
-							count = Integer.parseInt(value);
-						}
+				// 创建要保存的申请对象
+				Application app = new Application();
+				WebUtils.copyBean(form, app);
+				HumanResource hr = (HumanResource) request.getSession()
+						.getAttribute("hr");
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				if (form.getApplicationNumber() == null
+						|| form.getApplicationNumber().trim().equals("")) {
+					app.setApplicationNumber(WebUtils.generateID());
+				} else {
+					app.setApplicationNumber(form.getApplicationNumber());
+				}
+				app.setApplicantId(hr.getId());
+				app.setApplyDate(sdf.format(new Date()));
+				app.setPurposeContent(form.getPurpose());
+				if (form.getPlanInfo() == null
+						|| form.getPlanInfo().trim().equals("")) {
+					app.setPlan(WebUtils.generateID());
+				} else {
+					app.setPlan(form.getPlanInfo());
+				}
+				if (form.getPurposeInfo() == null
+						|| form.getPurposeInfo().trim().equals("")) {
+					app.setPurpose(WebUtils.generateID());
+				} else {
+					app.setPurpose(form.getPurposeInfo());
+				}
+				if (form.getInviterInfo() == null
+						|| form.getInviterInfo().trim().equals("")) {
+					app.setInviterInfo(WebUtils.generateID());
+				} else {
+					app.setInviterInfo(form.getInviterInfo());
+				}
+				if (form.getAssigneeId() == null
+						|| form.getAssigneeId().trim().equals("")) {
+					app.setPassportId(hr.getId());
+				} else {
+					app.setPassportId(form.getAssigneeId().trim());
+				}
+				app.setStatus("----------");
+
+				VisitPlan vplan = new VisitPlan();
+				vplan.setPlanId(app.getPlan());
+				vplan.setOutCity(form.getOutCity());
+				vplan.setExitBorderDate(form.getExitBorderDate());
+				vplan.setBackCity(form.getBackCity());
+				vplan.setEnterBorderDate(form.getEnterBorderDate());
+				for (VisitDestination d : form.getDests()) {
+					d.setPlanId(vplan.getPlanId());
+				}
+				vplan.setDestinations(form.getDests());
+				app.setVplan(vplan);
+
+				Passport passport = new Passport();
+				WebUtils.copyBean(form, passport);
+				if (form.getAssigneeId() == null
+						|| form.getAssigneeId().trim().equals("")) {
+					passport.setIdentity(hr.getId());
+				} else {
+					passport.setIdentity(form.getAssigneeId());
+				}
+				app.setPassport(passport);
+
+				VisitPurpose vpurpose = new VisitPurpose();
+				WebUtils.copyBean(form, vpurpose);
+				vpurpose.setId(app.getPurpose());
+				app.setVpurpose(vpurpose);
+
+				Inviter inviter = new Inviter();
+				WebUtils.copyBean(form, inviter);
+				inviter.setId(app.getInviterInfo());
+				inviter.setName(form.getiName());
+				inviter.setTitleCh(form.getiTitleCh());
+				inviter.setTitleEn(form.getiTitleEn());
+				app.setInviter(inviter);
+
+				boolean b = false;
+				for (Funds f : form.getFds()) {
+					if (!b) {
+						f.setPayType("1");
+						b = true;
 					} else {
-						String name = item.getFieldName();
-						String value = item.getName();
-						BeanUtils.setProperty(form, name, value);
+						f.setPayType("2");
 					}
+					f.setId(app.getApplicationNumber());
+				}
+				Funds f3 = new Funds();
+				f3.setPayType("3");
+				f3.setId(app.getApplicationNumber());
+				f3.setPayDetail(form.getPayDetail());
+				f3.setProveFile(form.getProveFile());
+				form.getFds().add(f3);
+				app.setFunds(form.getFds());
+
+				// 保存
+				ApplicantService service = new ApplicantServiceImpl();
+				Map<String, Object> map = service.saveApply(app);
+				if ((int) map.get("returnCode") == Constants.SAVE_APPLY_SUCCESS) {
+					request.setAttribute("action", "5");
+					map = service.getMyApply(hr.getId());
+					if ((int) map.get("returnCode") != Constants.GET_MY_APPLY_SUCCESS) {
+						request.setAttribute("returnInfo",
+								map.get("returnInfo"));
+						request.getRequestDispatcher("/web/exception.jsp")
+								.forward(request, response);
+						return;
+					} else {
+						List<Application> ownApply = (List<Application>) map
+								.get("data1");
+						List<Application> assigneeApply = (List<Application>) map
+								.get("data2");
+						request.setAttribute("ownApply", ownApply);
+						request.setAttribute("assigneeApply", assigneeApply);
+					}
+					String path = "/WEB-INF/pages/checkstatus.jsp";
+					request.getRequestDispatcher(path).forward(request,
+							response);
+				} else {
+					request.setAttribute("returnInfo", map.get("returnInfo"));
+					request.getRequestDispatcher("/web/exception.jsp").forward(
+							request, response);
 				}
 
-				// 封装中途抵达城市
-				for (int i = 1; i <= count; i++) {
-					VisitDestination vd = new VisitDestination();
-					String country = null, city = null, arriveDate = null, exitCityDate = null, transfer = null, transAddr = null;
-					for (FileItem item : list) {
-						if (item.isFormField()) {
-							if (item.getFieldName().equals("reachCountry" + i)) {
-								country = item.getString("UTF-8");
-							}
-							if (item.getFieldName().equals("reachCity" + i)) {
-								city = item.getString("UTF-8");
-							}
-							if (item.getFieldName().equals("reachDate" + i)) {
-								arriveDate = item.getString("UTF-8");
-							}
-							if (item.getFieldName().equals("exitDate" + i)) {
-								exitCityDate = item.getString("UTF-8");
-							}
-							if (item.getFieldName().equals("transfer" + i)) {
-								transfer = item.getString("UTF-8");
-							}
-							if (item.getFieldName()
-									.equals("transferAdress" + i)) {
-								transAddr = item.getString("UTF-8");
-							}
-						}
-					}
-					if (country != null || city != null || arriveDate != null
-							|| exitCityDate != null || transAddr != null) {
-						vd.setCountry(country);
-						vd.setCity(city);
-						vd.setArriveDate(arriveDate);
-						vd.setExitCityDate(exitCityDate);
-						vd.setTransfer(transfer);
-						vd.setTransAddr(transAddr);
-						form.getDests().add(vd);
-					}
-				}
-
-				// 封装经费信息
-				for (int i = 1; i < 5; i++) {
-					Funds f = new Funds();
-					String payAmount = null, accountName = null, payItem = null, ps = null;
-					for (FileItem item : list) {
-						if (item.isFormField()) {
-							if (item.getFieldName().equals("payAmount" + i)) {
-								payAmount = item.getString("UTF-8");
-							}
-							if (item.getFieldName().equals("accountName" + i)) {
-								accountName = item.getString("UTF-8");
-							}
-							if (item.getFieldName().equals("payItem" + i)) {
-								payItem = item.getString("UTF-8");
-							}
-							if (item.getFieldName().equals("ps" + i)) {
-								ps = item.getString("UTF-8");
-							}
-						}
-					}
-					f.setPayAmount(payAmount);
-					f.setAccountName(accountName);
-					f.setPayItem(payItem);
-					f.setPs(ps);
-					form.getFds().add(f);
-				}
-
+			} else if (submitName.equals("next")) {
 				// 表单校验
 				if (!form.commitValidate()) {
 					request.setAttribute("form", form);

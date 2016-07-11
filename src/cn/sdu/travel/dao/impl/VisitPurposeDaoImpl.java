@@ -16,7 +16,7 @@ public class VisitPurposeDaoImpl implements VisitPurposeDao {
 		String sql = "insert into visit_purpose(id,class_name,partner_name,partner_title,partner_expertise,cooperation_content,train_content,study_content,teacher_name,teacher_title,teacher_expertise,degree_type,conference_name_ch,conference_name_en,conference_desc,speech,speech_outline,paper_outline) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		Object[] param = { vp.getId(), vp.getClassName(), vp.getPartnerName(),
 				vp.getPartnerTitle(), vp.getPartnerExpertise(),
-				vp.getCooperationCotent(), vp.getTrainContent(),
+				vp.getCooperationContent(), vp.getTrainContent(),
 				vp.getStudyContent(), vp.getTeacherName(),
 				vp.getTeacherTitle(), vp.getTeacherExpertise(),
 				vp.getDegreeType(), vp.getConferenceNameCh(),
@@ -38,7 +38,7 @@ public class VisitPurposeDaoImpl implements VisitPurposeDao {
 		String sql = "update visit_purpose set class_name=?,partner_name=?,partner_title=?,partner_expertise=?,cooperation_content=?,train_content=?,study_content=?,teacher_name=?,teacher_title=?,teacher_expertise=?,degree_type=?,conference_name_ch=?,conference_name_en=?,conference_desc=?,speech=?,speech_outline=?,paper_outline=? where id=?";
 		Object[] param = { vp.getClassName(), vp.getPartnerName(),
 				vp.getPartnerTitle(), vp.getPartnerExpertise(),
-				vp.getCooperationCotent(), vp.getTrainContent(),
+				vp.getCooperationContent(), vp.getTrainContent(),
 				vp.getStudyContent(), vp.getTeacherName(),
 				vp.getTeacherTitle(), vp.getTeacherExpertise(),
 				vp.getDegreeType(), vp.getConferenceNameCh(),

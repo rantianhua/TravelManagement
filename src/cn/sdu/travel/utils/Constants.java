@@ -16,7 +16,7 @@ public class Constants {
 	 * 返回码
 	 */
 	public static final int UPLOAD_FILE_SUCCESS = 1000;
-	public static final int UPLOAD_FILE_FAILED = 1001;
+	public static final int UPLOAD_FILE_FAIL = 1001;
 	public static final int LOGIN_SUCCESS = 1100;
 	public static final int WRONG_PASSWORD = 1101;
 	public static final int NON_EXISTENT_ID = 1102;
@@ -28,6 +28,8 @@ public class Constants {
 	public static final int GET_PASSPORT_INFO_SUCCESS = 1401;
 	public static final int SAVE_APPLY_SUCCESS = 1500;
 	public static final int GET_MY_APPLY_SUCCESS = 1600;
+	public static final int GET_APPLY_DETAIL_FAIL = 1601;
+	public static final int GET_APPLY_DETAIL_SUCCESS = 1602;
 	public static final int DB_ERROR = 1999;
 
 }

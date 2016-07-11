@@ -12,7 +12,7 @@ public class Application {
 	private String category;
 	private String plan;
 	private String purpose;
-	private String purposeId;
+	private String purposeContent;
 	private String type;
 	private String canTuan;
 	private String groupUnit;
@@ -175,12 +175,12 @@ public class Application {
 		this.purpose = purpose;
 	}
 
-	public String getPurposeId() {
-		return purposeId;
+	public String getPurposeContent() {
+		return purposeContent;
 	}
 
-	public void setPurposeId(String purposeId) {
-		this.purposeId = purposeId;
+	public void setPurposeContent(String purposeContent) {
+		this.purposeContent = purposeContent;
 	}
 
 	public String getInviterInfo() {

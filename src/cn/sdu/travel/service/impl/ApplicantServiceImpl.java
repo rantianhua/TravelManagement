@@ -56,8 +56,8 @@ public class ApplicantServiceImpl implements ApplicantService {
 				} else {
 					edao.update(ecp);
 				}
-				HrDbUtils.commitTransaction();
 			}
+			HrDbUtils.commitTransaction();
 			map.put("returnCode", 1300);
 			map.put("returnInfo", "修改个人资料成功！");
 			map.put("data", hr);

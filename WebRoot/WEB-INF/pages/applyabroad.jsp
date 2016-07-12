@@ -16,13 +16,13 @@
 	onsubmit="return checkSubmit();" enctype="multipart/form-data"
 	action="${pageContext.request.contextPath }/servlet/ApplyAbroadServlet">
 	<input type="text" hidden="hidden" name="applicationNumber"
-		value="${requestScope.apply.applicationNumber }"> <input
+		value="${validate ? requestScope.apply.applicationNumber:requestScope.form.applicationNumber }"> <input
 		type="text" hidden="hidden" name="planInfo"
-		value="${requestScope.apply.plan }"> <input type="text"
+		value="${validate ? requestScope.apply.plan:requestScope.form.planInfo }"> <input type="text"
 		hidden="hidden" name="purposeInfo"
-		value="${requestScope.apply.purpose }"> <input type="text"
+		value="${validate ? requestScope.apply.purpose:requestScope.form.purposeInfo }"> <input type="text"
 		hidden="hidden" name="inviterInfo"
-		value="${requestScope.apply.inviterInfo }">
+		value="${validate ? requestScope.apply.inviterInfo:requestScope.form.inviterInfo }">
 	<!-- 用来区分下一步和临时保存 -->
 	<input id="submit_name" name="submitName" style="display:none;"
 		value="tempSave">
@@ -72,8 +72,10 @@
 					${(validate ? (none ? sessionScope.hr.category:requestScope.apply.category):requestScope.form.category)=='教学'?'selected':'' }>教学及科研人员</option>
 				<option value="行政"
 					${(validate ? (none ? sessionScope.hr.category:requestScope.apply.category):requestScope.form.category)=='行政'?'selected':'' }>行政人员</option>
-				<option value="学生"
-					${(validate ? (none ? sessionScope.hr.category:requestScope.apply.category):requestScope.form.category)=='学生'?'selected':'' }>学生</option>
+				<option value="本科"
+					${(validate ? (none ? sessionScope.hr.position:requestScope.apply.category):requestScope.form.category)=='本科'?'selected':'' }>本科</option>
+				<option value="研究生"
+					${(validate ? (none ? sessionScope.hr.position:requestScope.apply.category):requestScope.form.category)=='研究生'?'selected':'' }>研究生</option>
 			</select>
 		</div>
 	</div>
@@ -953,7 +955,7 @@
 	</div>
 	<div style="width:85%;margin-left:15%;">
 		<!-- 该处填写表单校验的错误 -->
-		<p class="text-danger small text-left">${requestScope.form.errors.inviterPay }</p>
+		<p class="text-danger small text-left">${requestScope.form.errors.loan }</p>
 	</div>
 	<br>
 

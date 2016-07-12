@@ -18,6 +18,123 @@
 		<table class="table table-bordered">
 			<thead>
 				<tr>
+					<th colspan="6" class="head">审核信息</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td class="attributes">审核状态</td>
+					<td class="answer" colspan="2">${requestScope.apply.state }</td>
+					<td class="attributes">审核时长</td>
+					<td class="answer" colspan="2">10天</td>
+				</tr>
+				<tr>
+					<td class="attributes">驳回理由</td>
+					<td class="answer" colspan="5">不清真</td>
+				</tr>
+				<tr
+					style="display: ${requestScope.apply.category=='研究生' ? '':'none'};">
+					<td class="attributes">导师审核状态</td>
+					<td class="answer"></td>
+					<td class="attributes">导师审核时间</td>
+					<td class="answer"></td>
+					<td class="attributes">导师审核时长</td>
+					<td class="answer"></td>
+				</tr>
+				<tr
+					style="display: ${requestScope.apply.category=='行政' ? 'none':''};">
+					<td class="attributes">学院领导审核状态</td>
+					<td class="answer"></td>
+					<td class="attributes">学院领导审核时间</td>
+					<td class="answer"></td>
+					<td class="attributes">学院领导审核时长</td>
+					<td class="answer"></td>
+				</tr>
+				<tr
+					style="display: ${requestScope.apply.category=='行政' ? '':'none'};">
+					<td class="attributes">本单位领导审核状态</td>
+					<td class="answer"></td>
+					<td class="attributes">本单位领导审核时间</td>
+					<td class="answer"></td>
+					<td class="attributes">本单位领导审核时长</td>
+					<td class="answer"></td>
+				</tr>
+				<tr>
+					<td class="attributes">财务部审核状态</td>
+					<td class="answer"></td>
+					<td class="attributes">财务部审核时间</td>
+					<td class="answer"></td>
+					<td class="attributes">财务部审核时长</td>
+					<td class="answer"></td>
+				</tr>
+				<tr
+					style="display: ${(requestScope.apply.category=='教学' || requestScope.apply.category=='行政') ? '':'none'};">
+					<td class="attributes">人事部审核状态</td>
+					<td class="answer"></td>
+					<td class="attributes">人事部审核时间</td>
+					<td class="answer"></td>
+					<td class="attributes">人事部审核时长</td>
+					<td class="answer"></td>
+				</tr>
+				<tr
+					style="display: ${requestScope.apply.category=='本科' ? '':'none'};">
+					<td class="attributes">本科生院审核状态</td>
+					<td class="answer"></td>
+					<td class="attributes">本科生院审核时间</td>
+					<td class="answer"></td>
+					<td class="attributes">本科生院审核时长</td>
+					<td class="answer"></td>
+				</tr>
+				<tr
+					style="display: ${requestScope.apply.category=='研究生' ? '':'none'};">
+					<td class="attributes">研究生院审核状态</td>
+					<td class="answer"></td>
+					<td class="attributes">研究生院审核时间</td>
+					<td class="answer"></td>
+					<td class="attributes">研究生院审核时长</td>
+					<td class="answer"></td>
+				</tr>
+				<tr
+					style="display: ${requestScope.apply.category=='本科' ? '':'none'};">
+					<td class="attributes">学工部审核状态</td>
+					<td class="answer"></td>
+					<td class="attributes">学工部审核时间</td>
+					<td class="answer"></td>
+					<td class="attributes">学工部审核时长</td>
+					<td class="answer"></td>
+				</tr>
+				<tr
+					style="display: ${requestScope.apply.category=='研究生' ? '':'none'};">
+					<td class="attributes">研工部审核状态</td>
+					<td class="answer"></td>
+					<td class="attributes">研工部审核时间</td>
+					<td class="answer"></td>
+					<td class="attributes">研工部审核时长</td>
+					<td class="answer"></td>
+				</tr>
+				<tr>
+					<td class="attributes">国际部审核状态</td>
+					<td class="answer"></td>
+					<td class="attributes">国际部审核时间</td>
+					<td class="answer"></td>
+					<td class="attributes">国际部审核时长</td>
+					<td class="answer"></td>
+				</tr>
+				<tr
+					style="display: ${(requestScope.apply.category=='教学' || requestScope.apply.category=='行政') ? '':'none'};">
+					<td class="attributes">分管校领导审核状态</td>
+					<td class="answer"></td>
+					<td class="attributes">分管校领导审核时间</td>
+					<td class="answer"></td>
+					<td class="attributes">分管校领导审核时长</td>
+					<td class="answer"></td>
+				</tr>
+			</tbody>
+		</table>
+		<br>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
 					<th colspan="6" class="head">基本信息</th>
 				</tr>
 			</thead>
@@ -305,26 +422,30 @@
 				<tr
 					style="display: ${requestScope.apply.inviterPay=='0' ? 'none':''}">
 					<td rowspan="4" colspan="1" class="attributes">我方负担情况</td>
-					<td class="attributes" colspan="2">负担费用</td>
+					<td class="attributes">负担费用</td>
+					<td class="attributes">经费账号</td>
 					<td class="attributes">经费类型</td>
 					<td class="attributes" colspan="2">备注</td>
 				<tr
 					style="display: ${requestScope.apply.inviterPay=='0' ? 'none':''}">
-					<td class="answer" colspan="2">${requestScope.apply.funds['1'].payAmount!='' ? requestScope.apply.funds['1'].payAmount:'无' }</td>
+					<td class="answer">${requestScope.apply.funds['1'].payAmount!='' ? requestScope.apply.funds['1'].payAmount:'无' }</td>
+					<td class="answer">${requestScope.apply.funds['1'].payAmount=='' ? '':requestScope.apply.funds['1'].accountName }</td>
 					<td class="answer">${requestScope.apply.funds['1'].payAmount=='' ? '':requestScope.apply.funds['1'].payItem }</td>
-					<td class="answer" colspan="2">${requestScope.apply.funds['1'].ps }</td>
+					<td class="answer" colspan="2">${requestScope.apply.funds['1'].payAmount=='' ? '':requestScope.apply.funds['1'].ps }</td>
 				</tr>
 				<tr
 					style="display: ${requestScope.apply.inviterPay=='0' ? 'none':''}">
-					<td class="answer" colspan="2">${requestScope.apply.funds['2'].payAmount!='' ? requestScope.apply.funds['2'].payAmount:'无' }</td>
+					<td class="answer">${requestScope.apply.funds['2'].payAmount!='' ? requestScope.apply.funds['2'].payAmount:'无' }</td>
+					<td class="answer">${requestScope.apply.funds['2'].payAmount=='' ? '':requestScope.apply.funds['2'].accountName }</td>
 					<td class="answer">${requestScope.apply.funds['2'].payAmount=='' ? '':requestScope.apply.funds['2'].payItem }</td>
-					<td class="answer" colspan="2">${requestScope.apply.funds['2'].ps }</td>
+					<td class="answer" colspan="2">${requestScope.apply.funds['2'].payAmount=='' ? '':requestScope.apply.funds['2'].ps }</td>
 				</tr>
 				<tr
 					style="display: ${requestScope.apply.inviterPay=='0' ? 'none':''}">
-					<td class="answer" colspan="2">${requestScope.apply.funds['3'].payAmount!='' ? requestScope.apply.funds['3'].payAmount:'无' }</td>
+					<td class="answer">${requestScope.apply.funds['3'].payAmount!='' ? requestScope.apply.funds['3'].payAmount:'无' }</td>
+					<td class="answer">${requestScope.apply.funds['3'].payAmount=='' ? '':requestScope.apply.funds['3'].accountName }</td>
 					<td class="answer">${requestScope.apply.funds['3'].payAmount=='' ? '':requestScope.apply.funds['3'].payItem }</td>
-					<td class="answer" colspan="2">${requestScope.apply.funds['3'].ps }</td>
+					<td class="answer" colspan="2">${requestScope.apply.funds['3'].payAmount=='' ? '':requestScope.apply.funds['3'].ps }</td>
 				</tr>
 				<tr
 					style="display: ${requestScope.apply.inviterPay=='0' ? 'none':''}">

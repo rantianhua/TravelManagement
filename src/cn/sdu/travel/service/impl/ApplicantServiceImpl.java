@@ -11,6 +11,7 @@ import cn.sdu.travel.bean.Funds;
 import cn.sdu.travel.bean.HumanResource;
 import cn.sdu.travel.bean.Inviter;
 import cn.sdu.travel.bean.Passport;
+import cn.sdu.travel.bean.Review;
 import cn.sdu.travel.bean.VisitDestination;
 import cn.sdu.travel.bean.VisitPlan;
 import cn.sdu.travel.bean.VisitPurpose;
@@ -20,6 +21,7 @@ import cn.sdu.travel.dao.FundsDao;
 import cn.sdu.travel.dao.HumanResourceDao;
 import cn.sdu.travel.dao.InviterDao;
 import cn.sdu.travel.dao.PassportDao;
+import cn.sdu.travel.dao.ReviewDao;
 import cn.sdu.travel.dao.VisitDestinationDao;
 import cn.sdu.travel.dao.VisitPlanDao;
 import cn.sdu.travel.dao.VisitPurposeDao;
@@ -29,6 +31,7 @@ import cn.sdu.travel.dao.impl.FundsDaoImpl;
 import cn.sdu.travel.dao.impl.HumanResourceDaoImpl;
 import cn.sdu.travel.dao.impl.InviterDaoImpl;
 import cn.sdu.travel.dao.impl.PassportDaoImpl;
+import cn.sdu.travel.dao.impl.ReviewDaoImpl;
 import cn.sdu.travel.dao.impl.VisitDestinationDaoImpl;
 import cn.sdu.travel.dao.impl.VisitPlanDaoImpl;
 import cn.sdu.travel.dao.impl.VisitPurposeDaoImpl;
@@ -133,6 +136,7 @@ public class ApplicantServiceImpl implements ApplicantService {
 		PassportDao pdao = new PassportDaoImpl();
 		InviterDao idao = new InviterDaoImpl();
 		FundsDao fdao = new FundsDaoImpl();
+		ReviewDao rdao = new ReviewDaoImpl();
 
 		try {
 			ManageDbUtils.startTransaction();
@@ -187,6 +191,11 @@ public class ApplicantServiceImpl implements ApplicantService {
 			}
 			for (Funds f : app.getFunds()) {
 				fdao.add(f);
+			}
+
+			Review review = rdao.find(app.getApplicationNumber());
+			if (review == null) {
+				rdao.add(app.getApplicationNumber(), app.getApplyDate());
 			}
 
 			ManageDbUtils.commitTransaction();
@@ -251,7 +260,8 @@ public class ApplicantServiceImpl implements ApplicantService {
 			} else {
 				VisitPlan plan = vplandao.find(app.getPlan());
 				if (plan != null) {
-					List<VisitDestination> destinations = vddao.findDestinations(app.getPlan());
+					List<VisitDestination> destinations = vddao
+							.findDestinations(app.getPlan());
 					plan.setDestinations(destinations);
 				}
 				app.setVplan(plan);
@@ -265,7 +275,7 @@ public class ApplicantServiceImpl implements ApplicantService {
 				app.setFunds(funds);
 			}
 			ManageDbUtils.commitTransaction();
-			
+
 			map.put("returnCode", 1602);
 			map.put("returnInfo", "获取申请信息成功！");
 			map.put("data", app);
@@ -278,6 +288,31 @@ public class ApplicantServiceImpl implements ApplicantService {
 			ManageDbUtils.closeConnection();
 		}
 
+		return map;
+	}
+
+	@Override
+	public Map<String, Object> getReviewInfo(String appNo) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		ReviewDao rdao = new ReviewDaoImpl();
+		try {
+			Review review = rdao.find(appNo);
+			if (review != null) {
+				map.put("returnCode", 1603);
+				map.put("returnInfo", "获取审核信息成功！");
+				map.put("data", review);
+			}else{
+				map.put("returnCode", 1604);
+				map.put("returnInfo", "获取审核信息失败！");
+			}
+		} catch (SQLException e) {
+			map.put("returnCode", 1999);
+			map.put("returnInfo", "数据库异常！");
+			e.printStackTrace();
+			return map;
+		} finally {
+			ManageDbUtils.closeConnection();
+		}
 		return map;
 	}
 }

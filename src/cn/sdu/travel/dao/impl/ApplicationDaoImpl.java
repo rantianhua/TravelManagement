@@ -75,6 +75,14 @@ public class ApplicationDaoImpl implements ApplicationDao {
 		return (List<Application>) runner.query(ManageDbUtils.getConnection(),
 				sql, id, new BeanListHandler(Application.class));
 	}
+	
+	@Override
+	public List<Application> getApplyByStatus(String status) throws SQLException {
+		QueryRunner runner = new QueryRunner();
+		String sql = "select * from application where status=?";
+		return (List<Application>) runner.query(ManageDbUtils.getConnection(),
+				sql, status, new BeanListHandler(Application.class));
+	}
 
 	@Override
 	public List<Application> getAll() throws SQLException {

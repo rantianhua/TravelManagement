@@ -19,6 +19,8 @@ public interface ApplicationDao {
 
 	List<Application> getMyAssigneeApply(String id) throws SQLException;
 
+	List<Application> getApplyByStatus(String status) throws SQLException;
+
 	List<Application> getAll() throws SQLException;
 	
 	//更新对公示表的引用

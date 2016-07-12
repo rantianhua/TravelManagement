@@ -445,6 +445,14 @@ public class ApplyForm {
 							isOk = false;
 							this.errors.put("loan", "您选择了其他经费类型，请填写具体类型！");
 						}
+						
+						RegisterService service = new RegisterServiceImpl();
+						Map<String, Object> map = service.checkId(this.fds.get(
+								i).getAccountName());
+						if ((int) map.get("returnCode") == Constants.UNUSED_ID) {
+							isOk = false;
+							this.errors.put("loan", "经费账号不存在！");
+						}
 					}
 				}
 			}
@@ -477,9 +485,14 @@ public class ApplyForm {
 										.get(i).getPs().trim().equals(""))) {
 							isOk = false;
 							this.errors.put("loan", "您选择了其他经费类型，请填写具体类型！");
-						} else if (this.loan == null || this.loan.equals("")) {
+						}
+
+						RegisterService service = new RegisterServiceImpl();
+						Map<String, Object> map = service.checkId(this.fds.get(
+								i).getAccountName());
+						if ((int) map.get("returnCode") == Constants.UNUSED_ID) {
 							isOk = false;
-							this.errors.put("loan", "请选择是否借贷！");
+							this.errors.put("loan", "经费账号不存在！");
 						}
 					}
 				}

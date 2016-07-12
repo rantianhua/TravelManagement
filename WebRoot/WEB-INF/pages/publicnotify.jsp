@@ -19,7 +19,7 @@
 		</thead>
 		<tbody>
 			<tr onclick="checkdetail('')">
-				<td>7月11日 软件学院 院长 张保权 出国公示</td>
+				<td>7月11日 软件学院 院长 张宝权 出国公示</td>
 			</tr>
 		</tbody>
 	</table>

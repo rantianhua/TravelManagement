@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ include file="navigation.jsp"%>
 
 <html>
@@ -15,7 +16,8 @@
 </script>
 <body>
 	<div id="container">
-		<table class="table table-bordered">
+		<table class="table table-bordered"
+			style="display: ${requestScope.apply.state=='已保存' ? 'none':''}">
 			<thead>
 				<tr>
 					<th colspan="6" class="head">审核信息</th>
@@ -25,113 +27,102 @@
 				<tr>
 					<td class="attributes">审核状态</td>
 					<td class="answer" colspan="2">${requestScope.apply.state }</td>
-					<td class="attributes">审核时长</td>
-					<td class="answer" colspan="2">10天</td>
+					<td class="attributes">是否驳回</td>
+					<td class="answer" colspan="2">${fn:contains(requestScope.apply.state,'2') ? '是':'否' }</td>
 				</tr>
 				<tr>
 					<td class="attributes">驳回理由</td>
-					<td class="answer" colspan="5">不清真</td>
+					<td class="answer" colspan="5">${requestScope.review.rejectReason }</td>
 				</tr>
 				<tr
 					style="display: ${requestScope.apply.category=='研究生' ? '':'none'};">
 					<td class="attributes">导师审核状态</td>
-					<td class="answer"></td>
+					<td class="answer">${empty requestScope.review.tutorState ? '未审核':requestScope.review.tutorState }</td>
 					<td class="attributes">导师审核时间</td>
-					<td class="answer"></td>
+					<td class="answer">${empty requestScope.review.tutorTime ? '----':requestScope.review.tutorTime }</td>
 					<td class="attributes">导师审核时长</td>
-					<td class="answer"></td>
+					<td class="answer">${empty requestScope.review.tutorLength ? '----':requestScope.review.tutorLength }</td>
 				</tr>
-				<tr
-					style="display: ${requestScope.apply.category=='行政' ? 'none':''};">
-					<td class="attributes">学院领导审核状态</td>
-					<td class="answer"></td>
-					<td class="attributes">学院领导审核时间</td>
-					<td class="answer"></td>
-					<td class="attributes">学院领导审核时长</td>
-					<td class="answer"></td>
-				</tr>
-				<tr
-					style="display: ${requestScope.apply.category=='行政' ? '':'none'};">
-					<td class="attributes">本单位领导审核状态</td>
-					<td class="answer"></td>
-					<td class="attributes">本单位领导审核时间</td>
-					<td class="answer"></td>
-					<td class="attributes">本单位领导审核时长</td>
-					<td class="answer"></td>
+				<tr>
+					<td class="attributes">学院/单位领导审核状态</td>
+					<td class="answer">${empty requestScope.review.departLeadState ? '未审核':requestScope.review.departLeadState }</td>
+					<td class="attributes">学院/单位领导审核时间</td>
+					<td class="answer">${empty requestScope.review.departLeadTime ? '----':requestScope.review.departLeadTime }</td>
+					<td class="attributes">学院/单位领导审核时长</td>
+					<td class="answer">${empty requestScope.review.departLeadLength ? '----':requestScope.review.departLeadLength }</td>
 				</tr>
 				<tr>
 					<td class="attributes">财务部审核状态</td>
-					<td class="answer"></td>
+					<td class="answer">${empty requestScope.review.financeState ? '未审核':requestScope.review.financeState }</td>
 					<td class="attributes">财务部审核时间</td>
-					<td class="answer"></td>
+					<td class="answer">${empty requestScope.review.financeTime ? '----':requestScope.review.financeTime }</td>
 					<td class="attributes">财务部审核时长</td>
-					<td class="answer"></td>
+					<td class="answer">${empty requestScope.review.financeLength ? '----':requestScope.review.financeLength }</td>
 				</tr>
 				<tr
 					style="display: ${(requestScope.apply.category=='教学' || requestScope.apply.category=='行政') ? '':'none'};">
 					<td class="attributes">人事部审核状态</td>
-					<td class="answer"></td>
+					<td class="answer">${empty requestScope.review.hrState ? '未审核':requestScope.review.hrState }</td>
 					<td class="attributes">人事部审核时间</td>
-					<td class="answer"></td>
+					<td class="answer">${empty requestScope.review.hrTime ? '----':requestScope.review.hrTime }</td>
 					<td class="attributes">人事部审核时长</td>
-					<td class="answer"></td>
+					<td class="answer">${empty requestScope.review.hrLength ? '----':requestScope.review.hrLength }</td>
 				</tr>
 				<tr
 					style="display: ${requestScope.apply.category=='本科' ? '':'none'};">
 					<td class="attributes">本科生院审核状态</td>
-					<td class="answer"></td>
+					<td class="answer">${empty requestScope.review.bksState ? '未审核':requestScope.review.bksState }</td>
 					<td class="attributes">本科生院审核时间</td>
-					<td class="answer"></td>
+					<td class="answer">${empty requestScope.review.bksTime ? '----':requestScope.review.bksTime }</td>
 					<td class="attributes">本科生院审核时长</td>
-					<td class="answer"></td>
+					<td class="answer">${empty requestScope.review.bksLength ? '----':requestScope.review.bksLength }</td>
 				</tr>
 				<tr
 					style="display: ${requestScope.apply.category=='研究生' ? '':'none'};">
 					<td class="attributes">研究生院审核状态</td>
-					<td class="answer"></td>
+					<td class="answer">${empty requestScope.review.yjsState ? '未审核':requestScope.review.yjsState }</td>
 					<td class="attributes">研究生院审核时间</td>
-					<td class="answer"></td>
+					<td class="answer">${empty requestScope.review.yjsTime ? '----':requestScope.review.yjsTime }</td>
 					<td class="attributes">研究生院审核时长</td>
-					<td class="answer"></td>
+					<td class="answer">${empty requestScope.review.yjsLength ? '----':requestScope.review.yjsLength }</td>
 				</tr>
 				<tr
 					style="display: ${requestScope.apply.category=='本科' ? '':'none'};">
 					<td class="attributes">学工部审核状态</td>
-					<td class="answer"></td>
+					<td class="answer">${empty requestScope.review.xgbState ? '未审核':requestScope.review.xgbState }</td>
 					<td class="attributes">学工部审核时间</td>
-					<td class="answer"></td>
+					<td class="answer">${empty requestScope.review.xgbTime ? '----':requestScope.review.xgbTime }</td>
 					<td class="attributes">学工部审核时长</td>
-					<td class="answer"></td>
+					<td class="answer">${empty requestScope.review.xgbLength ? '----':requestScope.review.xgbLength }</td>
 				</tr>
 				<tr
 					style="display: ${requestScope.apply.category=='研究生' ? '':'none'};">
 					<td class="attributes">研工部审核状态</td>
-					<td class="answer"></td>
+					<td class="answer">${empty requestScope.review.ygbState ? '未审核':requestScope.review.ygbState }</td>
 					<td class="attributes">研工部审核时间</td>
-					<td class="answer"></td>
+					<td class="answer">${empty requestScope.review.ygbTime ? '----':requestScope.review.ygbTime }</td>
 					<td class="attributes">研工部审核时长</td>
-					<td class="answer"></td>
+					<td class="answer">${empty requestScope.review.ygbLength ? '----':requestScope.review.ygbLength }</td>
 				</tr>
 				<tr>
 					<td class="attributes">国际部审核状态</td>
-					<td class="answer"></td>
+					<td class="answer">${empty requestScope.review.internationState ? '未审核':requestScope.review.internationState }</td>
 					<td class="attributes">国际部审核时间</td>
-					<td class="answer"></td>
+					<td class="answer">${empty requestScope.review.internationTime ? '----':requestScope.review.internationTime }</td>
 					<td class="attributes">国际部审核时长</td>
-					<td class="answer"></td>
+					<td class="answer">${empty requestScope.review.internationLength ? '----':requestScope.review.internationLength }</td>
 				</tr>
 				<tr
 					style="display: ${(requestScope.apply.category=='教学' || requestScope.apply.category=='行政') ? '':'none'};">
 					<td class="attributes">分管校领导审核状态</td>
-					<td class="answer"></td>
+					<td class="answer">${empty requestScope.review.schoolLeadState ? '未审核':requestScope.review.schoolLeadState }</td>
 					<td class="attributes">分管校领导审核时间</td>
-					<td class="answer"></td>
+					<td class="answer">${empty requestScope.review.schoolLeadTime ? '----':requestScope.review.schoolLeadTime }</td>
 					<td class="attributes">分管校领导审核时长</td>
-					<td class="answer"></td>
+					<td class="answer">${empty requestScope.review.schoolLeadLength ? '----':requestScope.review.schoolLeadLength }</td>
 				</tr>
 			</tbody>
 		</table>
-		<br>
 		<table class="table table-bordered">
 			<thead>
 				<tr>
@@ -280,7 +271,7 @@
 					<td class="answer">${requestScope.apply.type }</td>
 					<td class="attributes">出访目的</td>
 					<td class="answer" colspan="3">${requestScope.apply.purposeContent }</td>
-				<tr
+					<tr
 					style="display: ${requestScope.apply.purposeContent=='参加国际会议' ? '':'none' };">
 					<td class="attributes">${requestScope.apply.vpurpose.conferenceNameCh }</td>
 					<td class="answer">出入境管理大会</td>
@@ -288,6 +279,8 @@
 					<td class="answer">${requestScope.apply.vpurpose.conferenceNameEn }</td>
 					<td class="attributes">是否受邀发言</td>
 					<td class="attributes">${requestScope.apply.vpurpose.speech=='0' ? '是':'否' }</td>
+				
+				
 				<tr
 					style="display: ${requestScope.apply.purposeContent=='参加国际会议' ? '':'none' };">
 					<td class="attributes">会议情况简介</td>
@@ -341,7 +334,7 @@
 						<td class="attributes">抵达日期</td>
 						<td class="answer">${d.arriveDate }</td>
 						<td class="attributes">离开日期</td>
-						<td class="answer">${exitCityDate }</td>
+						<td class="answer">${d.exitCityDate }</td>
 						<td class="attributes">转机地点</td>
 						<td class="answer">${d.transAddr }</td>
 					</tr>
@@ -426,6 +419,8 @@
 					<td class="attributes">经费账号</td>
 					<td class="attributes">经费类型</td>
 					<td class="attributes" colspan="2">备注</td>
+				
+				
 				<tr
 					style="display: ${requestScope.apply.inviterPay=='0' ? 'none':''}">
 					<td class="answer">${requestScope.apply.funds['1'].payAmount!='' ? requestScope.apply.funds['1'].payAmount:'无' }</td>
@@ -472,17 +467,23 @@
 			<div id="btn1">
 				<input type="button" class="btn btn-primary" value="修改"
 					onclick="edit('${requestScope.apply.applicationNumber}')">
-			</div>
-			<div id="btn2">
-				<input type="button" class="btn btn-primary" value="返回"
-					onclick="back()">
+
+			
+
+</div>
+					<div id="btn2">
+						<input type="button" class="btn btn-primary" value="返回"
+							onclick="back()">
 			</div>
 		</div>
 		<div id="btn3"
-			style="display: ${(requestScope.apply.state=='已保存' || requestScope.apply.state=='审核未通过') ? 'none':'block' }">
+						style="display: ${(requestScope.apply.state=='已保存' || requestScope.apply.state=='审核未通过') ? 'none':'block' }">
 			<input type="button" class="btn btn-primary" value="返回"
-				onclick="back()">
+							onclick="back()">
 		</div>
 	</div>
-</body>
+
+
+				
+				</body>
 </html>

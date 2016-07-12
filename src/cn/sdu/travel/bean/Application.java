@@ -283,6 +283,77 @@ public class Application {
 		if (this.status.equals("0000000000")) {
 			return "未审批";
 		}
+		
+		if (this.status.equals("0000000001")) {
+			return "导师已审批";
+		}
+		if (this.status.equals("0000000002")) {
+			return "导师驳回";
+		}
+		
+		if (this.status.equals("0000000010")) {
+			return "学院/单位领导已审批";
+		}
+		if (this.status.equals("0000000020")) {
+			return "学院/单位领导驳回";
+		}
+		
+		if (this.status.equals("0000000100")) {
+			return "财务部已审批";
+		}
+		if (this.status.equals("0000000200")) {
+			return "财务部驳回";
+		}
+		
+		if (this.status.equals("0000001000")) {
+			return "人事部已审批";
+		}
+		if (this.status.equals("0000002000")) {
+			return "人事部驳回";
+		}
+		
+		if (this.status.equals("0000010000")) {
+			return "本科生院已审批";
+		}
+		if (this.status.equals("0000020000")) {
+			return "本科生院驳回";
+		}
+		
+		if (this.status.equals("0000100000")) {
+			return "研究生院已审批";
+		}
+		if (this.status.equals("0000200000")) {
+			return "研究生院驳回";
+		}
+		
+		if (this.status.equals("0001000000")) {
+			return "学工部已审批";
+		}
+		if (this.status.equals("0002000000")) {
+			return "学工部驳回";
+		}
+		
+		if (this.status.equals("0010000000")) {
+			return "研工部已审批";
+		}
+		if (this.status.equals("0020000000")) {
+			return "研工部驳回";
+		}
+		
+		if (this.status.equals("0100000000")) {
+			return "国际部已审批";
+		}
+		if (this.status.equals("0200000000")) {
+			return "国际部驳回";
+		}
+		
+		if (this.status.equals("1000000000")) {
+			return "分管校领导已审批";
+		}
+		if (this.status.equals("2000000000")) {
+			return "分管校领导驳回";
+		}
+		
 		if (this.status.equals("----------")) {
 			return "已保存";
 		}

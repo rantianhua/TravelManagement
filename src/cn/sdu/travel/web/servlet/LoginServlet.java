@@ -44,8 +44,17 @@ public class LoginServlet extends HttpServlet {
 		HumanResource hr = (HumanResource) result.get("data");
 		request.getSession().setAttribute("hr", hr);
 		request.setAttribute("action", "1");
-		request.getRequestDispatcher("/WEB-INF/pages/publicnotify.jsp").forward(
-				request, response);
+		if (hr.getRole().equals("r10")) {
+			// 申请者
+			request.getRequestDispatcher("/WEB-INF/pages/publicnotify.jsp")
+					.forward(request, response);
+		} else if (hr.getRole().equals("r30")) {
+			// 组织部
+		} else if (hr.getRole().equals("r40")) {
+			// 国际部
+		} else {
+			// 其他审核者
+		}
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)

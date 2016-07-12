@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import cn.sdu.travel.bean.Application;
+import cn.sdu.travel.bean.Review;
 import cn.sdu.travel.service.ApplicantService;
 import cn.sdu.travel.service.impl.ApplicantServiceImpl;
 import cn.sdu.travel.utils.Constants;
@@ -21,8 +22,11 @@ public class ShowApplicationServlet extends HttpServlet {
 		ApplicantService service = new ApplicantServiceImpl();
 		Map<String, Object> map = service.getApplyDetail(appNo);
 		if ((int) map.get("returnCode") == Constants.GET_APPLY_DETAIL_SUCCESS) {
-			request.setAttribute("apply", (Application) map.get("data"));
+			Application apply = (Application) map.get("data");
+			request.setAttribute("apply", apply);
 			request.setAttribute("action", "10");
+			map = service.getReviewInfo(appNo);
+			request.setAttribute("review", (Review) map.get("data"));
 			request.getRequestDispatcher("/WEB-INF/pages/showapplicaiton.jsp")
 					.forward(request, response);
 		} else {

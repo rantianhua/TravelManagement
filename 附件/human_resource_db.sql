@@ -51,10 +51,10 @@ CREATE TABLE `human_resource` (
   `role` varchar(10) default 'r10',
   `name_ch` varchar(20) default NULL,
   `name_en` varchar(50) default NULL,
-  `sex` char(4) default '男',
+  `sex` char(4) default NULL,
   `name_pinyin` varchar(50) default NULL,
   `other_name` varchar(50) default NULL,
-  `birthday` date default '1990-01-01',
+  `birthday` date default NULL,
   `category` char(4) default NULL,
   `position` varchar(255) default NULL,
   `company` varchar(255) default NULL,
@@ -74,6 +74,7 @@ LOCK TABLES `human_resource` WRITE;
 INSERT INTO `human_resource` VALUES ('140000199503230002','e10adc3949ba59abbe56e057f20f883e','r10','李四','Lee','女','Li Si','四娃','1995-03-23','行政','辅导员/正科级','经济学院','1234567','lisi@sina.com','13666666666','6666666','d47ed4e2-8b9d-4368-8931-ab86f23e46ae');
 INSERT INTO `human_resource` VALUES ('140000199508080001','e10adc3949ba59abbe56e057f20f883e','r10','任浩航','Dick','男','Ren Haohang','大潮吊','1995-08-08','学生','本科','软件学院','123456','rhh@qq.com','15555555555','1234567','9d391a17-4b45-43c9-b138-308dbf8fdbee');
 INSERT INTO `human_resource` VALUES ('140000199503230003','e10adc3949ba59abbe56e057f20f883e','r10','孙朋朋','','女','Sun Pengpeng','','1995-06-15','行政','辅导员/正科级','软件学院','5555555','pengpeng@gmail.com','','','08206cc1-99ad-4a34-a7b8-9817a2696180');
+INSERT INTO `human_resource` VALUES ('150000197501010001','e10adc3949ba59abbe56e057f20f883e','r20','栾俊峰',NULL,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `human_resource` ENABLE KEYS */;
 UNLOCK TABLES;
 

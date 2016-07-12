@@ -36,7 +36,7 @@ public class Application {
 	private Passport passport;
 	private Inviter inviter;
 	private List<Funds> funds;
-	private PublicNotification notification;
+	private Publicity notification;
 	private Record record;
 
 	public String getApplicationNumber() {
@@ -263,11 +263,11 @@ public class Application {
 		this.status = status;
 	}
 
-	public PublicNotification getNotification() {
+	public Publicity getNotification() {
 		return notification;
 	}
 
-	public void setNotification(PublicNotification notification) {
+	public void setNotification(Publicity notification) {
 		this.notification = notification;
 	}
 

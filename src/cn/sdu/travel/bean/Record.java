@@ -2,6 +2,8 @@ package cn.sdu.travel.bean;
 
 import java.util.List;
 
+import javax.ws.rs.GET;
+
 public class Record {
 
 	private String id;
@@ -16,6 +18,10 @@ public class Record {
 	private String positionInGroup;
 	private String placesInfo;
 	private String latestPlaces;
+	private String authorityUnit;
+	
+	//申请号
+	private String applicationNumber;
 	
 	private List<Family> familys;
 
@@ -123,6 +129,19 @@ public class Record {
 		this.familys = familys;
 	}
 	
+	public void setAuthorityUnit(String authorityUnit) {
+		this.authorityUnit = authorityUnit;
+	}
 	
+	public String getAuthorityUnit() {
+		return authorityUnit;
+	}
 	
+	public void setApplicationNumber(String applicationNumber) {
+		this.applicationNumber = applicationNumber;
+	}
+	
+	public String getApplicationNumber() {
+		return applicationNumber;
+	}
 }

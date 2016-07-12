@@ -50,16 +50,18 @@ public class FamilyDaoImpl implements FamilyDao{
 	@Override
 	public Family find(String id, String name) throws SQLException {
 		QueryRunner runner = new QueryRunner();
-		String sql = "select *  from family where id= " + id + " and name=" + name;
-		return (Family)runner.query(ManageDbUtils.getConnection(), sql, new BeanHandler(Family.class));
+		String sql = "select *  from family where id= ? and name=?";
+		Object[] param = {id,name};
+		return (Family)runner.query(ManageDbUtils.getConnection(), sql,param, new BeanHandler(Family.class));
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Family> find(String id) throws SQLException {
 		QueryRunner runner = new QueryRunner();
-		String sql = "select *  from family where id= " + id;
-		return ( List<Family>)runner.query(ManageDbUtils.getConnection(), sql, new BeanListHandler(Family.class));
+		String sql = "select *  from family where id= ?";
+		Object[] param = {id};
+		return ( List<Family>)runner.query(ManageDbUtils.getConnection(), sql, param,new BeanListHandler(Family.class));
 	}
 	
 	

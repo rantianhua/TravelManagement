@@ -45,8 +45,8 @@ public class PublicityDaoImpl implements PublicityDao {
 	@Override
 	public Publicity findPublicity(String id) throws SQLException {
 		QueryRunner runner = new QueryRunner();
-		String sql = "select * from publicity where id=" + id;
-		return (Publicity)runner.query(ManageDbUtils.getConnection(), sql, new BeanHandler(Publicity.class));
+		String sql = "select * from publicity where id=";
+		return (Publicity)runner.query(ManageDbUtils.getConnection(), sql, id,new BeanHandler(Publicity.class));
 	}
 	
 	@Override

@@ -83,5 +83,21 @@ public class ApplicationDaoImpl implements ApplicationDao {
 		return (List<Application>) runner.query(ManageDbUtils.getConnection(),
 				sql, new BeanListHandler(Application.class));
 	}
+	
+	@Override
+	public void updatePublicity(String applicationId,String publicityId) throws SQLException {
+		QueryRunner runner = new QueryRunner();
+		String sql = "update application set public_notification_id= ? where application_number=?" ;
+		Object[] param = {publicityId,applicationId};
+		runner.update(ManageDbUtils.getConnection(), sql,param);
+	}
+	
+	@Override
+	public void updateVisitRecord(String applicationId,String recordId) throws SQLException {
+		QueryRunner runner = new QueryRunner();
+		String sql = "update application set record_id=? where application_number=?";
+		Object[] param = {recordId,applicationId};
+		runner.update(ManageDbUtils.getConnection(), sql,param);
+	}
 
 }

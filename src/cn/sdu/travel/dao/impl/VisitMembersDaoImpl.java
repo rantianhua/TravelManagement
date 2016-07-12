@@ -48,16 +48,17 @@ public class VisitMembersDaoImpl implements VisitMembersDao{
 	@Override
 	public VisitMembers find(String id, String name) throws SQLException {
 		QueryRunner runner = new QueryRunner();
-		String sql = "select * from visit_members where id=" + id + " and name=" + name;
-		return (VisitMembers)runner.query(ManageDbUtils.getConnection(), sql, new BeanHandler(VisitMembers.class));
+		String sql = "select * from visit_members where id=? and name=?";
+		Object[] param = {id,name};
+		return (VisitMembers)runner.query(ManageDbUtils.getConnection(), sql,param, new BeanHandler(VisitMembers.class));
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<VisitMembers> find(String id) throws SQLException {
 		QueryRunner runner = new QueryRunner();
-		String sql = "select * from visit_members where id=" + id ;
-		return (List<VisitMembers>)runner.query(ManageDbUtils.getConnection(), sql, new BeanListHandler(VisitMembers.class));
+		String sql = "select * from visit_members where id=" ;
+		return (List<VisitMembers>)runner.query(ManageDbUtils.getConnection(), sql,id,new BeanListHandler(VisitMembers.class));
 	}
 
 	

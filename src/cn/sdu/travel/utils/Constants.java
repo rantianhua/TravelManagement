@@ -30,6 +30,8 @@ public class Constants {
 	public static final int GET_MY_APPLY_SUCCESS = 1600;
 	public static final int GET_APPLY_DETAIL_FAIL = 1601;
 	public static final int GET_APPLY_DETAIL_SUCCESS = 1602;
+	public static final int SAVE_PUBLICITY_SUCCESS = 1700;
+	public static final int SAVE_RECORD_SUCCESS = 1800;
 	public static final int DB_ERROR = 1999;
 
 }

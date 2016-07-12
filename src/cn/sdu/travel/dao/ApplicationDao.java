@@ -20,5 +20,11 @@ public interface ApplicationDao {
 	List<Application> getMyAssigneeApply(String id) throws SQLException;
 
 	List<Application> getAll() throws SQLException;
+	
+	//更新对公示表的引用
+	void updatePublicity(String applicationId,String publicityId) throws SQLException;
+	
+	//更新对出访备案表的引用
+	void updateVisitRecord(String applicationId,String recordId) throws SQLException;
 
 }

@@ -15,11 +15,11 @@ public class RecordDaoImpl implements RecordDao {
 	public void add(Record record) throws SQLException {
 		QueryRunner runner = new QueryRunner();
 		String sql = "insert into visit_record(id,name,sex,birthday,political_status,health,"
-				+ "secret_info,family_members,group_unit,position_in_group,places_info,latest_places) "
-				+ "values(?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ "secret_info,family_members,group_unit,position_in_group,places_info,latest_places,authority_unit) "
+				+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		Object[] param = {record.getId(),record.getName(),record.getSex(),record.getBirthday(),record.getPoliticalStatus(),
 				record.getHealth(),record.getSecretInfo(),record.getFamilyMembers(),record.getGroupUnit(),record.getPositionInGroup(),
-				record.getPlacesInfo(),record.getLatestPlaces()};
+				record.getPlacesInfo(),record.getLatestPlaces(),record.getAuthorityUnit()};
 		runner.update(ManageDbUtils.getConnection(),sql,param);
 	}
 
@@ -27,25 +27,27 @@ public class RecordDaoImpl implements RecordDao {
 	public void update(Record record) throws SQLException {
 		QueryRunner runner = new QueryRunner();
 		String sql = "update  visit_record set name=?,sex=?,birthday=?,political_status=?,health=?,"
-				+ "secret_info=?,family_members=?,group_unit=?,position_in_group=?,places_info=?,latest_places=? where id=" + record.getId();
+				+ "secret_info=?,family_members=?,group_unit=?,position_in_group=?,places_info=?,latest_places=?,authority_unit=? where id=?";
 		Object[] param = {record.getName(),record.getSex(),record.getBirthday(),record.getPoliticalStatus(),
 				record.getHealth(),record.getSecretInfo(),record.getFamilyMembers(),record.getGroupUnit(),record.getPositionInGroup(),
-				record.getPlacesInfo(),record.getLatestPlaces()};
+				record.getPlacesInfo(),record.getLatestPlaces(),record.getAuthorityUnit(),record.getId()};
 		runner.update(ManageDbUtils.getConnection(),sql,param);
 	}
 
 	@Override
 	public void delete(String id) throws SQLException {
 		QueryRunner runner = new QueryRunner();
-		String sql = "delete from visit_record where id=" + id;
-		runner.update(ManageDbUtils.getConnection(),sql);
+		String sql = "delete from visit_record where id=?";
+		Object[] param = {id};
+		runner.update(ManageDbUtils.getConnection(),sql,param);
 	}
 
 	@Override
 	public Record find(String id) throws SQLException {
 		QueryRunner runner = new QueryRunner();
-		String sql = "select * from visit_record where id=" + id;
-		return (Record)runner.query(ManageDbUtils.getConnection(), sql,new BeanHandler(Record.class));
+		String sql = "select * from visit_record where id=?";
+		Object[] param = {id};
+		return (Record)runner.query(ManageDbUtils.getConnection(), sql,param,new BeanHandler(Record.class));
 	}
 
 }

@@ -1,4 +1,7 @@
 package cn.sdu.travel.bean;
+
+import java.util.List;
+
 //公示信息表
 public class Publicity {
 	
@@ -13,6 +16,11 @@ public class Publicity {
 	private String visitPersons;
 	private String budget;
 	private String inviterDesc;
+	//申请表的申请号
+	private String applicationNumber;
+	
+	private List<VisitMembers> visitMembers;
+	
 	public String getId() {
 		return id;
 	}
@@ -80,5 +88,20 @@ public class Publicity {
 		this.inviterDesc = inviterDesc;
 	}
 
+	public void setVisitMembers(List<VisitMembers> visitMembers) {
+		this.visitMembers = visitMembers;
+	}
+	
+	public List<VisitMembers> getVisitMembers() {
+		return visitMembers;
+	}
+	
+	public void setApplicationNumber(String applicationNumber) {
+		this.applicationNumber = applicationNumber;
+	}
+	
+	public String getApplicationNumber() {
+		return applicationNumber;
+	}
 	
 }

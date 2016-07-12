@@ -15,7 +15,7 @@
 </script>
 <body>
 	<div id="container">
-		<table class="table table-bordered">
+		<table class="table table-bordered"  style=" table-layout:fixed">
 			<thead>
 				<tr>
 					<th colspan="6" class="head">审核信息</th>
@@ -341,7 +341,7 @@
 						<td class="attributes">抵达日期</td>
 						<td class="answer">${d.arriveDate }</td>
 						<td class="attributes">离开日期</td>
-						<td class="answer">${exitCityDate }</td>
+						<td class="answer">${d.exitCityDate }</td>
 						<td class="attributes">转机地点</td>
 						<td class="answer">${d.transAddr }</td>
 					</tr>

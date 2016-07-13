@@ -14,7 +14,7 @@
 		<div class="form-group">
 			<label class="col-sm-3 control-label">出境时间</label>
 			<div class="col-sm-6">
-				<input type="text" class="form-control choose_date"
+				<input name="" type="text" class="form-control choose_date"
 					data-date-format="yyyy-mm-dd">
 			</div>
 		</div>

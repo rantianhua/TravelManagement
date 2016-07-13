@@ -1,0 +1,43 @@
+@CHARSET "UTF-8";
+
+#container {
+	width: 60%;
+	margin-top: 90px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#btn {
+	text-align: center;
+	width: 18%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
+	height: 60px;
+}
+#body1{
+	text-align:center;
+}
+#body2{
+	text-align:left;
+}
+.head {
+	text-align: center;
+	font-size: 20px;
+}
+
+.attributes {
+	text-align: center;
+	background-color: #F9FCF8;
+	font-size: 18px;
+	table-layout: fixed;
+	WORD-BREAK: break-all;
+	WORD-WRAP: break-word;
+	vertical-align: middle;
+}
+.answer {
+	font-size: 18px;
+	table-layout: fixed;
+	WORD-BREAK: break-all;
+	WORD-WRAP: break-word;
+}

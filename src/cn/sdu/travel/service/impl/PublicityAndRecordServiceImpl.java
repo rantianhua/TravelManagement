@@ -87,6 +87,9 @@ public class PublicityAndRecordServiceImpl implements PublicityAndRecordService 
 		return map;
 	}
 	
-	
+	@Override
+	public Map<String, Object> findAllPublicity() {
+		return null;
+	}
 
 }

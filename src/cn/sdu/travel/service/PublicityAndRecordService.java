@@ -11,4 +11,6 @@ public interface PublicityAndRecordService {
 	
 	Map<String,Object> saveRecord(Record record);
 	
+	Map<String,Object> findAllPublicity();
+	
 }

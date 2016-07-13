@@ -15,11 +15,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.beanutils.BeanUtils;
 
+import cn.sdu.travel.bean.Application;
 import cn.sdu.travel.bean.Family;
+import cn.sdu.travel.bean.HumanResource;
 import cn.sdu.travel.bean.Publicity;
 import cn.sdu.travel.bean.Record;
 import cn.sdu.travel.bean.VisitMembers;
+import cn.sdu.travel.service.ApplicantService;
 import cn.sdu.travel.service.PublicityAndRecordService;
+import cn.sdu.travel.service.impl.ApplicantServiceImpl;
 import cn.sdu.travel.service.impl.PublicityAndRecordServiceImpl;
 import cn.sdu.travel.utils.Constants;
 import cn.sdu.travel.utils.WebUtils;
@@ -167,16 +171,28 @@ public class ApplyKeepRecordServlet extends HttpServlet {
 	private void saveSuccess(HttpServletRequest request,
 			HttpServletResponse response) {
 		request.setAttribute("action", "5");
-		String path = "/WEB-INF/pages/checkstatus.jsp";
-		try {
-			request.getRequestDispatcher(path).forward(request,
-					response);
-		} catch (ServletException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		ApplicantService service = new ApplicantServiceImpl();
+		HumanResource hr = (HumanResource) request.getSession().getAttribute(
+				"hr");
+		Map<String, Object> map = service.getMyApply(hr.getId());
+		if ((int) map.get("returnCode") != Constants.GET_MY_APPLY_SUCCESS) {
+			errorOccur(request,response,(String)map.get("returnInfo"),null);
+		} else {
+			List<Application> ownApply = (List<Application>) map.get("data1");
+			List<Application> assigneeApply = (List<Application>) map
+					.get("data2");
+			request.setAttribute("ownApply", ownApply);
+			request.setAttribute("assigneeApply", assigneeApply);
+			try {
+				request.getRequestDispatcher("/WEB-INF/pages/checkstatus.jsp").forward(request,
+						response);
+			} catch (ServletException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 

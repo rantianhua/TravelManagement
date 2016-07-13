@@ -36,49 +36,12 @@ public class NavigationServlet extends HttpServlet {
 		String rep = request.getParameter("action");
 		String path = null;
 
-		// 加载护照信息
-		if (rep.equals("3") || rep.equals("4") || rep.equals("8")
-				|| rep.equals("9")) {
-			ApplicantService service = new ApplicantServiceImpl();
-			HumanResource hr = (HumanResource) request.getSession()
-					.getAttribute("hr");
-			Map<String, Object> map = service.getPassportInfo(hr.getId());
-			if ((int) map.get("returnCode") != Constants.GET_PASSPORT_INFO_SUCCESS) {
-				request.setAttribute("returnInfo", map.get("returnInfo"));
-				path = "/web/exception.jsp";
-				request.getRequestDispatcher(path).forward(request, response);
-				return;
-			} else {
-				Passport p = (Passport) map.get("data");
-				request.setAttribute("passport", (Passport) map.get("data"));
-			}
-		}
-
-		// 加载我的申请
-		if (rep.equals("5")) {
-			ApplicantService service = new ApplicantServiceImpl();
-			HumanResource hr = (HumanResource) request.getSession()
-					.getAttribute("hr");
-			Map<String, Object> map = service.getMyApply(hr.getId());
-			if ((int) map.get("returnCode") != Constants.GET_MY_APPLY_SUCCESS) {
-				request.setAttribute("returnInfo", map.get("returnInfo"));
-				path = "/web/exception.jsp";
-				request.getRequestDispatcher(path).forward(request, response);
-				return;
-			} else {
-				List<Application> ownApply = (List<Application>) map
-						.get("data1");
-				List<Application> assigneeApply = (List<Application>) map
-						.get("data2");
-				request.setAttribute("ownApply", ownApply);
-				request.setAttribute("assigneeApply", assigneeApply);
-			}
-		}
-
 		switch (rep) {
 		case "1":
 			// 显示公示信息
-			path = "/WEB-INF/pages/publicnotify.jsp";
+			if(loadPublicityInfo(request,response) == null) {
+				path = "/WEB-INF/pages/publicnotify.jsp";
+			}
 			break;
 		case "2":
 			// 显示个人信息详情
@@ -86,15 +49,21 @@ public class NavigationServlet extends HttpServlet {
 			break;
 		case "3":
 			// 护照管理
-			path = "/WEB-INF/pages/passport.jsp";
+			if (loadPassportInfo(request, response) == null) {
+				path = "/WEB-INF/pages/passport.jsp";
+			}
 			break;
 		case "4":
 			// 流程说明
-			path = "/WEB-INF/pages/brief.jsp";
+			if (loadPassportInfo(request, response) == null) {
+				path = "/WEB-INF/pages/brief.jsp";
+			}
 			break;
 		case "5":
 			// 状态查询
-			path = "/WEB-INF/pages/checkstatus.jsp";
+			if (loadMyApplyInfo(request, response) == null) {
+				path = "/WEB-INF/pages/checkstatus.jsp";
+			}
 			break;
 		case "6":
 			// 回国核销
@@ -106,16 +75,80 @@ public class NavigationServlet extends HttpServlet {
 			break;
 		case "8":
 			// 修改证照信息
-			path = "/WEB-INF/pages/editpassport.jsp";
+			if (loadPassportInfo(request, response) == null) {
+				path = "/WEB-INF/pages/editpassport.jsp";
+			}
 			break;
 		case "9":
 			// 申请出国
-			path = "/WEB-INF/pages/applyabroad.jsp";
+			if (loadPassportInfo(request, response) == null) {
+				path = "/WEB-INF/pages/applyabroad.jsp";
+			}
 			break;
 		default:
 			break;
 		}
 		request.getRequestDispatcher(path).forward(request, response);
+	}
+
+	/**
+	 * 加载公示信息
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	private Object loadPublicityInfo(HttpServletRequest request,
+			HttpServletResponse response) {
+		
+		return null;
+	}
+
+	/**
+	 * 加载我的申请
+	 * @param request
+	 * @param response
+	 * @return　如果加载正常，返回null，失败返回错误处理页面的path
+	 */
+	private String loadMyApplyInfo(HttpServletRequest request,
+			HttpServletResponse response) {
+		ApplicantService service = new ApplicantServiceImpl();
+		HumanResource hr = (HumanResource) request.getSession().getAttribute(
+				"hr");
+		Map<String, Object> map = service.getMyApply(hr.getId());
+		if ((int) map.get("returnCode") != Constants.GET_MY_APPLY_SUCCESS) {
+			request.setAttribute("returnInfo", map.get("returnInfo"));
+			return  "/web/exception.jsp";
+		} else {
+			List<Application> ownApply = (List<Application>) map.get("data1");
+			List<Application> assigneeApply = (List<Application>) map
+					.get("data2");
+			request.setAttribute("ownApply", ownApply);
+			request.setAttribute("assigneeApply", assigneeApply);
+			return null;
+		}
+	}
+
+	/**
+	 * 加载护照信息
+	 * 
+	 * @param request
+	 * @param response
+	 * @return　如果加载正常，返回null，失败返回错误处理页面的path
+	 */
+	private String loadPassportInfo(HttpServletRequest request,
+			HttpServletResponse response) {
+		ApplicantService service = new ApplicantServiceImpl();
+		HumanResource hr = (HumanResource) request.getSession().getAttribute(
+				"hr");
+		Map<String, Object> map = service.getPassportInfo(hr.getId());
+		if ((int) map.get("returnCode") != Constants.GET_PASSPORT_INFO_SUCCESS) {
+			request.setAttribute("returnInfo", map.get("returnInfo"));
+			return "/web/exception.jsp";
+		} else {
+			Passport p = (Passport) map.get("data");
+			request.setAttribute("passport", (Passport) map.get("data"));
+			return null;
+		}
 	}
 
 }

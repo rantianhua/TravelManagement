@@ -20,11 +20,20 @@ public class ReviewDaoImpl implements ReviewDao {
 
 	@Override
 	public void review(String arg1, String arg2, String arg3, String state,
-			String time, String length, String apNo) throws SQLException {
+			String time, String length, String appNo) throws SQLException {
 		QueryRunner runner = new QueryRunner();
 		String sql = "update review set " + arg1 + "=?," + arg2 + "=?," + arg3
 				+ "=? where application_id=?";
-		Object[] param = { state, time, length };
+		Object[] param = { state, time, length, appNo };
+		runner.update(ManageDbUtils.getConnection(), sql, param);
+	}
+
+	@Override
+	public void updateRejectReason(String appNo, String rejectReason)
+			throws SQLException {
+		QueryRunner runner = new QueryRunner();
+		String sql = "update review set reject_reason=? where application_id=?";
+		Object[] param = { rejectReason, appNo };
 		runner.update(ManageDbUtils.getConnection(), sql, param);
 	}
 
@@ -34,5 +43,12 @@ public class ReviewDaoImpl implements ReviewDao {
 		String sql = "select * from review where application_id=?";
 		return (Review) runner.query(ManageDbUtils.getConnection(), sql, appNo,
 				new BeanHandler(Review.class));
+	}
+
+	@Override
+	public void delete(String appNo) throws SQLException {
+		QueryRunner runner = new QueryRunner();
+		String sql = "delete from review where application_id=?";
+		runner.update(ManageDbUtils.getConnection(), sql, appNo);
 	}
 }

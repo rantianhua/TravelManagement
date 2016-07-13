@@ -196,6 +196,9 @@ public class ApplicantServiceImpl implements ApplicantService {
 			Review review = rdao.find(app.getApplicationNumber());
 			if (review == null) {
 				rdao.add(app.getApplicationNumber(), app.getApplyDate());
+			}else{
+				rdao.delete(app.getApplicationNumber());
+				rdao.add(app.getApplicationNumber(), app.getApplyDate());
 			}
 
 			ManageDbUtils.commitTransaction();

@@ -75,13 +75,42 @@ public class ApplicationDaoImpl implements ApplicationDao {
 		return (List<Application>) runner.query(ManageDbUtils.getConnection(),
 				sql, id, new BeanListHandler(Application.class));
 	}
-	
+
 	@Override
-	public List<Application> getApplyByStatus(String status) throws SQLException {
+	public List<Application> getApplyByStatus(String status)
+			throws SQLException {
 		QueryRunner runner = new QueryRunner();
 		String sql = "select * from application where status=?";
 		return (List<Application>) runner.query(ManageDbUtils.getConnection(),
 				sql, status, new BeanListHandler(Application.class));
+	}
+
+	@Override
+	public void setApplyStatus(String appNo, String status) throws SQLException {
+		QueryRunner runner = new QueryRunner();
+		String sql = "update application set status=? where application_number=?";
+		Object[] param = { status, appNo };
+		runner.update(ManageDbUtils.getConnection(), sql, param);
+	}
+
+	@Override
+	public List<Application> getApplyByStatus(String category, String status)
+			throws SQLException {
+		QueryRunner runner = new QueryRunner();
+		String sql = "select * from application where category=? and status=?";
+		Object[] param = { category, status };
+		return (List<Application>) runner.query(ManageDbUtils.getConnection(),
+				sql, param, new BeanListHandler(Application.class));
+	}
+
+	@Override
+	public List<Application> getApplyByStatusNoPublicity(String category,
+			String status) throws SQLException {
+		QueryRunner runner = new QueryRunner();
+		String sql = "select * from application where category=? and status=? and public_notification_id is null";
+		Object[] param = { category, status };
+		return (List<Application>) runner.query(ManageDbUtils.getConnection(),
+				sql, param, new BeanListHandler(Application.class));
 	}
 
 	@Override
@@ -91,21 +120,23 @@ public class ApplicationDaoImpl implements ApplicationDao {
 		return (List<Application>) runner.query(ManageDbUtils.getConnection(),
 				sql, new BeanListHandler(Application.class));
 	}
-	
+
 	@Override
-	public void updatePublicity(String applicationId,String publicityId) throws SQLException {
+	public void updatePublicity(String applicationId, String publicityId)
+			throws SQLException {
 		QueryRunner runner = new QueryRunner();
-		String sql = "update application set public_notification_id= ? where application_number=?" ;
-		Object[] param = {publicityId,applicationId};
-		runner.update(ManageDbUtils.getConnection(), sql,param);
+		String sql = "update application set public_notification_id= ? where application_number=?";
+		Object[] param = { publicityId, applicationId };
+		runner.update(ManageDbUtils.getConnection(), sql, param);
 	}
-	
+
 	@Override
-	public void updateVisitRecord(String applicationId,String recordId) throws SQLException {
+	public void updateVisitRecord(String applicationId, String recordId)
+			throws SQLException {
 		QueryRunner runner = new QueryRunner();
 		String sql = "update application set record_id=? where application_number=?";
-		Object[] param = {recordId,applicationId};
-		runner.update(ManageDbUtils.getConnection(), sql,param);
+		Object[] param = { recordId, applicationId };
+		runner.update(ManageDbUtils.getConnection(), sql, param);
 	}
 
 }

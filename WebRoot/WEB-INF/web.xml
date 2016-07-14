@@ -97,8 +97,44 @@
         <servlet-name>PublicityAndRecordServlet</servlet-name>
         <servlet-class>cn.sdu.travel.web.servlet.ApplyKeepRecordServlet</servlet-class>
     </servlet>
+  <servlet>
+    <servlet-name>CheckApplicationServlet</servlet-name>
+    <servlet-class>cn.sdu.travel.web.servlet.CheckApplicationServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>RejectApplicationServlet</servlet-name>
+    <servlet-class>cn.sdu.travel.web.servlet.RejectApplicationServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AcceptApplicationServlet</servlet-name>
+    <servlet-class>cn.sdu.travel.web.servlet.AcceptApplicationServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>NavigationServlet3</servlet-name>
+    <servlet-class>cn.sdu.travel.web.servlet.NavigationServlet3</servlet-class>
+  </servlet>
+
+
+
+
     <servlet-mapping>
         <servlet-name>PublicityAndRecordServlet</servlet-name>
         <url-pattern>/servlet/PublicityAndRecord</url-pattern>
     </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CheckApplicationServlet</servlet-name>
+    <url-pattern>/servlet/CheckApplicationServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>RejectApplicationServlet</servlet-name>
+    <url-pattern>/servlet/RejectApplicationServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AcceptApplicationServlet</servlet-name>
+    <url-pattern>/servlet/AcceptApplicationServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>NavigationServlet3</servlet-name>
+    <url-pattern>/servlet/NavigationServlet3</url-pattern>
+  </servlet-mapping>
 </web-app>

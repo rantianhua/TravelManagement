@@ -1,6 +1,7 @@
 package cn.sdu.travel.utils;
 
 import java.io.File;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.UUID;
@@ -66,5 +67,25 @@ public class WebUtils {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	// 计算两个Date的日期差
+	public static int daysBetween(Date now, Date returnDate) {
+		Calendar cNow = Calendar.getInstance();
+		Calendar cReturnDate = Calendar.getInstance();
+		cNow.setTime(now);
+		cReturnDate.setTime(returnDate);
+		setTimeToMidnight(cNow);
+		setTimeToMidnight(cReturnDate);
+		long todayMs = cNow.getTimeInMillis();
+		long returnMs = cReturnDate.getTimeInMillis();
+		long intervalMs = todayMs - returnMs;
+		return (int) (intervalMs / (1000 * 86400));
+	}
+
+	private static void setTimeToMidnight(Calendar calendar) {
+		calendar.set(Calendar.HOUR_OF_DAY, 0);
+		calendar.set(Calendar.MINUTE, 0);
+		calendar.set(Calendar.SECOND, 0);
 	}
 }

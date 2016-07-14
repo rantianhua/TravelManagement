@@ -43,4 +43,9 @@ public class Constants {
 	
 	//是否开启调试
 	public static final boolean LOG = true;
+
+	public static final int GET_CHECK_APPLY_SUCCESS = 2000;
+	public static final int REJECT_APPLY_SUCCESS = 2100;
+	public static final int ACCEPT_APPLY_SUCCESS = 2200;
+	
 }

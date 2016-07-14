@@ -88,8 +88,30 @@ public class PublicityAndRecordServiceImpl implements PublicityAndRecordService 
 	}
 	
 	@Override
-	public Map<String, Object> findAllPublicity() {
-		return null;
+	public Map<String, Object> findPublicity(String id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		VisitMembersDao memberDao = new VisitMembersDaoImpl();
+		PublicityDao publicityDao = new PublicityDaoImpl();
+		try{
+			ManageDbUtils.startTransaction();
+			//先获取publicity表的信息
+			Publicity publicity = publicityDao.findPublicity(id);
+			if(publicity.getMembersId() != null) {
+				publicity.setVisitMembers(publicityDao.findMembers(publicity.getMembersId()));
+			}
+			ManageDbUtils.commitTransaction();
+			map.put("returnCode", Constants.GET_PUBLICITY_SUCCESS);
+			map.put("returnInfo", "获取公示信息表信息成功");
+			map.put("data", publicity);
+		}catch(Exception e) {
+			e.printStackTrace();
+			map.put("returnCode", Constants.DB_ERROR);
+			map.put("returnInfo", "获取公示信息表信息失败");
+			map.put("data", e.getMessage());
+		}finally {
+			ManageDbUtils.closeConnection();
+		}
+		return map;
 	}
 
 }

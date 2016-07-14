@@ -9,6 +9,8 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import cn.sdu.travel.bean.Application;
 import cn.sdu.travel.dao.ApplicationDao;
+import cn.sdu.travel.dao.PublicityDao;
+import cn.sdu.travel.utils.Constants;
 import cn.sdu.travel.utils.ManageDbUtils;
 
 public class ApplicationDaoImpl implements ApplicationDao {
@@ -95,6 +97,19 @@ public class ApplicationDaoImpl implements ApplicationDao {
 	@Override
 	public void updatePublicity(String applicationId,String publicityId) throws SQLException {
 		QueryRunner runner = new QueryRunner();
+		//在更新前删除之前的数据
+		try{
+			Application application = find(applicationId);
+			if(application != null && application.getPublicNotificationId() != null && application.getPublicNotificationId().length() > 0) {
+				//先清除之前的数据
+				PublicityDao publicityDao = new PublicityDaoImpl();
+				publicityDao.delete(application.getPublicNotificationId());
+			}
+		}catch(Exception e) {
+			if(Constants.LOG) {
+				e.printStackTrace();
+			}
+		}
 		String sql = "update application set public_notification_id= ? where application_number=?" ;
 		Object[] param = {publicityId,applicationId};
 		runner.update(ManageDbUtils.getConnection(), sql,param);

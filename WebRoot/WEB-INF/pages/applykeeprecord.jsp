@@ -5,7 +5,7 @@
 	action="${pageContext.request.contextPath }/servlet/PublicityAndRecord">
 	<br> <br> <br> <br> <br>
 	<input type="text" value="${requestScope.notify }" name="notify" style="display: none;">
-	<input type="text" value="${requestScope.apply.applicationNumber}" name="applicationNumber" style="display: none;">
+	<input type="text" value="${empty requestScope.apply.applicationNumber ? requestScope.applicationNumber : requestScope.apply.applicationNumber}" name="applicationNumber" style="display: none;">
 	<div
 		style="width: 70%;margin-left:auto;margin-right:auto;display: ${requestScope.notify eq '1' ? 'block' : 'none'}">
 		<div class="panel panel-default">

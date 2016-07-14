@@ -310,6 +310,24 @@ ADD CONSTRAINT `FUNDS_FK_APPLICATION` FOREIGN KEY (`id`) REFERENCES `application
 ALTER TABLE `visit_destination`
 ADD CONSTRAINT `DESTINATION` FOREIGN KEY (`plan_id`) REFERENCES `visit_plan` (`plan_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
+# 创建公式表中的团组成员信息
+create table `visit_members` (`id` char(36) not null,`name` varchar(255),`unit` varchar(255),`title` varchar(255), primary key (`id`,`name`)) engine=InnoDB default charset=utf8;
+
+# 创建公示表
+create table `publicity` (`id` char(36) not null,`members_id` char(36),`visit_places` varchar(255),`transfer_places` varchar(255),`exit_date` date,`enter_date` date,`detailed_schedule` varchar(900),`task_summary` varchar(600),`visit_persons` varchar(600),`budget` varchar(255),`inviter_desc` varchar(600), primary key (`id`), foreign key(`members_id`) references `visit_members`(`id`)) engine=InnoDB default charset=utf8;
+
+# 为application表添加关于公示表的外键
+alter table `application` add constraint FK_PUBLICITY foreign key(`public_notification_id`) references `publicity`(`id`);
+
+# 创建备案表中的家庭成员表
+create table `family` (`id` char(36) not null,`appellation` varchar(255),`name` varchar(255),`age` int(3),`political_status` char(24),`other_info` varchar(255),primary key (`id`,`name`)) engine=InnoDB default charset=utf8;
+
+# 创建出访备案表
+create table `visit_record` (`id` char(36) not null,`name` varchar(255),`sex` char(3),`birthday` date,`political_status` char(24),`health` varchar(255),`secret_info` varchar(255),`family_members` char(36),`group_unit` varchar(255),`position_in_group` varchar(255),`places_info` varchar(600),`latest_places` varchar(600),`authority_unit` varchar(255),primary key (`id`),foreign key (`family_members`) references `family`(`id`)) engine=InnoDB default charset=utf8;
+
+# 为application表添加关于出访备案表的外键
+alter table `application` add constraint FK_RECORD foreign key (`record_id`) references `visit_record`(`id`);
+
 
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;

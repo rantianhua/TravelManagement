@@ -1,5 +1,6 @@
 package cn.sdu.travel.web.servlet;
 
+import java.awt.Desktop.Action;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -13,8 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 import cn.sdu.travel.bean.Application;
 import cn.sdu.travel.bean.HumanResource;
 import cn.sdu.travel.bean.Passport;
+import cn.sdu.travel.bean.SimplePublicity;
 import cn.sdu.travel.service.ApplicantService;
+import cn.sdu.travel.service.SimplePublicityService;
 import cn.sdu.travel.service.impl.ApplicantServiceImpl;
+import cn.sdu.travel.service.impl.SimplePublicityServiceImpl;
 import cn.sdu.travel.utils.Constants;
 
 @WebServlet("/NavigationServlet")
@@ -34,12 +38,16 @@ public class NavigationServlet extends HttpServlet {
 	private void parseRightPage(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		String rep = request.getParameter("action");
+		if(rep == null) {
+			rep = (String) request.getAttribute("action");
+		}
+		if(rep == null) rep= "1";
 		String path = null;
-
+		
 		switch (rep) {
 		case "1":
 			// 显示公示信息
-			if(loadPublicityInfo(request,response) == null) {
+			if (loadPublicityInfo(request) == null) {
 				path = "/WEB-INF/pages/publicnotify.jsp";
 			}
 			break;
@@ -92,19 +100,30 @@ public class NavigationServlet extends HttpServlet {
 	}
 
 	/**
-	 * 加载公示信息
+	 * 加载公示列表信息
+	 * 
 	 * @param request
 	 * @param response
 	 * @return
 	 */
-	private Object loadPublicityInfo(HttpServletRequest request,
-			HttpServletResponse response) {
-		
+	private String loadPublicityInfo(HttpServletRequest request) {
+		SimplePublicityService simplePublicityService = new SimplePublicityServiceImpl();
+		Map<String, Object> map = simplePublicityService.getAllSimpleInfo();
+		if ((int) map.get(Constants.RETURN_CODE) == Constants.GET_SIMPLE_PUBLICITY_SUCCESS) {
+			List<SimplePublicity> datas = (List<SimplePublicity>) map
+					.get(Constants.RETURN_DATA);
+			request.setAttribute("list", datas);
+		} else {
+			System.out.println("加载列表信息失败" + map.get(Constants.RETURN_DATA));
+			// request.setAttribute("returnInfo", map.get("returnInfo"));
+			// return "/web/exception.jsp";
+		}
 		return null;
 	}
 
 	/**
 	 * 加载我的申请
+	 * 
 	 * @param request
 	 * @param response
 	 * @return　如果加载正常，返回null，失败返回错误处理页面的path
@@ -117,7 +136,7 @@ public class NavigationServlet extends HttpServlet {
 		Map<String, Object> map = service.getMyApply(hr.getId());
 		if ((int) map.get("returnCode") != Constants.GET_MY_APPLY_SUCCESS) {
 			request.setAttribute("returnInfo", map.get("returnInfo"));
-			return  "/web/exception.jsp";
+			return "/web/exception.jsp";
 		} else {
 			List<Application> ownApply = (List<Application>) map.get("data1");
 			List<Application> assigneeApply = (List<Application>) map

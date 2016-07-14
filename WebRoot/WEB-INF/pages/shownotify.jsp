@@ -23,46 +23,46 @@
 				</tr>
 
 				<tr>
-					<td class="answer" colspan="2">韩源</td>
-					<td class="answer" colspan="2">软件学院</td>
-					<td class="answer">教授</td>
+					<td class="answer" colspan="2">${requestScope.publicity.visitMembers.size() >= 0 ? requestScope.publicity.visitMembers[0].name : '' }</td>
+					<td class="answer" colspan="2">${requestScope.publicity.visitMembers.size() >= 0 ? requestScope.publicity.visitMembers[0].unit : '' }</td>
+					<td class="answer">${requestScope.publicity.visitMembers.size() >= 0 ? requestScope.publicity.visitMembers[0].title : '' }</td>
 				</tr>
 
 				<tr>
-					<td class="answer" colspan="2">韩源</td>
-					<td class="answer" colspan="2">软件学院</td>
-					<td class="answer">教授</td>
+					<td class="answer" colspan="2">${requestScope.publicity.visitMembers.size() >= 1 ? requestScope.publicity.visitMembers[1].name : '' }</td>
+					<td class="answer" colspan="2">${requestScope.publicity.visitMembers.size() >= 1 ? requestScope.publicity.visitMembers[1].unit : '' }</td>
+					<td class="answer">${requestScope.publicity.visitMembers.size() >= 1 ? requestScope.publicity.visitMembers[1].title : '' }</td>
 				</tr>
 
 				<tr>
-					<td class="answer" colspan="2">韩源</td>
-					<td class="answer" colspan="2">软件学院</td>
-					<td class="answer">教授</td>
+					<td class="answer" colspan="2">${requestScope.publicity.visitMembers.size() >= 2 ? requestScope.publicity.visitMembers[2].name : '' }</td>
+					<td class="answer" colspan="2">${requestScope.publicity.visitMembers.size() >= 2 ? requestScope.publicity.visitMembers[2].unit : '' }</td>
+					<td class="answer">${requestScope.publicity.visitMembers.size() >= 2 ? requestScope.publicity.visitMembers[2].title : '' }</td>
 				</tr>
 
 				<tr>
-					<td class="answer" colspan="2">韩源</td>
-					<td class="answer" colspan="2">软件学院</td>
-					<td class="answer">教授</td>
+					<td class="answer" colspan="2">${requestScope.publicity.visitMembers.size() >= 3 ? requestScope.publicity.visitMembers[3].name : '' }</td>
+					<td class="answer" colspan="2">${requestScope.publicity.visitMembers.size() >= 3 ? requestScope.publicity.visitMembers[3].unit : '' }</td>
+					<td class="answer">${requestScope.publicity.visitMembers.size() >= 3 ? requestScope.publicity.visitMembers[3].title : '' }</td>
 				</tr>
 
 				<tr>
-					<td class="answer" colspan="2">韩源</td>
-					<td class="answer" colspan="2">软件学院</td>
-					<td class="answer">教授</td>
+					<td class="answer" colspan="2">${requestScope.publicity.visitMembers.size() >= 4 ? requestScope.publicity.visitMembers[4].name : '' }</td>
+					<td class="answer" colspan="2">${requestScope.publicity.visitMembers.size() >= 4 ? requestScope.publicity.visitMembers[4].unit : '' }</td>
+					<td class="answer">${requestScope.publicity.visitMembers.size() >= 4 ? requestScope.publicity.visitMembers[4].title : '' }</td>
 				</tr>
 
 				<tr>
 					<td class="attributes" colspan="2">出访国家或地区</td>
-					<td class="answer">美国</td>
+					<td class="answer">${requestScope.publicity.visitPlaces }</td>
 					<td class="attributes" colspan="2">顺访国家或地区</td>
-					<td class="answer">无</td>
+					<td class="answer">${requestScope.publicity.transferPlaces }</td>
 				</tr>
 				<tr>
 					<td class="attributes" colspan="2">出境日期</td>
-					<td class="answer">2016-7-21</td>
+					<td class="answer">${requestScope.publicity.exitDate }</td>
 					<td class="attributes" colspan="2">入境日期</td>
-					<td class="answer">2016-7-25</td>
+					<td class="answer">${requestScope.publicity.enterDate }</td>
 				</tr>
 
 			</tbody>
@@ -70,34 +70,34 @@
 				<tr>
 					<td class="attributes" colspan="1">详细日程（按日填写）</td>
 					<td class="answer" colspan="5">
-						1111111111111111111111111111111111111111111111111111111111111111111111111112222
+						${requestScope.publicity.detailedSchedule }
 					</td>
 				</tr>
 				<tr>
 					<td class="attributes" colspan="1">出访任务及预期出访结果</td>
 					<td class="answer" colspan="5">
-						1111111111111111111111111111111111111111111111111111111111111111111111111112222
+						${requestScope.publicity.taskSummary }
 					</td>
 				</tr>
 				<tr>
 					<td class="attributes" colspan="1">会见人员</td>
-					<td class="answer" colspan="5">胡锦涛江泽民温家宝李克强习近平</td>
+					<td class="answer" colspan="5">${requestScope.publicity.visitPersons }</td>
 				</tr>
 				<tr>
 					<td class="attributes" colspan="1">会议经费及来源</td>
 					<td class="answer" colspan="5">
-						XXXXXXXXXXXXXXXXZZZZZZZZZZZZZZZZZZZZZZZZMMMMMMMMMMMMMMNNNNNNNNNNNN
+						${requestScope.publicity.budget }
 					</td>
 				</tr>
 
 				<tr>
 					<td class="attributes" colspan="1">邀请方简介</td>
-					<td class="answer" colspan="5">胡锦涛江泽民温家宝李克强习近平</td>
+					<td class="answer" colspan="5">${requestScope.publicity.inviterDesc }</td>
 				</tr>
 			</tbody>
 		</table>
 		<div id="btn">
-			<input type="button" class="btn-primary" value="返回">
+			<input type="button" class="btn-primary" value="返回"  onclick="history.go(-1)">
 		</div>
 
 	</div>

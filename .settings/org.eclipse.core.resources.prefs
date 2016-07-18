@@ -1,3 +1,5 @@
 eclipse.preferences.version=1
 encoding//WebRoot/WEB-INF/pages/applyabroad.jsp=UTF-8
+encoding//src/cn/sdu/travel/bean/Vertification.java=UTF-8
+encoding//src/cn/sdu/travel/dao/impl/VertificationDaoImpl.java=UTF-8
 encoding/<project>=UTF-8

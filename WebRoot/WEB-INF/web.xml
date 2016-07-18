@@ -57,6 +57,11 @@
     <servlet-name>ShowNotifyServlet</servlet-name>
     <servlet-class>cn.sdu.travel.web.servlet.ShowNotifyServlet</servlet-class>
   </servlet>
+   <servlet>
+    <servlet-name>VertificationServlet</servlet-name>
+    <servlet-class>cn.sdu.travel.web.servlet.VertificationServlet</servlet-class>
+  </servlet>
+  
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/servlet/LoginServlet</url-pattern>
@@ -93,10 +98,10 @@
     <servlet-name>ShowNotifyServlet</servlet-name>
     <url-pattern>/servlet/ShowNotifyServlet</url-pattern>
   </servlet-mapping>
-    <servlet>
-        <servlet-name>PublicityAndRecordServlet</servlet-name>
-        <servlet-class>cn.sdu.travel.web.servlet.ApplyKeepRecordServlet</servlet-class>
-    </servlet>
+  <servlet>
+    <servlet-name>PublicityAndRecordServlet</servlet-name>
+    <servlet-class>cn.sdu.travel.web.servlet.ApplyKeepRecordServlet</servlet-class>
+  </servlet>
   <servlet>
     <servlet-name>CheckApplicationServlet</servlet-name>
     <servlet-class>cn.sdu.travel.web.servlet.CheckApplicationServlet</servlet-class>
@@ -114,13 +119,10 @@
     <servlet-class>cn.sdu.travel.web.servlet.NavigationServlet3</servlet-class>
   </servlet>
 
-
-
-
-    <servlet-mapping>
-        <servlet-name>PublicityAndRecordServlet</servlet-name>
-        <url-pattern>/servlet/PublicityAndRecord</url-pattern>
-    </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>PublicityAndRecordServlet</servlet-name>
+    <url-pattern>/servlet/PublicityAndRecord</url-pattern>
+  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>CheckApplicationServlet</servlet-name>
     <url-pattern>/servlet/CheckApplicationServlet</url-pattern>
@@ -136,5 +138,9 @@
   <servlet-mapping>
     <servlet-name>NavigationServlet3</servlet-name>
     <url-pattern>/servlet/NavigationServlet3</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>VertificationServlet</servlet-name>
+    <url-pattern>/servlet/VertificationServlet</url-pattern>
   </servlet-mapping>
 </web-app>

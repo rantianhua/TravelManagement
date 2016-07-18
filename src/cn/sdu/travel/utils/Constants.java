@@ -37,5 +37,8 @@ public class Constants {
 	public static final int GET_CHECK_APPLY_SUCCESS = 2000;
 	public static final int REJECT_APPLY_SUCCESS = 2100;
 	public static final int ACCEPT_APPLY_SUCCESS = 2200;
-	
+	public static final int CHECK_APPLICATION_FAIL = 3000;
+	public static final int CHECK_VERTIFICATION_FAIL = 3001;
+	public static final int SAVE_VERTIFICATION_SUCCESS= 3002;
+	public static final int SAVE_VERTIFICATION_FAIL =3003;
 }

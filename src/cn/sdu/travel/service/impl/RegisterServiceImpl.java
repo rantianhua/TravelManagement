@@ -1,4 +1,4 @@
-package cn.sdu.travel.service.impl;
+ package cn.sdu.travel.service.impl;
 
 import java.sql.SQLException;
 import java.util.HashMap;

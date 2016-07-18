@@ -51,7 +51,8 @@ public class LoginServlet extends HttpServlet {
 		request.setAttribute("action", "1");
 		if (hr.getRole().equals("r10")) {
 			// 申请者
-			request.getRequestDispatcher("/WEB-INF/pages/publicnotify.jsp")
+			request.setAttribute("action", "1");
+			request.getRequestDispatcher("/servlet/NavigationServlet")
 					.forward(request, response);
 		} else if (hr.getRole().equals("r30")) {
 			// 国际部

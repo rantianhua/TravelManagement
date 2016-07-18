@@ -18,9 +18,11 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr onclick="checkdetail('')">
-				<td>7月11日 软件学院 院长 张宝权 出国公示</td>
-			</tr>
+			<c:forEach var="item" items="${requestScope.list }">
+				<tr onclick="checkdetail('${item.publicNotificationId}')">
+					<td>${item.applyDate }  ${item.name  }  ${item.purposeContent  }</td>
+				</tr>
+			</c:forEach>
 		</tbody>
 	</table>
 	<h4 class="warn">如果您发现以上信息中有不属实的成分，可以拨打山东大学国际事务部值班电话+86-531-8836-4853，我们会第一时间进行处理</h4>

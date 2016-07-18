@@ -60,7 +60,13 @@ public class ApplyKeepRecordServlet extends HttpServlet {
 			return;
 		}
 		String applicationNumber = request.getParameter("applicationNumber");
-		System.out.println("applicationNumber is " + applicationNumber);
+		if(Constants.LOG) {
+			System.out.println("applicationNumber is " + applicationNumber);
+		}
+		String notify = request.getParameter("notify");
+		if(Constants.LOG) {
+			System.out.println("notify is " + notify);
+		}
 		//首先获取团组成员信息
 		String visitMembersId = WebUtils.generateID();
 		for(int i =1;i < 6;i++) {
@@ -101,8 +107,6 @@ public class ApplyKeepRecordServlet extends HttpServlet {
 		if(form.commitValid()) {
 			//开始保存数据
 			Publicity publicity = null ;
-			String notify = request.getParameter("notify");
-			System.out.println("notify is " + notify);
 			if(notify != null && notify.equals("1")) {
 				publicity = new Publicity();
 				publicity.setApplicationNumber(applicationNumber);
@@ -158,8 +162,12 @@ public class ApplyKeepRecordServlet extends HttpServlet {
 			}
 		}else {
 			//表单校验失败
+			request.setAttribute("applicationNumber", applicationNumber);
+			request.setAttribute("notify", notify);
 			request.setAttribute("form", form);
-			System.out.println("表单校验失败　" + form.getRecordName());
+			if(Constants.LOG) {
+				System.out.println("表单校验失败　" + form.getRecordName());
+			}
 			request.setAttribute("action", "9");
 			request.getRequestDispatcher(
 					"/WEB-INF/pages/applykeeprecord.jsp").forward(request,

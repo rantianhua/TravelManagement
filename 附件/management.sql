@@ -464,10 +464,8 @@ ADD CONSTRAINT `DESTINATION` FOREIGN KEY (`plan_id`) REFERENCES `visit_plan` (`p
 #
 #  Foreign keys for table visit_record
 #
-
 ALTER TABLE `visit_record`
 ADD CONSTRAINT `visit_record_ibfk_1` FOREIGN KEY (`family_members`) REFERENCES `family` (`id`);
-
 
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;

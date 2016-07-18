@@ -57,7 +57,7 @@ public class VisitMembersDaoImpl implements VisitMembersDao{
 	@Override
 	public List<VisitMembers> find(String id) throws SQLException {
 		QueryRunner runner = new QueryRunner();
-		String sql = "select * from visit_members where id=" ;
+		String sql = "select * from visit_members where id=?" ;
 		return (List<VisitMembers>)runner.query(ManageDbUtils.getConnection(), sql,id,new BeanListHandler(VisitMembers.class));
 	}
 

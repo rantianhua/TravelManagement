@@ -31,8 +31,18 @@ public class Constants {
 	public static final int GET_APPLY_DETAIL_FAIL = 1601;
 	public static final int GET_APPLY_DETAIL_SUCCESS = 1602;
 	public static final int SAVE_PUBLICITY_SUCCESS = 1700;
+	public static final int GET_SIMPLE_PUBLICITY_SUCCESS = 1701;
+	public static final int GET_PUBLICITY_SUCCESS = 1702;
 	public static final int SAVE_RECORD_SUCCESS = 1800;
 	public static final int DB_ERROR = 1999;
+	
+	//返回吗标识
+	public static final String RETURN_CODE = "returnCode";
+	public static final String RETURN_INFO = "returnInfo";
+	public static final String RETURN_DATA = "data";
+	
+	//是否开启调试
+	public static final boolean LOG = true;
 
 	public static final int GET_CHECK_APPLY_SUCCESS = 2000;
 	public static final int REJECT_APPLY_SUCCESS = 2100;

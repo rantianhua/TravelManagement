@@ -9,6 +9,8 @@ import org.apache.commons.dbutils.handlers.BeanHandler;
 import cn.sdu.travel.bean.Publicity;
 import cn.sdu.travel.bean.VisitMembers;
 import cn.sdu.travel.dao.PublicityDao;
+import cn.sdu.travel.dao.VisitMembersDao;
+import cn.sdu.travel.utils.Constants;
 import cn.sdu.travel.utils.ManageDbUtils;
 
 public class PublicityDaoImpl implements PublicityDao {
@@ -26,6 +28,20 @@ public class PublicityDaoImpl implements PublicityDao {
 
 	@Override
 	public void delete(String id) throws SQLException {
+		try{
+			Publicity publicity = findPublicity(id);
+			if(publicity != null) {
+				if(publicity.getMembersId() != null && publicity.getMembersId().length() > 0) {
+					//先删除成员
+					VisitMembersDao dao = new VisitMembersDaoImpl();
+					dao.delete(publicity.getMembersId());
+				}
+			}
+		}catch(Exception e) {
+			if(Constants.LOG) {
+				e.printStackTrace();
+			}
+		}
 		QueryRunner runner = new QueryRunner();
 		String sql = "delete from publicity where id=?";
 		runner.update(ManageDbUtils.getConnection(), sql, id);
@@ -45,7 +61,7 @@ public class PublicityDaoImpl implements PublicityDao {
 	@Override
 	public Publicity findPublicity(String id) throws SQLException {
 		QueryRunner runner = new QueryRunner();
-		String sql = "select * from publicity where id=";
+		String sql = "select * from publicity where id=?";
 		return (Publicity)runner.query(ManageDbUtils.getConnection(), sql, id,new BeanHandler(Publicity.class));
 	}
 	

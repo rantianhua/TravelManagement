@@ -31,9 +31,6 @@
 				<li <c:if test="${action eq '2' }">class="active"</c:if>><a
 					href="${pageContext.request.contextPath }/servlet/NavigationServlet3?action=2"
 					class="nav_a">核销审核</a></li>
-				<li <c:if test="${action eq '3' }">class="active"</c:if>><a
-					href="${pageContext.request.contextPath }/servlet/NavigationServlet3?action=3"
-					class="nav_a">出具任务批件</a></li>
 			</ul>
 		</div>
 	</nav>

@@ -38,5 +38,9 @@ public interface ApplicationDao {
 	// 更新对出访备案表的引用
 	void updateVisitRecord(String applicationId, String recordId)
 			throws SQLException;
+	void updateVertification(String applicationId,String vertification) throws SQLException;
+	
+	List<Application> idFind(String applicantId) throws SQLException;
+	
 
 }

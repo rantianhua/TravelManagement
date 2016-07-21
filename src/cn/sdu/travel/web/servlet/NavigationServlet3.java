@@ -40,10 +40,12 @@ public class NavigationServlet3 extends HttpServlet {
 						(List<Application>) map.get("data"));
 				request.getRequestDispatcher("/WEB-INF/internation/review.jsp")
 						.forward(request, response);
+				return;
 			} else {
 				request.setAttribute("returnInfo", map.get("returnInfo"));
 				request.getRequestDispatcher("/web/exception.jsp").forward(
 						request, response);
+				return;
 			}
 		}
 
@@ -54,11 +56,7 @@ public class NavigationServlet3 extends HttpServlet {
 			break;
 		case "2":
 			// 审批核销
-			path = "/WEB-INF/internation/xxx.jsp";
-			break;
-		case "3":
-			// 出具批件
-			path = "/WEB-INF/internation/xxx.jsp";
+			path = "/servlet/CheckVertificationServlet";
 			break;
 		default:
 			break;

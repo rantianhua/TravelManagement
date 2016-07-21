@@ -9,6 +9,8 @@ import cn.sdu.travel.bean.EmergencyContactPerson;
 import cn.sdu.travel.dao.EmergencyContactPersonDao;
 import cn.sdu.travel.utils.HrDbUtils;
 
+import com.mysql.jdbc.ResultSet;
+
 public class EmergencyContactPersonDaoImpl implements EmergencyContactPersonDao {
 	@Override
 	public void add(EmergencyContactPerson ecp) throws SQLException {

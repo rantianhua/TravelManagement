@@ -1,7 +1,7 @@
 package cn.sdu.travel.web.servlet;
 
-import java.awt.Desktop.Action;
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -15,11 +15,19 @@ import cn.sdu.travel.bean.Application;
 import cn.sdu.travel.bean.HumanResource;
 import cn.sdu.travel.bean.Passport;
 import cn.sdu.travel.bean.SimplePublicity;
+import cn.sdu.travel.bean.Vertification;
 import cn.sdu.travel.service.ApplicantService;
+import cn.sdu.travel.service.GetVertificationService;
 import cn.sdu.travel.service.SimplePublicityService;
+import cn.sdu.travel.service.VertificationDetailsService;
 import cn.sdu.travel.service.impl.ApplicantServiceImpl;
+import cn.sdu.travel.service.impl.GetVertificationServiceImpl;
 import cn.sdu.travel.service.impl.SimplePublicityServiceImpl;
+import cn.sdu.travel.service.impl.VertificationDetailsServiceImpl;
 import cn.sdu.travel.utils.Constants;
+import cn.sdu.travel.web.formbean.CheckVertificationForm;
+import cn.sdu.travel.web.formbean.VertificationDetailsForm;
+import cn.sdu.travel.web.formbean.VertificationForm;
 
 @WebServlet("/NavigationServlet")
 public class NavigationServlet extends HttpServlet {
@@ -45,6 +53,14 @@ public class NavigationServlet extends HttpServlet {
 		String path = null;
 		
 		switch (rep) {
+		case "0":
+			 // 显示核销信息
+			HumanResource hr = (HumanResource)request.getSession().getAttribute("hr");
+			String id =hr.getId();	
+			if (loadVertification(id, request, response)==null) {
+				path = "/WEB-INF/pages/viewvertification.jsp";
+			}
+			break;
 		case "1":
 			// 显示公示信息
 			if (loadPublicityInfo(request) == null) {
@@ -93,6 +109,13 @@ public class NavigationServlet extends HttpServlet {
 				path = "/WEB-INF/pages/applyabroad.jsp";
 			}
 			break;
+		case "14":
+			// 核销详情
+			
+			String id2 =request.getParameter("appNo");	
+			if (loadVertificationDetails(id2,request, response) == null) {
+				path = "/WEB-INF/pages/showvertification.jsp";
+			}
 		default:
 			break;
 		}
@@ -105,7 +128,71 @@ public class NavigationServlet extends HttpServlet {
 	 * @param request
 	 * @param response
 	 * @return
+	 * @throws IOException 
+	 * @throws ServletException 
 	 */
+	
+	private String loadVertification(String id,HttpServletRequest request,
+			HttpServletResponse response)
+	{
+		try
+		{
+		
+		ApplicantService as=new ApplicantServiceImpl();
+		GetVertificationService gv=new GetVertificationServiceImpl();
+		List<Application> la=(List<Application>) as.idFind(id).get("data");
+		
+		List<CheckVertificationForm> lcvf=new LinkedList<CheckVertificationForm>();
+		for(int i = 0;i < la.size(); i ++){
+			CheckVertificationForm vf=new CheckVertificationForm();
+			Vertification v=gv.getVertification(la.get(i).getApplicationNumber());
+			Passport p=gv.getPassport(la.get(i).getPassportId());
+			if(v!=null&&p!=null)
+			{
+			vf.setVertificationId(la.get(i).getApplicationNumber());
+		    vf.setVertificationMoney(v.getVertificationMoney());
+		    vf.setVertificationProgram(v.getVertificationProgram());
+		    vf.setName(p.getName());
+			if(la.get(i).getVerification().equals("00000000"))
+				 vf.setVertificationStatus("未审核");
+				if(la.get(i).getVerification().equals("00000001"))
+					 vf.setVertificationStatus("被拒绝");
+				if(la.get(i).getVerification().equals("00000002"))
+					 vf.setVertificationStatus("已通过");
+			}
+			lcvf.add(vf);	
+			
+		}
+		request.setAttribute("apply",lcvf);
+		request.setAttribute("action", "0");
+		return null;
+		}catch(Exception e){
+			e.printStackTrace();
+			request.setAttribute("returnInfo", "未知错误");
+		}	
+		return null;
+	}
+	
+	
+	
+	private String loadVertificationDetails(String id,HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException 
+	{
+		try
+		{
+		VertificationDetailsService service = new VertificationDetailsServiceImpl();
+          VertificationDetailsForm vf=  service.getVertificationDetailsInfo(id);
+          request.setAttribute("apply", vf);
+          return null;
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	
+	
 	private String loadPublicityInfo(HttpServletRequest request) {
 		SimplePublicityService simplePublicityService = new SimplePublicityServiceImpl();
 		Map<String, Object> map = simplePublicityService.getAllSimpleInfo();

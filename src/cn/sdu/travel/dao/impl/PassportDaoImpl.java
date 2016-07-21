@@ -1,10 +1,19 @@
 package cn.sdu.travel.dao.impl;
 
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.ResultSetHandler;
 import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.MapHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 
+import com.mysql.jdbc.ResultSet;
+
+import cn.sdu.travel.bean.Application;
 import cn.sdu.travel.bean.Passport;
 import cn.sdu.travel.dao.PassportDao;
 import cn.sdu.travel.utils.ManageDbUtils;
@@ -54,6 +63,17 @@ public class PassportDaoImpl implements PassportDao {
 		String sql = "select * from passport where identity=?";
 		return (Passport) runner.query(ManageDbUtils.getConnection(), sql, id,
 				new BeanHandler(Passport.class));
+	}
+	
+	
+	public List<Passport> FindAll() throws SQLException
+	{
+		QueryRunner runner = new QueryRunner();
+		String sql = "select * from vertification";
+		return (List<Passport>) runner.query(ManageDbUtils.getConnection(),
+				sql, new BeanListHandler(Passport.class));
+		
+		
 	}
 
 }

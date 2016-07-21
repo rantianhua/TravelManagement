@@ -21,5 +21,7 @@ public interface ApplicantService {
 	Map<String, Object> getApplyDetail(String appNo);
 
 	Map<String, Object> getReviewInfo(String appNo);
+	
+	 Map<String, Object> idFind(String id);
 
 }

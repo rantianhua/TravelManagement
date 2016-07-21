@@ -1,6 +1,7 @@
 package cn.sdu.travel.dao;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import cn.sdu.travel.bean.Passport;
 
@@ -15,5 +16,7 @@ public interface PassportDao {
 	void updateForApply(Passport p) throws SQLException;
 
 	Passport find(String id) throws SQLException;
+	
+	 List<Passport> FindAll() throws SQLException;
 
 }

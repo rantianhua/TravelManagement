@@ -318,4 +318,20 @@ public class ApplicantServiceImpl implements ApplicantService {
 		}
 		return map;
 	}
+	public Map<String, Object> idFind(String id)
+	{
+		Map<String, Object> map = new HashMap<String, Object>();
+		ApplicationDao ad=new ApplicationDaoImpl();
+		try {
+			List<Application> la=ad.idFind(id);
+			
+			map.put("returnInfo", "成功");
+			map.put("data", la);
+		} catch (SQLException e) {
+			map.put("returnCode", 1999);
+			map.put("returnInfo", "数据库异常！");
+			e.printStackTrace();
+		}
+		return map;
+	}
 }

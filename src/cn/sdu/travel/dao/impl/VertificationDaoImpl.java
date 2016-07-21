@@ -1,10 +1,14 @@
 package cn.sdu.travel.dao.impl;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
 
+import cn.sdu.travel.bean.Application;
+import cn.sdu.travel.bean.Passport;
 import cn.sdu.travel.bean.Vertification;
 import cn.sdu.travel.dao.VertificationDao;
 import cn.sdu.travel.utils.ManageDbUtils;
@@ -60,4 +64,13 @@ public class VertificationDaoImpl implements VertificationDao {
 		return (Vertification) runner.query(ManageDbUtils.getConnection(), sql, id,
 				new BeanHandler(Vertification.class));
 	}
+	
+	public List<Vertification> FindAll() throws SQLException
+	{
+		QueryRunner runner = new QueryRunner();
+		String sql = "select * from vertification";
+		return (List<Vertification>) runner.query(ManageDbUtils.getConnection(),
+				sql, new BeanListHandler(Vertification.class));		
+	}
+
 }

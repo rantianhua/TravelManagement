@@ -113,7 +113,6 @@ public class VertificationServlet extends HttpServlet {
 			WebUtils.copyBean(form,v);
 			Map<String, Object> result=vs.saveVertificationInfo(v);
 			form.setErrors(result);
-			System.out.println(form.getErrors());
 			request.setAttribute("form", form);
 			request.setAttribute("action","6");
 				request.getRequestDispatcher("/WEB-INF/pages/backwriteoff.jsp").forward(request,

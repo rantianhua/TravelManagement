@@ -44,6 +44,9 @@
 				<li <c:if test="${action eq '6'}">class="active"</c:if>><a
 					href="${pageContext.request.contextPath }/servlet/NavigationServlet?action=6"
 					class="nav_a">回校核销</a></li>
+					<li <c:if test="${action eq '0'}">class="active"</c:if>><a
+					href="${pageContext.request.contextPath }/servlet/NavigationServlet?action=0"
+					class="nav_a">查看核销</a></li>
 			</ul>
 		</div>
 	</nav>

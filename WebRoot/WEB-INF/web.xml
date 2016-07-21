@@ -30,8 +30,16 @@
     <servlet-class>cn.sdu.travel.web.servlet.RegisterServlet</servlet-class>
   </servlet>
   <servlet>
+    <servlet-name>ReplyVertificationServlet</servlet-name>
+    <servlet-class>cn.sdu.travel.web.servlet.ReplyVertificationServlet</servlet-class>
+  </servlet>
+  <servlet>
     <servlet-name>NavigationServlet</servlet-name>
     <servlet-class>cn.sdu.travel.web.servlet.NavigationServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>CheckVertificationServlet</servlet-name>
+    <servlet-class>cn.sdu.travel.web.servlet.CheckVertificationServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>ModifyUserInfoServlet</servlet-name>
@@ -53,15 +61,18 @@
     <servlet-name>ModifyApplicationServlet</servlet-name>
     <servlet-class>cn.sdu.travel.web.servlet.ModifyApplicationServlet</servlet-class>
   </servlet>
+   <servlet>
+    <servlet-name>VertificationUpdateServlet</servlet-name>
+    <servlet-class>cn.sdu.travel.web.servlet.VertificationUpdateServlet</servlet-class>
+  </servlet>
   <servlet>
     <servlet-name>ShowNotifyServlet</servlet-name>
     <servlet-class>cn.sdu.travel.web.servlet.ShowNotifyServlet</servlet-class>
   </servlet>
-   <servlet>
+  <servlet>
     <servlet-name>VertificationServlet</servlet-name>
     <servlet-class>cn.sdu.travel.web.servlet.VertificationServlet</servlet-class>
   </servlet>
-  
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/servlet/LoginServlet</url-pattern>
@@ -73,6 +84,10 @@
   <servlet-mapping>
     <servlet-name>NavigationServlet</servlet-name>
     <url-pattern>/servlet/NavigationServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ReplyVertificationServlet</servlet-name>
+    <url-pattern>/servlet/ReplyVertificationServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>ModifyUserInfoServlet</servlet-name>
@@ -118,7 +133,6 @@
     <servlet-name>NavigationServlet3</servlet-name>
     <servlet-class>cn.sdu.travel.web.servlet.NavigationServlet3</servlet-class>
   </servlet>
-
   <servlet-mapping>
     <servlet-name>PublicityAndRecordServlet</servlet-name>
     <url-pattern>/servlet/PublicityAndRecord</url-pattern>
@@ -136,11 +150,19 @@
     <url-pattern>/servlet/AcceptApplicationServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
+    <servlet-name>CheckVertificationServlet</servlet-name>
+    <url-pattern>/servlet/CheckVertificationServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
     <servlet-name>NavigationServlet3</servlet-name>
     <url-pattern>/servlet/NavigationServlet3</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>VertificationServlet</servlet-name>
     <url-pattern>/servlet/VertificationServlet</url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>VertificationUpdateServlet</servlet-name>
+    <url-pattern>/servlet/VertificationUpdateServlet</url-pattern>
   </servlet-mapping>
 </web-app>

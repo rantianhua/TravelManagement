@@ -13,6 +13,7 @@ import cn.sdu.travel.dao.PublicityDao;
 import cn.sdu.travel.utils.Constants;
 import cn.sdu.travel.utils.ManageDbUtils;
 
+
 public class ApplicationDaoImpl implements ApplicationDao {
 	@Override
 	public void add(Application app) throws SQLException {
@@ -153,5 +154,21 @@ public class ApplicationDaoImpl implements ApplicationDao {
 		Object[] param = { recordId, applicationId };
 		runner.update(ManageDbUtils.getConnection(), sql, param);
 	}
-
+	public void updateVertification(String applicationId,String vertification) throws SQLException
+	{
+		QueryRunner runner = new QueryRunner();
+		String sql = "update application set verification=? where application_number=?";
+		Object[] param = { vertification, applicationId };
+		runner.update(ManageDbUtils.getConnection(), sql, param);
+	}
+	
+	public List<Application> idFind(String applicantId) throws SQLException
+	{
+		QueryRunner runner = new QueryRunner();
+		String sql = "select * from application where applicant_id=?";
+		Object[] param = { applicantId };
+		return (List<Application>) runner.query(ManageDbUtils.getConnection(),
+				sql,param, new BeanListHandler(Application.class));
+	}
+	
 }
